@@ -50,10 +50,11 @@ Judged on craft of each piece + integration across them. Classroom champion → 
 ## Files in this directory
 
 - **`index.html`** — pitch website for internal team review. Single-page, self-contained, branded. Covers the big idea, anchor heroes, the 10-day lesson maps with full Do Now/Mini Lesson/Activity for each, the Hero Pitch, and a "why this audience" closing.
-- **`lesson-plans.md`** — editable markdown source of truth for the 40 lesson outlines. Make changes here when revising lessons.
+- **`math.md`**, **`science.md`**, **`ela.md`**, **`social-studies.md`** — editable markdown source of truth for the 40 lesson outlines, split by subject (10 lessons each). Each file is self-contained (anchor heroes + lesson structure repeated at top) so collaborators can work on different subjects in parallel without merge conflicts. Make changes here when revising lessons.
+- **`danielle/`** — collaborator Danielle's parallel version of the unit (her own `index.html`, `superhero-initiative.md`, rubric, bibliography, materials list, prep checklist, README). Treat as a separate source — do not assume root files are canonical for her work or vice versa.
 - **`CLAUDE.md`** — this file.
 
-When the lessons are revised, update **both** `lesson-plans.md` AND the corresponding day block in `index.html` so the two stay in sync.
+When the lessons are revised, update **both** the relevant subject `.md` file AND the corresponding day block in `index.html` so the two stay in sync. The anchor-hero table is duplicated across the four subject files; if those change, update all four.
 
 ---
 
