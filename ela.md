@@ -27,9 +27,44 @@ Each lesson follows the standard structure:
 **Final artifact for the Hero Pitch:** Origin Story (1–2 pages).
 
 ### Day 1 — What Is a Hero?
-- **Do Now:** Write the name of one real-life hero (not a superhero). Why them?
-- **Mini Lesson:** Definitions of hero across cultures and time. Brainstorm hero traits as a class.
-- **Activity:** Students draft a personal "hero traits" list (5 traits) and rank them. Share-out.
+
+**Lesson objectives:**
+- Define "hero" using historical, cultural, and personal lenses.
+- Distinguish heroism from fame, power, and celebrity.
+- Identify 5 traits that, in their judgment, are essential to heroism.
+- Connect the abstract definition of a hero to a real person in their own life or community.
+
+**Assessment:**
+- Hero Traits Worksheet
+- Exit Ticket
+
+**Key Points:**
+- Students enter the unit through a personal hook — they have to name a *real* person they consider a hero before any superhero is mentioned.
+- Class compares three working definitions of "hero" (ancient Greek root, modern dictionary, a contemporary quote) to surface that the word has always been contested.
+- Through a paired ranking activity, students build a working "hero traits" list that the whole unit will return to when they design their original hero in the Hero Pitch.
+- A short profile-writing task forces them to apply their own traits to a real human, not a fantasy.
+
+| Component | Teacher & Student Actions | Materials |
+|---|---|---|
+| **Do Now** | Write the name of **one real-life hero** (NOT a fictional one — no Marvel, no DC, no movies). In three sentences: who they are, what they did, and why *you* call that heroic. | Handout or journal |
+| **Mini Lesson** | "What does *hero* actually mean?" Project three definitions side-by-side: (1) **Greek root *hērōs*** — a mortal of god-like courage, often half-divine; (2) **Merriam-Webster (modern)** — "a person admired for achievements and noble qualities"; (3) **Maya Angelou** — "I think a hero is any person really intent on making this a better place for all people." Class brainstorm on the board: what's the difference between *famous*, *powerful*, and *heroic*? Teacher captures emerging traits as students name them. | Slides (3 definitions), board space, marker |
+| **Guided Practice** | **Hero Traits — Top 5 Ranking.** In pairs, students take the class trait list and cut it down to their personal **Top 5**. Rules: no duplicates, must defend each pick out loud to their partner. Partners challenge: "Why is *courage* on your list but not *honesty*?" Teacher circulates and pushes back on weak defenses. | Hero Traits Worksheet |
+| **Independent Practice** | **Real-Life Hero Profile.** Using the person from their Do Now, students write a **5-sentence profile** that names at least 2 of their Top 5 traits as the reason this person counts as a hero. Bridge sentence at the end: "If I had to design a hero, the first trait I'd give them is ___ because ___." | Hero Traits Worksheet |
+| **Closing** | **Exit Ticket** — finish one of the following: <br>• "The most important thing a hero has to be is ___ because ___." <br>• "I never used to think of ___ as a hero, but ___." <br>• "My hero is ___ — and the most important trait they have is ___." | Handout or journal |
+
+**Differentiation Considerations:**
+- **Hero Bank handout** for students who can't think of a real-life hero on the spot (12 examples — community organizers, civil rights leaders, family-member archetypes, athletes-turned-activists, teachers, mentors).
+- Sentence frames provided for all written work ("My hero is ___ because they ___").
+- Students may dictate the 5-sentence profile orally to a partner or teacher if writing is a barrier.
+- For students who decline to share in pairs, the Top 5 ranking can be done individually with a brief teacher conference.
+- Vocabulary preview for English learners: *hero, noble, heroic, fame vs. heroism, courage, integrity*.
+- Exit ticket may be completed in writing, verbally to a teacher, or as a quick sketch with a one-line caption.
+
+**Standards (Massachusetts Curriculum Framework for ELA & Literacy, 9–10):**
+- **SL.9–10.1** — Initiate and participate effectively in a range of collaborative discussions with diverse partners on grades 9–10 topics, building on others' ideas and expressing their own clearly and persuasively.
+- **W.9–10.4** — Produce clear and coherent writing in which the development, organization, and style are appropriate to task, purpose, and audience.
+- **L.9–10.6** — Acquire and use accurately general academic and domain-specific words and phrases sufficient for reading, writing, speaking, and listening at the college and career readiness level.
+- **W.9–10.10** — Write routinely over extended time frames and shorter time frames for a range of tasks, purposes, and audiences.
 
 ### Day 2 — Hero's Journey Overview
 - **Do Now:** Watch/read a 2-min summary of one anchor hero's origin (Miles Morales recommended). What changes in him from start to end?
