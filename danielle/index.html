@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BreakFree-Ed · Superheroes Initiative</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --ink: #131826;
+    --ink-soft: #4b5469;
+    --ink-muted: #7e869a;
+    --line: #e2e5ed;
+    --primary: #1a2849;
+    --accent: #d62828;
+    --ela: #6b3aa0;
+    --math: #00696b;
+    --science: #2e7d32;
+    --history: #c65d2c;
+    --shadow: 0 1px 2px rgba(20,30,50,.05), 0 8px 24px rgba(20,30,50,.06);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Header ===== */
+  header.site-header {
+    background: linear-gradient(135deg, #1a2849 0%, #2c3e6b 100%);
+    color: #fff;
+    padding: 32px 24px 36px;
+    border-bottom: 4px solid var(--accent);
+  }
+  .header-wrap { max-width: 1200px; margin: 0 auto; }
+  .eyebrow {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: #b8c4e0;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  header .subtitle {
+    margin: 0;
+    color: #d5dcec;
+    font-size: 15px;
+    max-width: 720px;
+  }
+
+  /* ===== Sticky filter bar ===== */
+  .filter-bar {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(20,30,50,.04);
+  }
+  .filter-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .filter-group label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ink-muted);
+  }
+  .filter-group select,
+  .filter-group input {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--ink);
+    min-width: 140px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color .15s;
+  }
+  .filter-group select:hover,
+  .filter-group input:hover { border-color: #b8c0d4; }
+  .filter-group select:focus,
+  .filter-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(26,40,73,.12);
+  }
+  .filter-group input[type="search"] { min-width: 220px; cursor: text; }
+  .filter-actions { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .count {
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: #eef1f7;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .15s;
+  }
+  .btn:hover { background: #2c3e6b; }
+  .btn.ghost {
+    background: #fff;
+    color: var(--primary);
+    border: 1px solid var(--line);
+  }
+  .btn.ghost:hover { background: #f0f3fa; }
+
+  /* ===== Main content ===== */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 24px 64px;
+  }
+
+  /* ===== Overview section ===== */
+  details.overview {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  details.overview summary {
+    cursor: pointer;
+    padding: 18px 24px;
+    font-weight: 600;
+    font-size: 16px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+  details.overview summary::-webkit-details-marker { display: none; }
+  details.overview summary::after {
+    content: "▾";
+    color: var(--ink-muted);
+    font-size: 14px;
+    transition: transform .2s;
+  }
+  details.overview[open] summary::after { transform: rotate(180deg); }
+  .overview-body { padding: 0 24px 24px; border-top: 1px solid var(--line); padding-top: 20px; }
+  .overview-body h3 {
+    margin: 20px 0 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ink-muted);
+  }
+  .overview-body h3:first-child { margin-top: 0; }
+  .arc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .arc-table th, .arc-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .arc-table th {
+    background: #f6f7fb;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--ink-soft);
+  }
+  .arc-table td:first-child { font-weight: 600; color: var(--primary); white-space: nowrap; }
+  .arc-table .new { color: var(--accent); font-weight: 700; font-size: 11px; }
+
+  .codex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .codex-cell {
+    background: #f6f7fb;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .codex-cell .panel-name {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  .codex-cell .panel-subject {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .codex-cell .panel-desc { font-size: 13px; color: var(--ink-soft); }
+
+  /* ===== Lesson cards ===== */
+  .lesson-list {
+    display: grid;
+    gap: 16px;
+  }
+  .lesson-card {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .lesson-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(20,30,50,.08), 0 12px 32px rgba(20,30,50,.08);
+  }
+  .lesson-card.hidden { display: none; }
+
+  .lesson-card summary {
+    cursor: pointer;
+    padding: 18px 22px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: center;
+    user-select: none;
+  }
+  .lesson-card summary::-webkit-details-marker { display: none; }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .badge.ela { background: var(--ela); }
+  .badge.math { background: var(--math); }
+  .badge.science { background: var(--science); }
+  .badge.history { background: var(--history); }
+
+  .lesson-title-line {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .lesson-title {
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .lesson-meta {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .lesson-meta span { display: inline-flex; align-items: center; gap: 4px; }
+
+  .expand-arrow {
+    color: var(--ink-muted);
+    font-size: 14px;
+    transition: transform .2s;
+  }
+  .lesson-card[open] .expand-arrow { transform: rotate(180deg); }
+
+  .lesson-body {
+    padding: 0 22px 22px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+  .lesson-body .theme-q {
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--line);
+    padding-left: 14px;
+    margin: 0 0 20px;
+    font-size: 14px;
+  }
+  .lesson-section { margin-bottom: 22px; }
+  .lesson-section h4 {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+  }
+  .lesson-section p, .lesson-section li {
+    font-size: 14.5px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    line-height: 1.6;
+  }
+  .lesson-section ul, .lesson-section ol {
+    margin: 0 0 8px;
+    padding-left: 20px;
+  }
+  .lesson-section ul li, .lesson-section ol li {
+    margin-bottom: 4px;
+  }
+  .standards-list { display: flex; flex-direction: column; gap: 6px; }
+  .standard-item {
+    background: #f6f7fb;
+    border-left: 3px solid var(--primary);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13.5px;
+  }
+  .standard-code { font-weight: 700; color: var(--primary); }
+
+  .section-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-row:last-child { border-bottom: none; }
+  .section-row .time {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .section-row .step-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .quote-box {
+    background: #fff8e7;
+    border: 1px solid #f0d976;
+    border-left: 3px solid #d4a017;
+    padding: 12px 14px;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    color: #5c4416;
+    margin: 8px 0;
+    font-style: italic;
+  }
+  .codex-note {
+    background: #e8f4f8;
+    border-left: 3px solid #2c7da0;
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13.5px;
+    color: #1a4a5e;
+    margin-top: 10px;
+  }
+  .codex-note strong { color: #0d2f3f; }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .diff-cell {
+    background: #f6f7fb;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+  }
+  .diff-cell .diff-age {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 4px;
+  }
+  .diff-cell .diff-text { font-size: 13.5px; }
+
+  .lesson-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--ink-muted);
+  }
+  .empty h3 { color: var(--ink-soft); margin: 0 0 8px; }
+
+  /* ===== Print ===== */
+  @media print {
+    header.site-header, .filter-bar, .lesson-actions, details.overview { display: none; }
+    .lesson-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 16px; }
+    .lesson-card .expand-arrow { display: none; }
+    .lesson-card .lesson-body { display: block !important; }
+    .lesson-card { break-inside: avoid; }
+    body { background: #fff; }
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 720px) {
+    header h1 { font-size: 24px; }
+    .filter-wrap { padding: 12px 16px; gap: 10px; }
+    .filter-group select, .filter-group input { min-width: 100px; font-size: 13px; }
+    .filter-actions { width: 100%; justify-content: space-between; }
+    main { padding: 20px 16px 48px; }
+    .lesson-card summary { padding: 16px; gap: 12px; grid-template-columns: auto 1fr; }
+    .expand-arrow { grid-column: 2; justify-self: end; }
+    .section-row { grid-template-columns: 1fr; gap: 4px; }
+    .diff-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-wrap">
+    <div class="eyebrow">BreakFree-Ed · Summer Initiative</div>
+    <h1>Superheroes: A 5-Week Cross-Curricular Initiative</h1>
+    <p class="subtitle">Trauma-informed lesson plans for Massachusetts juvenile justice schools. Grades 7–12 (ages 12–19). MA Curriculum Framework-aligned. Designed to be meaningful, relevant, and fun.</p>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <div class="filter-wrap">
+    <div class="filter-group">
+      <label for="subject">Subject</label>
+      <select id="subject">
+        <option value="all">All subjects</option>
+        <option value="ela">ELA</option>
+        <option value="math">Math</option>
+        <option value="science">Science</option>
+        <option value="history">History</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="week">Week</label>
+      <select id="week">
+        <option value="all">All weeks</option>
+        <option value="1">Week 1 — Ordinary World & The Call</option>
+        <option value="2">Week 2 — Crossing the Threshold</option>
+        <option value="3">Week 3 — The Abyss & Transformation</option>
+        <option value="4">Week 4 — Allies, Mentors & The Team</option>
+        <option value="5">Week 5 — Return with the Elixir</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="day">Day</label>
+      <select id="day">
+        <option value="all">All days</option>
+        <option value="1">Day 1</option>
+        <option value="2">Day 2</option>
+        <option value="3">Day 3</option>
+        <option value="4">Day 4</option>
+        <option value="5">Day 5 — Codex Build Day</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="search">Search</label>
+      <input type="search" id="search" placeholder="Title, standard, keyword…" />
+    </div>
+    <div class="filter-actions">
+      <span class="count" id="count">0 lessons</span>
+      <button class="btn ghost" id="expand-all">Expand all</button>
+      <button class="btn" id="reset">Reset filters</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <details class="overview">
+    <summary>About this initiative — 5-week arc & the Hero Codex capstone</summary>
+    <div class="overview-body">
+      <h3>The 5-Week Hero's Journey Arc</h3>
+      <table class="arc-table">
+        <thead>
+          <tr><th>Week</th><th>Stage</th><th>Theme Question</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Week 1</td><td>The Ordinary World & The Call</td><td>Who counts as a hero? Who decides?</td></tr>
+          <tr><td>Week 2</td><td>Crossing the Threshold & Trials</td><td>Where does power come from?</td></tr>
+          <tr><td>Week 3</td><td>The Abyss & Transformation</td><td>What makes a hero different from a villain?</td></tr>
+          <tr><td>Week 4</td><td>Allies, Mentors & The Team</td><td>Why does no hero stand alone?</td></tr>
+          <tr><td>Week 5</td><td>Return with the Elixir</td><td>How do I bring something back to my community?</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Capstone Product — The Hero Codex Trifold</h3>
+      <p style="font-size:14px; color:var(--ink-soft); margin:0 0 12px;">A cardboard trifold (low-cost, no tech required) that each student builds across the 5 weeks. Every Friday adds a panel. By Week 5, each trifold is the centerpiece of a community showcase.</p>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin:0 0 12px;"><strong>Materials per student:</strong> 1 cardboard trifold (~$3 or cut from a large box), construction paper, lined paper, markers, glue stick, scissors. Optional tech: QR code linking to a phone-recorded pitch video.</p>
+      <div class="codex-grid">
+        <div class="codex-cell">
+          <div class="panel-subject">Left panel · top</div>
+          <div class="panel-name">Origin Story</div>
+          <div class="panel-desc">ELA · 1-page narrative of the moment that made the hero</div>
+        </div>
+        <div class="codex-cell">
+          <div class="panel-subject">Left panel · bottom</div>
+          <div class="panel-name">Power Schematic</div>
+          <div class="panel-desc">Science · Labeled diagram + scientific explanation</div>
+        </div>
+        <div class="codex-cell">
+          <div class="panel-subject">Center · bottom</div>
+          <div class="panel-name">Stat Sheet & HQ Budget</div>
+          <div class="panel-desc">Math · Numbers with units, ratios, justified budget</div>
+        </div>
+        <div class="codex-cell">
+          <div class="panel-subject">Right panel · top</div>
+          <div class="panel-name">Cultural Lineage</div>
+          <div class="panel-desc">History · Hero traditions this character descends from</div>
+        </div>
+        <div class="codex-cell">
+          <div class="panel-subject">Center · top (focal piece)</div>
+          <div class="panel-name">Hero Manifesto</div>
+          <div class="panel-desc">ELA / Civics · 5-sentence creed (added in Week 3)</div>
+        </div>
+        <div class="codex-cell">
+          <div class="panel-subject">Right panel · bottom</div>
+          <div class="panel-name">Community Mission</div>
+          <div class="panel-desc">Civics / SEL · One real action to bring back to community (Week 5)</div>
+        </div>
+      </div>
+
+      <h3>Design Notes for Justice-Involved Youth</h3>
+      <ul style="font-size:14px; color:var(--ink-soft); padding-left:20px;">
+        <li><strong>Position students as heroes, not as those waiting to be saved.</strong> The curriculum frames identity as authorship — they hold the pen.</li>
+        <li><strong>Villain analysis is intentional.</strong> Treating students as capable of nuanced moral reasoning (Killmonger, Magneto) respects them as adults.</li>
+        <li><strong>Real heroes anchor Week 4.</strong> Community speakers — formerly incarcerated mentors, organizers, EMTs — model the "return" stage.</li>
+        <li><strong>Trauma-informed by design.</strong> The abyss stage (Week 3) is included, not skipped, but students choose how much of their own story they share.</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="lesson-list" id="lessons"></div>
+  <div class="empty" id="empty" style="display:none;">
+    <h3>No lessons match these filters</h3>
+    <p>Try resetting filters or broadening your search.</p>
+  </div>
+</main>
+
+<script>
+const SUBJECT_LABELS = { ela: 'ELA', math: 'Math', science: 'Science', history: 'History' };
+
+const LESSONS = [
+  // ============ WEEK 1 · DAY 1 ============
+  {
+    subject: 'ela', week: 1, day: 1,
+    title: 'What Is an Origin Story? Reading Miles Morales',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA RL.9-10.3', text: 'Analyze how complex characters develop, interact, and advance the plot or theme.' },
+      { code: 'MA RL.9-10.2', text: 'Determine a theme and analyze its development.' },
+      { code: 'MA W.9-10.3.a', text: 'Engage and orient the reader by setting out a problem, situation, or observation.' },
+      { code: 'MA SL.9-10.1', text: 'Initiate and participate in collaborative discussions.' }
+    ],
+    objectives: [
+      'Identify three structural elements present in a superhero origin story.',
+      'Draft an opening paragraph of an original origin story that establishes setting, character, and an inciting moment.'
+    ],
+    materials: 'Excerpt from <em>Miles Morales: Spider-Man</em> by Jason Reynolds (Chapter 1, ~3 pages) OR the first 8 pages of <em>Ms. Marvel #1</em> (Kamala Khan). Lined paper, pencils. Optional: short clip from <em>Into the Spider-Verse</em>, 0:00–3:00.',
+    doNow: 'Posted on board: <em>"Name one person — real or fictional — you think is a hero. In one sentence, what\'s the moment that made them a hero?"</em> Students write silently. Two volunteers share.',
+    miniLesson: 'Teacher introduces the <strong>three pieces of an origin story:</strong><ol><li><strong>The Ordinary World</strong> — life before</li><li><strong>The Inciting Moment</strong> — what broke the pattern</li><li><strong>The Choice</strong> — what the character decided to do about it</li></ol>Read aloud the first two pages of the chosen excerpt. Pause and annotate together: highlight where each of the three pieces appears.',
+    activity: '<p><strong>Part A — Pair analysis (12 min):</strong> Students finish reading the excerpt in pairs and label the three structural elements on their copy. Each pair writes a one-sentence answer to: <em>Whose perspective does this origin take seriously that other superhero stories ignore?</em></p><p><strong>Part B — Origin draft (18 min):</strong> Students draft the opening paragraph of <em>their own</em> origin story on lined paper. Required: at least one detail of the ordinary world, one inciting moment, no "powers" yet. Optional sentence starters posted on board:</p><ul><li>"Before everything changed, my days looked like…"</li><li>"The day it started, I was…"</li></ul><p>Teacher circulates. Saved in folder — this is <strong>Codex draft #1</strong> (Origin Story panel).</p>',
+    exitTicket: '"If your origin story were being written by someone else — a reporter, a teacher, a judge — what would they get wrong? Write one sentence."',
+    exitTicketNote: 'This question is the lesson\'s real heart. It surfaces the central tension of the whole curriculum: who gets to define your story.',
+    differentiation: {
+      younger: 'Provide a graphic organizer with three boxes (Ordinary / Inciting / Choice) instead of open paragraph.',
+      older: 'Add a second prompt — whose origin story is missing from mainstream comics, and why?'
+    },
+    codexPrep: 'Seeds the <strong>Origin Story panel</strong> (left panel, top).'
+  },
+  {
+    subject: 'math', week: 1, day: 1,
+    title: 'Hero Stat Blocks: Ratios and Unit Reasoning',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA 7.RP.A.3', text: 'Use proportional relationships to solve multi-step ratio and percent problems.' },
+      { code: 'MA HSN.Q.A.1', text: 'Use units as a way to understand problems; choose and interpret units consistently.' },
+      { code: 'MA HSN.Q.A.3', text: 'Choose a level of accuracy appropriate to limitations on measurement.' }
+    ],
+    objectives: [
+      'Convert between units of speed (mph, m/s, blocks per minute) accurately.',
+      'Use ratios to compare two heroes\' relative abilities and justify which is "more powerful" based on a chosen metric.'
+    ],
+    materials: 'Hero Stat Cards handout (printable — heroes with raw stats from canon), calculators (or phone calculators), lined paper. A Boston-area map photocopy is a great optional addition.',
+    doNow: 'On board: <em>"The Flash can run 770 mph. The distance from the school to Fenway Park is about 4 miles. About how long would it take the Flash to get there?"</em> Students attempt. One volunteer demonstrates.',
+    miniLesson: 'Teacher introduces <strong>unit ratios</strong> with one worked example: converting 770 mph into miles per second, then into "blocks per second" using a Boston block ≈ 1/20 mile.<br><br>Key teaching point: <em>raw numbers lie. The unit you choose changes the story.</em> Show how Spider-Man\'s swing speed (60 mph) sounds slow, but in NYC blocks per second, it\'s terrifying.',
+    activity: '<p><strong>Hero Stat Battle.</strong> Students get a sheet with 6 heroes and 4 stats each (top speed, lift strength in lbs, reaction time in ms, intelligence as IQ).</p><p><strong>Round 1 (10 min):</strong> Each student picks two heroes and computes:</p><ul><li>The ratio of their top speeds</li><li>How long each would take to cross the Mass Pike (138 miles)</li><li>One stat where the "weaker-looking" hero actually wins, once converted</li></ul><p><strong>Round 2 (15 min):</strong> In pairs, students debate: <em>which of your two heroes is more powerful?</em> They must use at least two computed ratios as evidence. Pair shares with another pair (3 min).</p>',
+    exitTicket: '"Pick one stat for your own hero. Write the number AND the unit. Then write one sentence explaining why that unit matters more than the number."',
+    differentiation: {
+      younger: 'Restrict to whole-number ratios and provide a conversion chart.',
+      older: 'Add a stat with non-linear scaling (e.g., "strength doubles per cube of body mass") and ask them to derive the formula.'
+    },
+    codexPrep: 'Seeds the <strong>Stat Sheet panel</strong> — students choose 4 stats and assign realistic units.'
+  },
+  {
+    subject: 'science', week: 1, day: 1,
+    title: "What's in an Origin? DNA and the Science of Becoming",
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HS-LS3-1', text: 'Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for characteristic traits.' },
+      { code: 'MA HS-LS3-2', text: 'Make and defend a claim that inheritable genetic variations may result from new genetic combinations, replication errors, and/or mutations.' },
+      { code: 'SP1', text: 'Asking questions and defining problems.' }
+    ],
+    objectives: [
+      'Extract visible DNA from a strawberry using household materials and describe what they are seeing.',
+      'Explain in their own words how a mutation could (or could not) plausibly produce a superhero trait.'
+    ],
+    materials: '<strong>Per group of 3–4:</strong> 1 strawberry, 1 zip-top bag, dish soap, table salt, rubbing alcohol (chilled in ice bucket), coffee filter, clear plastic cup, wooden stir stick or toothpick. Total cost ≈ $1.50/group.',
+    doNow: 'On board: <em>"Spider-Man got his powers from a radioactive spider bite. Could that actually work? Yes / No / Maybe — and one sentence why."</em> Students write. Quick hand-vote tally on board.',
+    miniLesson: 'Teacher introduces:<ul><li>DNA is in every cell. It\'s the instruction manual.</li><li><strong>Mutation</strong> = a change in those instructions. Most mutations do nothing. Some kill the cell. A few rare ones change a trait.</li><li>Real example: <strong>CCR5-delta32</strong> mutation makes some people resistant to HIV — a real "superpower" caused by a real mutation.</li><li>Today: pull DNA out of a strawberry so they can see it.</li></ul>',
+    activity: '<p><strong>Strawberry DNA Extraction lab (20 min):</strong></p><ol><li>Crush strawberry in bag with soap + salt (breaks cell membranes).</li><li>Filter into cup through coffee filter.</li><li>Slowly pour cold alcohol down the side. White stringy DNA precipitates at the boundary.</li><li>Lift DNA out with stir stick.</li></ol><p>Each group sketches what they see in their science notebook and labels it.</p><p><strong>Lab Reflection (10 min):</strong> In group, answer in notebook:</p><ul><li>What did you actually see? (observation, not interpretation)</li><li>The strawberry had DNA. So do you. Name one trait of yours that the DNA codes for.</li><li><em>Codex prep:</em> List one realistic "power" that could plausibly come from a mutation.</li></ul><p><strong>Safety:</strong> No flames near alcohol. Goggles if available. Pre-chill alcohol before class.</p>',
+    exitTicket: '"True or false: A radioactive spider bite could rewrite your DNA to give you spider powers. Defend your answer in two sentences using something we did or said today."',
+    differentiation: {
+      younger: 'Provide a fill-in-the-blank lab notes sheet.',
+      older: 'Add a research extension — look up CRISPR and write a paragraph: if we can edit DNA, who should decide which edits are allowed?'
+    },
+    codexPrep: 'Seeds the <strong>Power Schematic panel</strong> — students begin thinking about their hero\'s biological/scientific origin.'
+  },
+  {
+    subject: 'history', week: 1, day: 1,
+    title: 'Heroes Across Cultures: What a Culture\'s Heroes Tell You',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HSS PS3', text: 'Organize information and data from multiple primary and secondary sources.' },
+      { code: 'MA HSS PS5', text: 'Develop claims using evidence from multiple sources.' },
+      { code: 'MA WHI.T1', text: 'Analyze the impact of religion and culture in pre-modern world history.' }
+    ],
+    objectives: [
+      'Identify defining traits of three hero figures from three different cultures.',
+      'Articulate a claim about what each culture valued based on its hero stories.'
+    ],
+    materials: 'Hero Card Set (printed) with one-paragraph summaries of: <strong>Anansi</strong> (West Africa), <strong>Sun Wukong</strong> (China), <strong>Maui</strong> (Polynesia), <strong>Gilgamesh</strong> (Mesopotamia), <strong>Cú Chulainn</strong> (Ireland), <strong>Mulan</strong> (China). Graphic organizer with 4 columns: <em>Hero / Powers / Flaws / What Culture Valued.</em>',
+    doNow: 'On board: <em>"Most American superheroes are strong, fast, and fight crime. List two — then write: what does it say about America that those are our heroes?"</em> Two volunteers share. Don\'t moralize — just collect.',
+    miniLesson: 'Teacher\'s framing: <em>every culture invents the heroes it needs.</em> Show a chart on the board: 4 cultures, blank slots. Walk through one hero together — <strong>Anansi the Spider</strong> (West African trickster). Powers: cleverness, deception. Flaws: arrogance, greed. <em>What did West African societies value?</em> — wit, survival under power imbalance, the right of the small to outsmart the big.<br><br>Key teaching point: Anansi is a <em>hero</em> in his tradition. In an American comic, he\'d be coded as a villain. <strong>The label depends on who\'s holding the pen.</strong> (Foreshadows Week 3.)',
+    activity: '<p><strong>Jigsaw (20 min):</strong> Class splits into 5 "home groups." Each group gets 1 of the remaining 5 hero cards. They have 8 minutes to fill out their row of the graphic organizer for that hero. Then groups reshuffle into "expert groups" (one from each home group meets) and share — 12 minutes for everyone to fill in all 6 rows.</p><p><strong>Quick discussion (8 min):</strong> Whole class.</p><ul><li>Which hero would not work as a hero in a different culture? Why?</li><li><em>Codex prep:</em> Students mark which two heroes\' traditions they want their own hero to descend from.</li></ul>',
+    exitTicket: '"Pick one hero from today. Name one thing their culture valued. Then write: do you think your community values the same thing? Why or why not?"',
+    differentiation: {
+      younger: 'Replace one hero card with a shorter version; allow drawing on the organizer.',
+      older: 'Add a 4th column — what would this hero be called today by a court or the news? Surfaces the framing-and-power theme early.'
+    },
+    codexPrep: 'Seeds the <strong>Cultural Lineage panel</strong>.'
+  },
+
+  // ============ WEEK 1 · DAY 2 ============
+  {
+    subject: 'ela', week: 1, day: 2,
+    title: 'Voice in Origin Stories — Whose Voice Tells the Story?',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA RL.9-10.6', text: 'Analyze how an author\'s choices regarding point of view create effects.' },
+      { code: 'MA W.9-10.3.b', text: 'Use narrative techniques (dialogue, pacing, description, reflection).' },
+      { code: 'MA L.9-10.3', text: 'Apply knowledge of language to understand how language functions in different contexts.' }
+    ],
+    objectives: [
+      'Identify how first-person voice shapes a reader\'s relationship to the narrator.',
+      'Revise their origin story draft to commit clearly to a point of view.'
+    ],
+    materials: 'Excerpt from <em>Long Way Down</em> by Jason Reynolds (Will\'s opening monologue, ~2 pages) OR the first 4 pages of <em>American Born Chinese</em> by Gene Luen Yang. Each student\'s Day 1 origin draft.',
+    doNow: 'On board: <em>"Rewrite this sentence in your own voice: \'It was the day everything changed.\' Make it sound like you wrote it, not a textbook."</em>',
+    miniLesson: 'Read the <em>Long Way Down</em> opening aloud. Annotate together:<ul><li>Where does Will <em>break</em> standard English on purpose?</li><li>What does that choice <em>do</em> to you as a reader?</li></ul>Key idea: <strong>voice is a power.</strong> Writers who match how their community actually talks let readers in. Writers who flatten everyone\'s voice into the same "school English" lock people out.',
+    activity: '<p><strong>Part A — Voice hunt (10 min):</strong> In pairs, students find 3 places in the excerpt where the narrator\'s word choice, rhythm, or grammar would get marked wrong on a school essay — but make the writing <em>better</em>. Share out.</p><p><strong>Part B — Revision (20 min):</strong> Students return to their Day 1 origin draft and revise it for voice. Required moves:</p><ul><li>At least one line of dialogue or internal speech in <em>their own</em> voice</li><li>One sentence broken on purpose (fragment, run-on, repetition — used for rhythm)</li><li>A clear "I" perspective</li></ul>',
+    exitTicket: '"If someone told you \'this isn\'t how you\'re supposed to write,\' what would you say back? One sentence."',
+    differentiation: {
+      younger: 'Sentence-stem support: "I sound like myself when I say…"',
+      older: 'Add a second draft in third-person and reflect on which version is stronger and why.'
+    }
+  },
+  {
+    subject: 'math', week: 1, day: 2,
+    title: 'The Boston Hero Patrol',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA 7.RP.A.2', text: 'Recognize and represent proportional relationships.' },
+      { code: 'MA HSN.Q.A.1', text: 'Use units to understand problems.' },
+      { code: 'SMP.4', text: 'Model with mathematics.' }
+    ],
+    objectives: [
+      'Calculate distance/time/speed problems involving real Boston-area locations.',
+      'Design a patrol route and justify it numerically.'
+    ],
+    materials: 'Boston-area map (photocopied or hand-drawn — Dorchester, Roxbury, Mattapan, downtown, Cambridge). Ruler, calculator, lined paper.',
+    doNow: 'On board: <em>"A hero needs to get from your school to the State House in 90 seconds. What\'s the minimum speed they need? Use any unit."</em>',
+    miniLesson: 'Walk through the <strong>distance = rate × time</strong> triangle. Then introduce a real-world wrinkle: heroes don\'t fly in straight lines — they have to follow streets, dodge buildings, account for traffic. Show: a "Manhattan distance" estimate (sum of N/S and E/W) vs. straight-line. The unit choice matters again.',
+    activity: '<p><strong>Patrol Design Challenge.</strong> Pairs receive a map with 5 marked locations across Boston (e.g., school, hospital, courthouse, Fenway, harbor). They must:</p><ol><li>Measure straight-line distances between each pair of points (map scale provided).</li><li>Choose a top speed for their hero (in mph).</li><li>Calculate the time to reach every location from a central HQ.</li><li>Decide: <em>where should HQ be located to minimize the longest response time?</em></li><li>Justify in 2–3 sentences using their numbers.</li></ol>',
+    exitTicket: '"Where did you put HQ, and what\'s the longest response time you\'d accept before a hero is \'too late\'? Defend with a number."',
+    differentiation: {
+      younger: 'Use only 3 locations and provide pre-measured distances.',
+      older: 'Add traffic — locations have different "response multipliers" for time of day.'
+    },
+    codexPrep: 'The chosen HQ location goes on the <strong>Stat Sheet / Budget panel</strong> (Week 4 will revisit cost).'
+  },
+  {
+    subject: 'science', week: 1, day: 2,
+    title: 'Punnett Squares & Inherited Powers',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HS-LS3-1', text: 'Ask questions about the role of DNA in coding instructions for traits.' },
+      { code: 'MA HS-LS3-3', text: 'Apply concepts of statistics and probability to explain variation of traits.' },
+      { code: 'SP5', text: 'Using mathematics and computational thinking.' }
+    ],
+    objectives: [
+      'Construct a Punnett square to predict trait inheritance.',
+      'Use probability ratios to determine offspring trait likelihoods.'
+    ],
+    materials: 'Two dice per pair, Punnett square worksheet, colored pencils.',
+    doNow: 'On board: <em>"If one parent has super-strength (dominant) and the other does not (recessive), what\'s the chance their kid has super-strength?"</em>',
+    miniLesson: 'Quick refresh: <strong>dominant vs. recessive alleles</strong>, capital and lowercase letter notation. Build a Punnett square together for <em>Ss × ss</em> on the board. Read out ratios: 50% Ss (super), 50% ss (not).<br><br>Then complicate it: most "powers" wouldn\'t be single-gene. But Punnett squares are how we <em>start</em> thinking about who inherits what — and they\'re how scientists predict rare-trait inheritance in real medical genetics.',
+    activity: '<p><strong>Hero Family Tree.</strong> Each pair invents two hero parents with three traits each (e.g., flight, super-strength, telepathy). Decide for each trait whether it\'s dominant or recessive. Then:</p><ol><li>Build three Punnett squares — one per trait.</li><li>Calculate the % chance their offspring inherits all three powers.</li><li>Roll dice to "simulate" the actual offspring\'s genotype.</li><li>Sketch the resulting child and label which traits they have.</li></ol>',
+    exitTicket: '"A trait can be inherited and still not show up. Explain why in one sentence."',
+    differentiation: {
+      younger: 'Provide pre-set parental genotypes.',
+      older: 'Add a second-trait dependency (e.g., flight only works if the strength gene is also present).'
+    },
+    codexPrep: 'Students jot down whether their hero\'s power is inherited, mutated, or environmental — feeds the <strong>Power Schematic panel</strong>.'
+  },
+  {
+    subject: 'history', week: 1, day: 2,
+    title: "Who Made the Cut? The American Superhero",
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA USII.T5', text: 'Analyze the role of cultural change in 20th-century America.' },
+      { code: 'MA HSS PS4', text: 'Use evidence to argue a position.' },
+      { code: 'MA HSS PS5', text: 'Develop claims using evidence from multiple sources.' }
+    ],
+    objectives: [
+      'Analyze how the demographics of mainstream American superheroes changed (and didn\'t) from 1938–2018.',
+      'Make an evidence-based claim about why representation lagged.'
+    ],
+    materials: 'Printed comic covers (or projected): <em>Action Comics #1</em> (1938 Superman), <em>Captain America #1</em> (1941), <em>Wonder Woman #1</em> (1942), <em>Fantastic Four #1</em> (1961), <em>Fantastic Four #52</em> (1966 — Black Panther\'s first), <em>Ms. Marvel #1</em> (2014 — Kamala Khan), <em>Miles Morales: Ultimate Spider-Man #1</em> (2011). Timeline handout.',
+    doNow: 'On board: <em>"Name 5 American superheroes. Then circle the ones who are NOT white men."</em>',
+    miniLesson: 'Project the covers in chronological order. Walk through the dates:<ul><li>1938: Superman (white, male, "alien" allegory for Jewish immigrants — the creators were Jewish)</li><li>1941: Captain America punches Hitler 9 months <em>before</em> the US enters WWII</li><li>1966: Black Panther is the first Black superhero in mainstream comics — <strong>28 years</strong> after Superman</li><li>2011: Miles Morales / 2014: Kamala Khan — mainstream lead heroes of color and Muslim heroes</li></ul>Key teaching point: <em>who gets to be a hero in print tells you who America was willing to imagine as heroic at that moment.</em>',
+    activity: '<p><strong>Timeline Investigation (jigsaw, 20 min):</strong> Groups of 4. Each group gets one cover and a half-page "context card" with: year, publisher, the main social events that year (e.g., 1942: Japanese internment begins; 1966: Black Panther Party founded same year as the comic).</p><p>Groups answer on chart paper:</p><ul><li>What does this hero represent?</li><li>Who is missing from the cover?</li><li>What was happening in America that year that explains this?</li></ul><p>Groups post their charts. Gallery walk (8 min) — students leave one post-it on each chart with a connection or question.</p>',
+    exitTicket: '"Pick a hero from today. Write one sentence about who they let be a hero, and one sentence about who they erased."',
+    differentiation: {
+      younger: 'Provide a vocabulary key (representation, allegory, mainstream).',
+      older: 'Add a primary-source pairing — a 1940s editor\'s letter explaining why a certain hero "wouldn\'t sell."'
+    }
+  },
+
+  // ============ WEEK 1 · DAY 3 ============
+  {
+    subject: 'ela', week: 1, day: 3,
+    title: 'Dialogue and Dialect — Speaking Your Truth',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA RL.9-10.4', text: 'Determine word meaning, including connotative impact.' },
+      { code: 'MA W.9-10.3.b', text: 'Use dialogue, pacing, description.' },
+      { code: 'MA L.9-10.3', text: 'Apply knowledge of language.' }
+    ],
+    objectives: [
+      'Write a dialogue exchange that reveals character through word choice.',
+      'Distinguish between "dialect as authenticity" vs. "dialect as caricature."'
+    ],
+    materials: 'Two short dialogue excerpts: one from <em>The Hate U Give</em> (Starr\'s home voice vs. school voice) and one example of stereotyped dialogue from an older comic. Lined paper.',
+    doNow: 'On board: <em>"Write the same sentence — \'I\'m not scared\' — three ways: how you\'d say it to a friend, to a teacher, and to a stranger you didn\'t trust."</em>',
+    miniLesson: 'Introduce <strong>code-switching</strong> — not as a deficit, but as a skill. Read the <em>Hate U Give</em> excerpt aloud. Then read the older stereotyped excerpt. Class identifies the difference: one writer wrote <em>with</em> the community, one wrote <em>at</em> it.',
+    activity: '<p><strong>Hero Confrontation Scene.</strong> Each student writes a 6–10 line dialogue between their hero and someone with authority over them (a teacher, a cop, a parent, a system). Requirements:</p><ul><li>Hero uses two different "voices" in the scene</li><li>At least one line is in their authentic voice, not "translated"</li><li>The exchange ends <em>without</em> the hero winning the argument — leave it real</li></ul>',
+    exitTicket: '"Who in your life makes you change how you talk? Why?"',
+    differentiation: {
+      younger: 'Provide a 4-line skeleton structure.',
+      older: 'Add a craft constraint: no dialogue tags ("he said," "she said") — voice has to do the work.'
+    },
+    codexPrep: 'The strongest line from this dialogue goes into the <strong>Origin Story panel</strong> as a callout quote.'
+  },
+  {
+    subject: 'math', week: 1, day: 3,
+    title: 'Force, Strength, and Hercules\'s Labors',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HSN.Q.A.1', text: 'Use units to understand problems.' },
+      { code: 'MA HSA.CED.A.1', text: 'Create equations in one variable.' },
+      { code: 'SMP.4', text: 'Model with mathematics.' }
+    ],
+    objectives: [
+      'Use F = ma to compute force in real-world units.',
+      'Evaluate the plausibility of a feat of strength using calculations.'
+    ],
+    materials: 'Bathroom scale (one per group, optional), calculators, "Labors of Hercules" handout with weights and dimensions.',
+    doNow: 'On board: <em>"A weightlifter lifts 500 lb over their head. A car weighs 4,000 lb. How many weightlifters would it take to hold up a car?"</em>',
+    miniLesson: 'Introduce <strong>force = mass × acceleration</strong>, units of newtons. Walk through one Hercules labor — the Nemean Lion (~600 lb). What force did Hercules need to choke it? Compare to: the world record bench press (~770 lb).<br><br>Key idea: heroes\' feats are <em>interesting</em> exactly when we can measure them. "Super-strength" is meaningless without a number.',
+    activity: '<p><strong>Strength Audit.</strong> Each pair picks 3 famous hero feats (Hulk lifting a tank, Thor\'s hammer, Spider-Man stopping a train). For each, the pair:</p><ul><li>Looks up or estimates the real-world weight involved</li><li>Computes the force required</li><li>Compares to the strongest <em>real</em> human/animal capable of comparable force</li><li>Writes a verdict: <em>plausible / requires breakthrough / impossible</em></li></ul>',
+    exitTicket: '"Your hero lifts X pounds. Defend the number — what real animal or person is the closest comparison?"',
+    differentiation: {
+      younger: 'Provide weights pre-converted to a single unit.',
+      older: 'Add scaling — what would your hero\'s strength be if they weighed half as much?'
+    },
+    codexPrep: 'Students lock in their hero\'s strength stat with a number, unit, and one-sentence justification — <strong>Stat Sheet panel</strong>.'
+  },
+  {
+    subject: 'science', week: 1, day: 3,
+    title: 'Could a Real Person Develop Powers?',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HS-LS4-2', text: 'Construct an explanation based on evidence for the role of natural selection.' },
+      { code: 'MA HS-LS4-4', text: 'Construct an explanation for how adaptations result from selection.' },
+      { code: 'SP6', text: 'Constructing explanations.' }
+    ],
+    objectives: [
+      'Explain natural selection in their own words.',
+      'Argue whether a human population could plausibly evolve a chosen "power" given enough time.'
+    ],
+    materials: 'Paper clips (50/group), pieces of yarn cut to different lengths, stopwatch (phone OK), worksheet.',
+    doNow: 'On board: <em>"Why don\'t humans have wings even though birds, bats, and bugs all evolved flight independently?"</em>',
+    miniLesson: '<strong>Natural selection in three sentences:</strong><ol><li>Traits vary.</li><li>Some traits help you survive and reproduce more.</li><li>Those traits get more common over generations.</li></ol>Walk through the <em>peppered moth</em> example briefly. Then ask: <em>what trait would a population need to be under pressure for, generation after generation, for humans to evolve a "power"?</em>',
+    activity: '<p><strong>Predator-Prey Selection Simulation (20 min):</strong></p><ul><li>30 paper clips scattered on the floor = "prey"</li><li>10 clips painted one color = "easy to see"</li><li>"Predators" (students) have 15 seconds to grab prey, then count</li><li>The clips left over "reproduce" — surviving colors multiply</li><li>Run 3 generations. Track which color survives.</li></ul><p><strong>Reflection (8 min):</strong> In groups, answer:</p><ul><li>Which trait won?</li><li>What real environmental pressure could select for <em>your</em> hero\'s power?</li><li>Could that pressure realistically exist for humans long enough to evolve the power?</li></ul>',
+    exitTicket: '"Pick your hero\'s power. Name one environmental pressure that would select for it. Be specific."',
+    differentiation: {
+      younger: 'Use only 2 generations and color-only selection.',
+      older: 'Add a tradeoff — every power has a cost. What does this power cost the body?'
+    },
+    codexPrep: 'Students lock in the "origin of power" — inherited mutation, environmental adaptation, accident, or technology — for the <strong>Power Schematic panel</strong>.'
+  },
+  {
+    subject: 'history', week: 1, day: 3,
+    title: 'Outlaws, Folk Heroes, and Who Holds the Pen',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HSS PS3', text: 'Analyze multiple causation.' },
+      { code: 'MA HSS PS5', text: 'Develop claims using evidence.' },
+      { code: 'MA USI.T4', text: 'Examine the abolition movement.' }
+    ],
+    objectives: [
+      'Identify how the same person can be called a "hero" or "criminal" depending on the source.',
+      'Analyze a primary source for bias and framing.'
+    ],
+    materials: 'Three short primary source excerpts about Harriet Tubman: (1) an 1860s wanted-poster style notice, (2) Frederick Douglass\'s praise of her, (3) a modern textbook entry. Same treatment for Robin Hood (medieval ballad vs. sheriff\'s record) if time allows.',
+    doNow: 'On board: <em>"Who decides who is a criminal? Is it the same person who decides who is a hero?"</em>',
+    miniLesson: 'Introduce <strong>framing</strong> in history. The same action — helping enslaved people escape — was a <em>federal crime</em> under the Fugitive Slave Act and a <em>heroic act</em> in the moral record. <em>Both descriptions are historically accurate. The difference is who\'s holding the pen.</em>',
+    activity: '<p><strong>Source Triangulation (20 min):</strong> In pairs, students read the three Harriet Tubman sources. They complete a chart:</p><ul><li>Who wrote this?</li><li>What words do they use? (Hero, criminal, agitator, savior, conductor, fugitive?)</li><li>What did the writer want the reader to do or feel?</li></ul><p>Then pairs write a one-paragraph claim: <em>Was Harriet Tubman a criminal or a hero — and what\'s the right answer to that question?</em></p><p><strong>Share out (8 min):</strong> Several pairs read. Class discusses: can someone be both? Neither? Does it depend on the year?</p>',
+    exitTicket: '"Someone you admire was probably called a criminal by someone at some point. Who, and by whom?"',
+    differentiation: {
+      younger: 'Provide pre-highlighted key phrases in each source.',
+      older: 'Add a fourth source — a contemporary news article about someone framed similarly today (e.g., a whistleblower).'
+    },
+    codexPrep: 'Students decide whether their hero\'s actions would be legal in the world they live in. Seeds the Manifesto panel (Week 3).'
+  },
+
+  // ============ WEEK 1 · DAY 4 ============
+  {
+    subject: 'ela', week: 1, day: 4,
+    title: 'Sensory Detail — Show Don\'t Tell',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA W.9-10.3.d', text: 'Use precise words, telling details, and sensory language.' },
+      { code: 'MA L.9-10.5', text: 'Demonstrate understanding of figurative language.' }
+    ],
+    objectives: [
+      'Revise a passage to replace "telling" with "showing."',
+      'Add at least three sensory details to their origin story.'
+    ],
+    materials: 'Day 1/2 origin drafts. Two "before/after" example paragraphs (teacher-made or from mentor texts).',
+    doNow: 'On board: <em>"Rewrite \'I was scared\' WITHOUT using the words scared, afraid, or nervous. Show me what scared looks like in your body."</em>',
+    miniLesson: 'Show two paragraphs. Both describe the same scene. One uses adjectives ("It was a scary day"). The other uses sensory detail ("My shoelace was untied. I remember that — I was looking down at it when the door slammed."). Ask: <em>which one puts you there?</em><br><br>Teach <strong>the five-sense pass:</strong> when revising, check that each scene has at least 2–3 of: sight, sound, smell, taste, touch.',
+    activity: '<p><strong>Revision Lab (25 min):</strong> Students return to their origin draft with three highlighters (or symbols):</p><ul><li>Mark every "telling" word (felt, was, seemed).</li><li>Replace one with a sensory detail.</li><li>Add one detail from a sense not yet in the piece.</li><li>Add one specific, concrete object (not "a building" — "the Walgreens on the corner with the cracked sign").</li></ul><p><strong>Pair share (5 min):</strong> Read your strongest sensory line to a partner. Partner names which sense was used.</p>',
+    exitTicket: '"What is one object you\'ll never forget from a real day in your life? Don\'t tell me why — just name the object."',
+    differentiation: {
+      younger: 'Provide a sense-checklist they fill in as they revise.',
+      older: 'Add metaphor as a constraint — one sensory detail must double as a symbol.'
+    },
+    codexPrep: 'This draft becomes the version that will go on the <strong>Origin Story panel</strong>.'
+  },
+  {
+    subject: 'math', week: 1, day: 4,
+    title: 'Probability of Being Chosen',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA 7.SP.C.5', text: 'Understand that probability is a number between 0 and 1.' },
+      { code: 'MA 7.SP.C.6', text: 'Approximate probability by collecting data.' },
+      { code: 'MA HSS.CP.A.1', text: 'Describe events as subsets of a sample space.' }
+    ],
+    objectives: [
+      'Compute compound probabilities for independent events.',
+      'Express the rarity of a "hero origin" as a probability.'
+    ],
+    materials: 'Dice, coins, deck of cards (one per group), probability worksheet.',
+    doNow: 'On board: <em>"Chance of being struck by lightning in your lifetime: about 1 in 15,000. Chance of being a billionaire: about 1 in 600,000. Chance of being a superhero: ?"</em>',
+    miniLesson: 'Walk through <strong>multiplying independent probabilities.</strong> Example: Spider-Man requires (1) being at a science demo × (2) the demo having a radioactive spider × (3) being bitten × (4) the bite mutating cells instead of killing you. Multiply rough estimates → astronomically small number.<br><br>Key idea: heroes are statistically <em>rare</em>. That\'s part of why we tell stories about them. But the math also reveals: <em>most "chosen ones" weren\'t chosen by chance. They put themselves in the room.</em>',
+    activity: '<p><strong>Origin Probability Workshop (20 min):</strong> Each student calculates the probability of their <em>own</em> hero\'s origin event happening. They break it into 3–5 component probabilities and estimate each one. Encourage realistic numbers.</p><p>Then: students write a one-sentence reflection — <em>given those odds, what part of your hero\'s becoming was actually chance, and what part was choice?</em></p><p><strong>Group share (8 min):</strong> Three volunteers share their probability and their choice/chance breakdown.</p>',
+    exitTicket: '"If something is 1-in-a-million unlikely, but you put yourself in front of it every day, does it stay unlikely? Explain in one sentence."',
+    differentiation: {
+      younger: 'Pre-fill 3 of the 5 component probabilities.',
+      older: 'Introduce conditional probability — the second event becomes more likely given the first.'
+    },
+    codexPrep: 'A line about choice vs. chance gets added to the <strong>Manifesto panel</strong> (Week 3).'
+  },
+  {
+    subject: 'science', week: 1, day: 4,
+    title: 'The Brain on Fear — Courage as Neuroscience',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HS-LS1-2', text: 'Develop a model to illustrate the hierarchical organization of systems.' },
+      { code: 'MA HS-LS1-3', text: 'Plan investigations to provide evidence that feedback mechanisms maintain homeostasis.' }
+    ],
+    objectives: [
+      'Diagram the brain\'s fear response (amygdala → adrenaline → body).',
+      'Explain why courage is not the absence of fear.'
+    ],
+    materials: 'Brain diagram handout (label-the-parts), stopwatch, "fear scenarios" cards.',
+    doNow: 'On board: <em>"Your heart is pounding. Your hands shake. Your stomach drops. Is this fear, excitement, or both? What\'s the difference?"</em>',
+    miniLesson: 'Build the chain on the board:<ul><li>Threat detected → <strong>amygdala</strong> fires</li><li>Signal → <strong>hypothalamus</strong> → adrenal glands → <strong>adrenaline + cortisol</strong></li><li>Body: heart rate up, blood to muscles, digestion off, pupils dilate</li><li>This is <em>fight, flight, or freeze.</em></li></ul>Key idea: <strong>the fear response is not weakness. It\'s your body trying to save your life.</strong> Courage isn\'t the <em>absence</em> of this response — courage is acting <em>while</em> it\'s firing.<br><br><strong>This lesson lands especially hard for this audience. Don\'t rush it.</strong>',
+    activity: '<p><strong>Scenario Cards (15 min):</strong> In groups of 3, students read 5 scenario cards (e.g., "speaking in front of a judge," "running into a burning building," "telling someone you love them"). For each:</p><ul><li>Mark whether the body\'s fear response would fire.</li><li>Mark whether the action takes <em>courage</em>.</li></ul><p>Notice the overlap: every act of courage has the body screaming "don\'t."</p><p><strong>Hero application (10 min):</strong> Each student writes 2–3 sentences answering: <em>what does your hero fear, and what do they do anyway?</em></p>',
+    exitTicket: '"Name one thing that scared you this year that you did anyway."',
+    differentiation: {
+      younger: 'Provide a labeled brain diagram and shorter scenarios.',
+      older: 'Add a research extension — how does chronic stress alter the amygdala over time?'
+    },
+    codexPrep: '"What this hero is afraid of" sits next to "what this hero can do" on the <strong>Power Schematic panel</strong>. That juxtaposition is the point.'
+  },
+  {
+    subject: 'history', week: 1, day: 4,
+    title: 'Massachusetts Heroes',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA USI.T2', text: 'Roots of the Revolution in colonial Massachusetts.' },
+      { code: 'MA USI.T4', text: 'Abolition and the antislavery movement (Massachusetts as a center).' },
+      { code: 'MA HSS PS5', text: 'Develop claims using evidence.' }
+    ],
+    objectives: [
+      'Identify three Massachusetts figures whose actions changed history.',
+      'Argue which qualifies as a "hero" and on whose terms.'
+    ],
+    materials: 'Hero Card Set (printed): <strong>Crispus Attucks</strong> (Boston Massacre), <strong>Phillis Wheatley</strong> (first published African American poet, Boston), <strong>Frederick Douglass\'s Boston years</strong>, <strong>William Lloyd Garrison</strong> (Boston abolitionist), <strong>Mel King</strong> (modern Boston organizer), <strong>Mum Bett / Elizabeth Freeman</strong> (sued for her freedom in MA, 1781). Local map of where each lived/worked.',
+    doNow: 'On board: <em>"Name a hero from Massachusetts that isn\'t a Founding Father or a sports player."</em>',
+    miniLesson: 'Teacher introduces the idea that <strong>Massachusetts has produced an outsized number of people who changed the rules of the country.</strong> Brief intro to Mum Bett: in 1781, an enslaved woman in Sheffield, MA sued for her freedom under the new Massachusetts constitution — and won. Her case helped end slavery in MA.<br><br>Key teaching point: the original 13 colonies\' first state to functionally end slavery did so because of a Black woman who didn\'t take "no" for an answer. <em>That\'s a Massachusetts hero story most students have never heard.</em>',
+    activity: '<p><strong>Local Heroes Jigsaw (20 min):</strong> Groups of 3. Each group gets one MA hero card. They fill out:</p><ul><li>What did they do?</li><li>Whose rules did they break?</li><li>Whose lives did they change?</li><li>Where in MA did they do it?</li></ul><p>Groups present 90-second summaries. Class places each hero on a shared MA map.</p><p><strong>Personal connection (8 min):</strong> Each student writes 1–2 sentences: <em>which of these heroes do you think your community needs more of today, and why?</em></p>',
+    exitTicket: '"What part of Massachusetts history did your school skip? Take one guess."',
+    differentiation: {
+      younger: 'Shorten hero cards and provide guiding questions in the margin.',
+      older: 'Add a contemporary MA hero and have them debate whether the person qualifies.'
+    },
+    codexPrep: 'Students select 1–2 of these MA heroes as part of their hero\'s lineage — feeds the <strong>Cultural Lineage panel</strong>.'
+  },
+
+  // ============ WEEK 1 · DAY 5 — CODEX BUILD DAY ============
+  {
+    subject: 'ela', week: 1, day: 5,
+    title: 'Codex Build Day — Origin Story Panel Final',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA W.9-10.5', text: 'Develop and strengthen writing as needed by planning, revising, editing.' },
+      { code: 'MA W.9-10.4', text: 'Produce clear and coherent writing.' }
+    ],
+    objectives: [
+      'Produce a final, hand-lettered or typed Origin Story for the Codex panel.',
+      'Give and receive peer feedback using a structured protocol.'
+    ],
+    materials: 'Cardboard trifolds (issued today), construction paper for panel, fine-tip markers or pens, peer review handout.',
+    doNow: 'On board: <em>"Read your origin draft to yourself once. Underline your strongest sentence."</em>',
+    miniLesson: 'Introduce the <strong>TAG peer review protocol:</strong><ul><li><strong>T</strong>ell something specific you liked.</li><li><strong>A</strong>sk one clarifying question.</li><li><strong>G</strong>ive one suggestion.</li></ul>Show how to apply it without being vague ("it was good" ≠ feedback).',
+    activity: '<p><strong>Part A — Peer review (12 min):</strong> Pairs swap drafts. Each gives written TAG feedback.</p><p><strong>Part B — Final transfer (20 min):</strong> Students write or paste their final origin story onto a piece of construction paper, then glue it to the upper-left panel of their trifold. Encourage hand-lettering, color, doodled borders — this is <em>theirs</em>. If using tech: type and print.</p>',
+    exitTicket: '"Look at your panel. What\'s one thing you want a stranger to feel when they read it?"',
+    differentiation: {
+      younger: 'Provide an origin story template they can paste in and fill blanks.',
+      older: 'Require a hand-drawn frame or visual motif that reinforces the story\'s theme.'
+    },
+    codexPrep: 'Completes the <strong>Origin Story panel</strong> (left panel, top).'
+  },
+  {
+    subject: 'math', week: 1, day: 5,
+    title: 'Codex Build Day — Stat Sheet Panel Final',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HSN.Q.A.3', text: 'Choose a level of accuracy appropriate to limitations on measurement.' },
+      { code: 'SMP.6', text: 'Attend to precision.' }
+    ],
+    objectives: [
+      'Finalize a 4-stat hero card with numbers, units, and justifications.',
+      'Communicate quantitative reasoning clearly to a non-math audience.'
+    ],
+    materials: 'Stat sheet template (printable), rulers, fine markers, construction paper.',
+    doNow: 'On board: <em>"Pick one of your hero\'s stats. Say it out loud as you\'d say it to someone who hates math."</em>',
+    miniLesson: 'Teach the difference between <strong>a number</strong> and <strong>a number with meaning.</strong> "Strength: 850" tells you nothing. "Strength: can lift 850 lbs, more than a polar bear, less than a Volkswagen" — that\'s communication.<br><br>Show one example of a clear stat sheet and one cluttered one. Ask which they\'d rather read.',
+    activity: '<p><strong>Stat Sheet Construction.</strong> Students finalize a 4-row stat card:</p><table style="width:100%; border-collapse:collapse; margin:8px 0;"><tr style="background:#f6f7fb;"><th style="text-align:left; padding:8px; border:1px solid var(--line);">Stat</th><th style="text-align:left; padding:8px; border:1px solid var(--line);">Number</th><th style="text-align:left; padding:8px; border:1px solid var(--line);">Unit</th><th style="text-align:left; padding:8px; border:1px solid var(--line);">Comparable to</th></tr><tr><td style="padding:8px; border:1px solid var(--line);">Strength</td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td></tr><tr><td style="padding:8px; border:1px solid var(--line);">Speed</td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td></tr><tr><td style="padding:8px; border:1px solid var(--line);">Endurance</td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td></tr><tr><td style="padding:8px; border:1px solid var(--line);">(Choice)</td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td><td style="padding:8px; border:1px solid var(--line);"></td></tr></table><p>Each row gets a one-sentence justification using calculations from earlier in the week (Day 2 patrol distances, Day 3 force calculations). Final card is glued onto the center-bottom of the trifold.</p>',
+    exitTicket: '"Which of your 4 stats is the one a reader will remember? Why?"',
+    differentiation: {
+      younger: 'Provide a fill-in stat template.',
+      older: 'Require one negative stat (a weakness with a number) — heroes are interesting because of what they can\'t do.'
+    },
+    codexPrep: 'Completes the <strong>Stat Sheet panel</strong> (center, bottom).'
+  },
+  {
+    subject: 'science', week: 1, day: 5,
+    title: 'Codex Build Day — Power Schematic Panel Final',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HS-LS3-2', text: 'Make and defend a claim about genetic variation.' },
+      { code: 'SP6', text: 'Constructing explanations.' },
+      { code: 'SP8', text: 'Obtaining, evaluating, and communicating information.' }
+    ],
+    objectives: [
+      'Diagram their hero\'s power origin with scientifically grounded labels.',
+      'Write a 3–5 sentence scientific explanation of how the power works.'
+    ],
+    materials: 'Blank paper for diagram, fine-tip markers, science notebooks (for reference back to week\'s labs), construction paper.',
+    doNow: 'On board: <em>"If a scientist asked you to prove your hero\'s power could exist, where would you start?"</em>',
+    miniLesson: 'Teach the <strong>schematic format:</strong><ul><li>A central labeled diagram (the body, organ, or device involved)</li><li>3–5 callouts pointing to specific parts</li><li>A short paragraph beneath: <em>origin, mechanism, limits</em></li></ul>Show one science-textbook example (an eye, a heart) and explain why the <em>limits</em> matter as much as the mechanism. A power with no limit isn\'t a power — it\'s a story-killer.',
+    activity: '<p><strong>Schematic Construction.</strong> Each student draws their hero\'s power schematic:</p><ul><li>The biology/physics/chemistry of where it lives</li><li>Labels for the 3–5 critical components</li><li>One labeled <em>limit</em> (drains energy, breaks bones, requires sunlight, etc.)</li><li>A paragraph below explaining the origin (inherited / mutated / environmental / technological) and the mechanism</li></ul><p>Glued to the lower-left panel of the trifold.</p>',
+    exitTicket: '"What\'s the cost of your hero\'s power? Every real thing in nature has one."',
+    differentiation: {
+      younger: 'Provide a body outline they can label.',
+      older: 'Require one citation of a real biological or physical phenomenon their power is modeled on.'
+    },
+    codexPrep: 'Completes the <strong>Power Schematic panel</strong> (left panel, bottom).'
+  },
+  {
+    subject: 'history', week: 1, day: 5,
+    title: 'Codex Build Day — Cultural Lineage Panel Final',
+    themeQuestion: 'Who counts as a hero? Who decides?',
+    standards: [
+      { code: 'MA HSS PS5', text: 'Develop claims using evidence.' },
+      { code: 'MA HSS PS7', text: 'Determine next steps and take informed action.' }
+    ],
+    objectives: [
+      'Identify 2–3 hero traditions (cultural or historical) their hero descends from.',
+      'Write a short essay connecting their hero to that lineage.'
+    ],
+    materials: 'Notes from Days 1, 3, and 4 (cultural heroes, folk heroes, MA heroes). Construction paper, markers.',
+    doNow: 'On board: <em>"Every hero you create comes from somewhere. Name the hero you\'ve learned about this week who\'s closest to yours."</em>',
+    miniLesson: 'Introduce the idea of <strong>lineage</strong> — every new hero stands on the shoulders of older ones. Spider-Man is a Greek-style "reluctant chosen one." Black Panther is in the lineage of African kings and warrior traditions. Miles Morales is in the lineage of <em>Spider-Man</em> itself, plus the Latino and Black neighborhoods of Brooklyn.<br><br>Key idea: claiming a lineage is <em>not</em> unoriginal. It\'s how stories get power.',
+    activity: '<p><strong>Lineage Essay (20 min):</strong> Each student writes a 1-paragraph response to:</p><ul><li><em>Which 2–3 hero traditions does my hero descend from?</em></li><li><em>What did I take from each one?</em></li><li><em>What did I leave behind?</em></li></ul><p>Must reference: at least one cultural hero (Day 1), and one MA or real-world hero (Day 4).</p><p><strong>Panel construction (12 min):</strong> Students mount the essay on construction paper, add a "family tree" sketch showing the lineage visually, and glue to the upper-right panel of the trifold.</p>',
+    exitTicket: '"Whose story does your hero make sure is not forgotten?"',
+    differentiation: {
+      younger: 'Provide a "I took ___ from ___" sentence frame.',
+      older: 'Require a lineage that crosses at least two continents or eras.'
+    },
+    codexPrep: 'Completes the <strong>Cultural Lineage panel</strong> (right panel, top).'
+  }
+];
+
+// ===== Rendering =====
+function renderLessons() {
+  const container = document.getElementById('lessons');
+  const empty = document.getElementById('empty');
+  const subjectVal = document.getElementById('subject').value;
+  const weekVal = document.getElementById('week').value;
+  const dayVal = document.getElementById('day').value;
+  const searchVal = document.getElementById('search').value.trim().toLowerCase();
+
+  const filtered = LESSONS.filter(l => {
+    if (subjectVal !== 'all' && l.subject !== subjectVal) return false;
+    if (weekVal !== 'all' && String(l.week) !== weekVal) return false;
+    if (dayVal !== 'all' && String(l.day) !== dayVal) return false;
+    if (searchVal) {
+      const haystack = [
+        l.title, l.themeQuestion,
+        ...(l.standards || []).map(s => s.code + ' ' + s.text),
+        ...(l.objectives || []),
+        l.materials, l.doNow, l.miniLesson, l.activity, l.exitTicket,
+        l.differentiation?.younger, l.differentiation?.older, l.codexPrep
+      ].filter(Boolean).join(' ').toLowerCase();
+      if (!haystack.includes(searchVal)) return false;
+    }
+    return true;
+  });
+
+  // sort: week → day → subject
+  const subjectOrder = { ela: 0, math: 1, science: 2, history: 3 };
+  filtered.sort((a, b) =>
+    a.week - b.week ||
+    a.day - b.day ||
+    subjectOrder[a.subject] - subjectOrder[b.subject]
+  );
+
+  document.getElementById('count').textContent =
+    filtered.length + ' lesson' + (filtered.length === 1 ? '' : 's');
+
+  if (filtered.length === 0) {
+    container.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  container.innerHTML = filtered.map(l => renderCard(l)).join('');
+}
+
+function renderCard(l) {
+  const subjectLabel = SUBJECT_LABELS[l.subject];
+  const standards = (l.standards || []).map(s =>
+    `<div class="standard-item"><span class="standard-code">${s.code}</span> — ${s.text}</div>`
+  ).join('');
+  const objectives = (l.objectives || []).map((o, i) =>
+    `<li><strong>SWBAT ${i + 1}.</strong> ${o}</li>`
+  ).join('');
+
+  return `
+    <details class="lesson-card" data-subject="${l.subject}">
+      <summary>
+        <span class="badge ${l.subject}">${subjectLabel}</span>
+        <div class="lesson-title-line">
+          <div class="lesson-title">${escapeHtml(l.title)}</div>
+          <div class="lesson-meta">
+            <span>Week ${l.week} · Day ${l.day}</span>
+            <span>50–55 min</span>
+          </div>
+        </div>
+        <span class="expand-arrow">▾</span>
+      </summary>
+      <div class="lesson-body">
+        <p class="theme-q">Theme question: ${escapeHtml(l.themeQuestion)}</p>
+
+        <div class="lesson-section">
+          <h4>MA Standards</h4>
+          <div class="standards-list">${standards}</div>
+        </div>
+
+        <div class="lesson-section">
+          <h4>Objectives (SWBAT)</h4>
+          <ol>${objectives}</ol>
+        </div>
+
+        <div class="lesson-section">
+          <h4>Materials</h4>
+          <p>${l.materials}</p>
+        </div>
+
+        <div class="lesson-section">
+          <h4>Lesson Flow (50–55 min)</h4>
+          <div class="section-row">
+            <div class="time">Do Now · 5 min</div>
+            <div>${l.doNow}</div>
+          </div>
+          <div class="section-row">
+            <div class="time">Mini-lesson · 10–12 min</div>
+            <div>${l.miniLesson}</div>
+          </div>
+          <div class="section-row">
+            <div class="time">Activity · 25–30 min</div>
+            <div>${l.activity}</div>
+          </div>
+          <div class="section-row">
+            <div class="time">Exit Ticket · 5 min</div>
+            <div>
+              <div class="quote-box">${l.exitTicket}</div>
+              ${l.exitTicketNote ? `<p style="font-size:13px; color:var(--ink-soft); margin-top:8px;"><em>${l.exitTicketNote}</em></p>` : ''}
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-section">
+          <h4>Differentiation</h4>
+          <div class="diff-grid">
+            <div class="diff-cell">
+              <div class="diff-age">Ages 12–13</div>
+              <div class="diff-text">${l.differentiation?.younger || '—'}</div>
+            </div>
+            <div class="diff-cell">
+              <div class="diff-age">Ages 17–19</div>
+              <div class="diff-text">${l.differentiation?.older || '—'}</div>
+            </div>
+          </div>
+        </div>
+
+        ${l.codexPrep ? `<div class="codex-note"><strong>Codex Trifold:</strong> ${l.codexPrep}</div>` : ''}
+
+        <div class="lesson-actions">
+          <button class="btn ghost" onclick="window.print()">Print this lesson</button>
+        </div>
+      </div>
+    </details>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+// ===== Wire up =====
+document.getElementById('subject').addEventListener('change', renderLessons);
+document.getElementById('week').addEventListener('change', renderLessons);
+document.getElementById('day').addEventListener('change', renderLessons);
+document.getElementById('search').addEventListener('input', renderLessons);
+document.getElementById('reset').addEventListener('click', () => {
+  document.getElementById('subject').value = 'all';
+  document.getElementById('week').value = 'all';
+  document.getElementById('day').value = 'all';
+  document.getElementById('search').value = '';
+  renderLessons();
+});
+document.getElementById('expand-all').addEventListener('click', (e) => {
+  const cards = document.querySelectorAll('.lesson-card');
+  const anyClosed = Array.from(cards).some(c => !c.open);
+  cards.forEach(c => c.open = anyClosed);
+  e.target.textContent = anyClosed ? 'Collapse all' : 'Expand all';
+});
+
+renderLessons();
+</script>
+</body>
+</html>
