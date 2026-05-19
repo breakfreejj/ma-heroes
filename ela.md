@@ -13,17 +13,6 @@ Each lesson includes a **Differentiation Considerations** block and is aligned t
 
 ---
 
-## Anchor Heroes
-
-| Hero | Why this one | Curricular doors |
-|---|---|---|
-| **Miles Morales (Spider-Man)** | Afro-Latino Brooklyn teen; *Spider-Verse* is hugely current | Physics of motion · Identity / origin writing |
-| **Shuri (Black Panther universe)** | Brilliant Black female engineer/scientist, princess of Wakanda | Engineering · Materials science · Afrofuturism |
-| **Storm (Ororo Munroe)** | Iconic Black female X-Men leader, weather powers | Earth science / weather · Civil rights allegory |
-| **Ms. Marvel (Kamala Khan)** | Pakistani-American teen, comic-book fan turned hero | ELA voice · Global mythology · Identity |
-
----
-
 ## ENGLISH / LANGUAGE ARTS — 10 Mini-Lessons
 
 **Arc:** Joseph Campbell's Hero's Journey as the literary spine. Students study the pattern across a wide range of **superhero stories**, then write their own hero's origin story. The four anchor heroes (Miles, Shuri, Storm, Kamala) appear as recurring touchstones, and the unit also pulls in other heroes — public-domain Golden Age (Captain Marvel/Shazam in Whiz Comics #2), Marvel mainstays narrated by the teacher (Peter Parker, T'Challa, Aunt May, Uncle Ben), and contemporary heroes who broaden representation (Static Shock / Virgil Hawkins, Ironheart / Riri Williams, Sam Wilson Captain America, Spider-Gwen). The aim is for students to see the Hero's Journey as a universal pattern across the superhero canon, not a Marvel-only template.

@@ -13,17 +13,6 @@ Each lesson includes a **Differentiation Considerations** block and is aligned t
 
 ---
 
-## Anchor Heroes
-
-| Hero | Why this one | Curricular doors |
-|---|---|---|
-| **Miles Morales (Spider-Man)** | Afro-Latino Brooklyn teen; *Spider-Verse* is hugely current | Physics of motion · Identity / origin writing |
-| **Shuri (Black Panther universe)** | Brilliant Black female engineer/scientist, princess of Wakanda | Engineering · Materials science · Afrofuturism |
-| **Storm (Ororo Munroe)** | Iconic Black female X-Men leader, weather powers | Earth science / weather · Civil rights allegory |
-| **Ms. Marvel (Kamala Khan)** | Pakistani-American teen, comic-book fan turned hero | ELA voice · Global mythology · Identity |
-
----
-
 ## MATH — 10 Mini-Lessons
 
 **Arc:** A 10-lesson deep dive into **proportional reasoning** — ratios, proportions, percentages, and rates — applied to superhero design. Every lesson stays inside this one mathematical cluster (the way Unspoiled stayed inside linear equations and Unbeatable stayed inside statistics). Each lesson introduces one new skill while reinforcing the previous days', so a student who masters Day 1's "ratio as X out of Y" can ride the arc all the way to Day 10's full Hero Stat Sheet.
