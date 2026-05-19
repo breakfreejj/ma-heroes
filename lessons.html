@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Origin Story — Lesson Plans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue:      #1F3A93;
+    --turquoise: #00B2A9;
+    --yellow:    #FDB82C;
+    --green:     #91D5AC;
+    --pink:      #FF366D;
+    --orange:    #F57430;
+    --charcoal:  #414143;
+    --bg:        #FAFAF7;
+    --bg-card:   #FFFFFF;
+    --border:    #E6E6E0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--charcoal);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--blue);
+    color: white;
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 0 var(--yellow);
+  }
+  .topbar .brand {
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 700;
+    color: white; text-decoration: none;
+  }
+  .topbar .brand .logo-mark {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--yellow);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--blue); font-weight: 800; font-family: 'Bangers', sans-serif;
+    font-size: 22px;
+  }
+  .topbar .back {
+    color: white; text-decoration: none; opacity: 0.9;
+    font-size: 14px; font-weight: 500;
+  }
+  .topbar .back:hover { opacity: 1; text-decoration: underline; }
+
+  /* ---------- Subject banner ---------- */
+  .subject-banner {
+    padding: 56px 32px 44px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .subject-banner::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.10) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+  .subject-banner-inner {
+    max-width: 1000px; margin: 0 auto;
+    position: relative;
+  }
+  .subject-banner .eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.32);
+    padding: 5px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .subject-banner h1 {
+    font-family: 'Bangers', sans-serif;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05; letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+  .subject-banner p {
+    font-size: 16px; opacity: 0.95;
+    max-width: 720px;
+  }
+
+  /* Per-subject banner colors */
+  .banner-math    { background: var(--turquoise); }
+  .banner-science { background: linear-gradient(135deg, var(--green) 0%, #6ec692 100%); color: #1a3d2a; }
+  .banner-science .eyebrow { background: rgba(0,0,0,0.08); border-color: rgba(0,0,0,0.18); color: #1a3d2a; }
+  .banner-ela     { background: var(--pink); }
+  .banner-soc     { background: var(--orange); }
+
+  /* ---------- Content area ---------- */
+  .content {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+  }
+
+  /* Headings */
+  .content h1 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 38px;
+    color: var(--blue);
+    margin-top: 56px; margin-bottom: 14px;
+    line-height: 1.1; letter-spacing: 0.02em;
+  }
+  .content > h1:first-of-type { margin-top: 8px; }
+  .content h2 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 30px; color: var(--blue);
+    margin-top: 44px; margin-bottom: 14px;
+    line-height: 1.15; letter-spacing: 0.02em;
+  }
+  .content h3 {
+    font-size: 22px; color: var(--blue);
+    margin-top: 36px; margin-bottom: 12px;
+    font-weight: 700;
+    padding-top: 18px; border-top: 2px solid var(--border);
+  }
+  .content h3:first-of-type { border-top: none; padding-top: 0; }
+  .content h4 {
+    font-size: 16px; color: var(--charcoal);
+    margin-top: 22px; margin-bottom: 8px;
+    font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* Body text */
+  .content p { margin-bottom: 14px; font-size: 16px; }
+  .content ul, .content ol { margin-bottom: 18px; padding-left: 28px; }
+  .content li { margin-bottom: 8px; }
+  .content li > ul, .content li > ol { margin-top: 6px; margin-bottom: 4px; }
+  .content strong { font-weight: 700; color: var(--charcoal); }
+  .content em { font-style: italic; }
+  .content code {
+    background: rgba(0,0,0,0.05); padding: 2px 6px;
+    border-radius: 4px; font-size: 0.92em;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .content hr {
+    border: none; border-top: 2px solid var(--border);
+    margin: 40px 0;
+  }
+  .content a {
+    color: var(--blue);
+    text-decoration: underline;
+    text-decoration-color: rgba(31,58,147,0.35);
+    text-underline-offset: 2px;
+  }
+  .content a:hover { color: var(--pink); text-decoration-color: var(--pink); }
+
+  /* Tables (component tables in the lesson plans) */
+  .content table {
+    width: 100%; border-collapse: collapse;
+    margin: 18px 0 28px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+    font-size: 14.5px;
+  }
+  .content thead th {
+    background: var(--bg);
+    color: var(--charcoal);
+    font-weight: 700; font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 12px 14px; text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  .content tbody td {
+    padding: 14px;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .content tbody tr:first-child td { border-top: none; }
+  .content tbody td:first-child {
+    font-weight: 700;
+    color: var(--blue);
+    white-space: nowrap;
+    width: 140px;
+  }
+
+  /* Blockquote (rare in our lesson plans but cover it) */
+  .content blockquote {
+    border-left: 4px solid var(--yellow);
+    padding: 8px 16px;
+    background: rgba(253,184,44,0.10);
+    margin: 16px 0; border-radius: 0 8px 8px 0;
+    font-style: italic;
+  }
+
+  /* Per-subject heading accents */
+  .subject-math    .content h1, .subject-math    .content h2 { color: var(--turquoise); }
+  .subject-science .content h1, .subject-science .content h2 { color: #2a7a4a; }
+  .subject-ela     .content h1, .subject-ela     .content h2 { color: var(--pink); }
+  .subject-soc     .content h1, .subject-soc     .content h2 { color: var(--orange); }
+
+  /* Loading / error states */
+  .loading, .error {
+    text-align: center; padding: 80px 32px;
+    color: var(--charcoal);
+    font-size: 16px;
+  }
+  .loading { opacity: 0.7; }
+  .error {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    max-width: 720px;
+    margin: 32px auto;
+    text-align: left;
+  }
+  .error h2 { color: var(--pink); margin-bottom: 12px; font-family: 'Bangers', sans-serif; font-size: 24px; }
+  .error code {
+    background: rgba(31,58,147,0.08);
+    padding: 2px 6px; border-radius: 4px;
+    font-family: 'SF Mono', Menlo, monospace; font-size: 14px;
+  }
+  .error p { margin-bottom: 10px; }
+
+  /* Footer */
+  footer {
+    background: var(--blue); color: white;
+    padding: 36px 32px; text-align: center;
+    border-top: 6px solid var(--yellow);
+  }
+  footer .display { font-family: 'Bangers', sans-serif; font-size: 22px; color: var(--yellow); margin-bottom: 4px; letter-spacing: 0.02em; }
+  footer p { font-size: 14px; opacity: 0.85; }
+
+  /* Print */
+  @media print {
+    .topbar, .subject-banner::before, footer { display: none; }
+    .subject-banner { padding: 24px 0; }
+    .content { padding: 0; max-width: none; }
+    a { color: var(--charcoal); text-decoration: none; }
+  }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    .content { padding: 32px 22px 64px; }
+    .content tbody td:first-child { width: auto; white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="logo-mark">!</span>
+    <span>Origin Story</span>
+  </a>
+  <a href="index.html" class="back">← Back to overview</a>
+</header>
+
+<section class="subject-banner banner-math" id="banner">
+  <div class="subject-banner-inner">
+    <div class="eyebrow" id="banner-eyebrow">Lesson Plans</div>
+    <h1 id="banner-title">Loading…</h1>
+    <p id="banner-subtitle"></p>
+  </div>
+</section>
+
+<main class="content subject-math" id="app">
+  <div class="loading">Loading lesson plans…</div>
+</main>
+
+<footer>
+  <div class="display">Origin Story.</div>
+  <p>A cross-curricular PBL initiative.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script>
+  const SUBJECTS = {
+    'math': {
+      title: 'Mathematics',
+      subtitle: 'A 10-lesson deep dive into proportional reasoning, applied to superhero design.',
+      file: 'math.md',
+      banner: 'banner-math',
+      subject: 'subject-math',
+    },
+    'science': {
+      title: 'Science',
+      subtitle: 'Could this power actually work? Real science behind fictional abilities.',
+      file: 'science.md',
+      banner: 'banner-science',
+      subject: 'subject-science',
+    },
+    'ela': {
+      title: 'English / Language Arts',
+      subtitle: 'The Hero’s Journey as a spine for reading, writing, and identity.',
+      file: 'ela.md',
+      banner: 'banner-ela',
+      subject: 'subject-ela',
+    },
+    'social-studies': {
+      title: 'Social Studies',
+      subtitle: 'Heroes across cultures, history, and the civic life of a community.',
+      file: 'social-studies.md',
+      banner: 'banner-soc',
+      subject: 'subject-soc',
+    },
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const subjectKey = params.get('subject');
+  const config = SUBJECTS[subjectKey];
+
+  const banner = document.getElementById('banner');
+  const bannerTitle = document.getElementById('banner-title');
+  const bannerSubtitle = document.getElementById('banner-subtitle');
+  const app = document.getElementById('app');
+
+  function setError(msg) {
+    app.innerHTML = msg;
+  }
+
+  if (!config) {
+    bannerTitle.textContent = 'Lesson Plans';
+    bannerSubtitle.textContent = '';
+    setError(`
+      <div class="error">
+        <h2>Pick a subject</h2>
+        <p>This page expects a <code>?subject=</code> URL parameter. Choose one:</p>
+        <ul>
+          <li><a href="?subject=math">Mathematics</a></li>
+          <li><a href="?subject=science">Science</a></li>
+          <li><a href="?subject=ela">English / Language Arts</a></li>
+          <li><a href="?subject=social-studies">Social Studies</a></li>
+        </ul>
+        <p style="margin-top:14px;">Or head back to the <a href="index.html">Origin Story overview</a>.</p>
+      </div>
+    `);
+  } else {
+    // Set banner + body classes
+    banner.className = `subject-banner ${config.banner}`;
+    bannerTitle.textContent = config.title;
+    bannerSubtitle.textContent = config.subtitle;
+    app.className = `content ${config.subject}`;
+    document.title = `Origin Story — ${config.title} Lesson Plans`;
+
+    // Try local first, fall back to raw GitHub
+    const localUrl = config.file;
+    const remoteUrl = `https://raw.githubusercontent.com/breakfreejj/ma-heroes/main/${config.file}`;
+
+    const loadMarkdown = async () => {
+      const urls = [localUrl, remoteUrl];
+      for (const url of urls) {
+        try {
+          const res = await fetch(url);
+          if (res.ok) {
+            return await res.text();
+          }
+        } catch (e) {
+          // Try next URL
+        }
+      }
+      throw new Error('All fetch attempts failed.');
+    };
+
+    marked.setOptions({ gfm: true, breaks: false });
+
+    loadMarkdown()
+      .then(md => {
+        // Render markdown. Strip the top-level title (we already show it in the banner).
+        const lines = md.split('\n');
+        if (lines[0] && lines[0].startsWith('# ')) lines.shift();
+        // Also drop a leading blank line if present
+        if (lines[0] === '') lines.shift();
+        app.innerHTML = marked.parse(lines.join('\n'));
+      })
+      .catch(err => {
+        setError(`
+          <div class="error">
+            <h2>Couldn’t load the lesson plan</h2>
+            <p>Tried to load <code>${config.file}</code> from this folder and from the GitHub repo, but neither one worked.</p>
+            <p><strong>If you opened this page by double-clicking <code>index.html</code>:</strong> your browser is blocking local file access. Either</p>
+            <ul style="padding-left: 24px;">
+              <li>run <code>python3 -m http.server</code> in this folder and open <code>http://localhost:8000/lessons.html?subject=${subjectKey}</code>, or</li>
+              <li>view it on the <a href="https://github.com/breakfreejj/ma-heroes/blob/main/${config.file}" target="_blank" rel="noopener">GitHub repo</a> instead.</li>
+            </ul>
+          </div>
+        `);
+      });
+  }
+</script>
+
+</body>
+</html>
