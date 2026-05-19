@@ -307,6 +307,26 @@
   .soc .arc-label        { color: var(--orange); }
   .soc .day .num         { background: var(--orange); }
 
+  /* "View Full Lesson Plans" button in each subject head */
+  .subject-head .view-plans {
+    margin-left: auto;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: white; color: var(--blue);
+    padding: 8px 16px; border-radius: 999px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.03em;
+    text-decoration: none; white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .subject-head .view-plans:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+  }
+  .science .subject-head .view-plans { color: #1a3d2a; }
+  @media (max-width: 600px) {
+    .subject-head { flex-wrap: wrap; }
+    .subject-head .view-plans { margin-left: 0; margin-top: 8px; font-size: 12px; padding: 6px 12px; }
+  }
+
   /* ---------- Final project section ---------- */
   .final {
     background:
@@ -563,9 +583,10 @@
       <div class="section-eyebrow">What Students Learn</div>
       <h2 class="display">10 lessons per subject. One artifact each. All four feed the pitch.</h2>
       <p class="lede">
-        Every mini-lesson follows our standard structure: a 2-minute Do Now, a teacher-led mini-lesson, and
-        a student application activity. By Day 10 of each subject, students walk away with one polished
-        artifact for their final pitch portfolio.
+        Every mini-lesson follows the BreakFree-style structure: a short Do Now, a teacher-led mini-lesson with
+        worked examples, guided pair practice, independent application, and a reflective exit ticket. Each lesson
+        is differentiated for wide skill ranges and aligned to Massachusetts standards. By Day 10 of each subject,
+        students walk away with one polished artifact for their final pitch portfolio.
       </p>
     </div>
 
@@ -575,96 +596,98 @@
         <div class="icon-pill">π</div>
         <div>
           <h3>Mathematics</h3>
-          <p>Building the toolkit to design and defend your own hero.</p>
+          <p>A 10-lesson deep dive into proportional reasoning, applied to superhero design.</p>
         </div>
+        <a class="view-plans" href="https://github.com/breakfreejj/ma-heroes/blob/main/math.md" target="_blank" rel="noopener">View Full Lesson Plans <span aria-hidden="true">→</span></a>
       </div>
       <div class="subject-body">
         <div class="arc-label">10-Day Arc</div>
         <div class="arc">
-          Students collect, normalize, and reason about hero data — moving from intuition to evidence. They
-          model speed with linear equations, predict outcomes with probability, and end the unit able to
-          mathematically justify why <em>their</em> hero stands up in a fight.
+          A focused deep dive into <strong>proportional reasoning</strong> — ratios, proportions, percentages, and rates —
+          all applied to superhero design. Each day introduces one new skill while reinforcing the previous days, so a
+          student who masters Day 1's "ratio as X out of Y" can ride the arc all the way to Day 10's Hero Stat Sheet.
+          By the artifact, students mathematically justify why <em>their</em> hero stands up in a fight.
         </div>
         <div class="arc-label">Lesson Map</div>
         <div class="days">
           <div class="day">
-            <div class="day-head"><span class="num">1</span><span class="day-title">The Hero Power Index — intro to stats &amp; averages</span></div>
+            <div class="day-head"><span class="num">1</span><span class="day-title">The Hero Power Index — ratios in three forms</span></div>
             <div class="day-body">
               <div class="lesson-row"><div class="label">Do Now</div><div class="content">Rank these 4 heroes 1–4 on strength using your gut. Defend your #1.</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Introduce the 5 standard hero stats (Strength, Speed, Intelligence, Durability, Energy). Show how Marvel actually publishes these on a 1–7 scale. Quick review of mean / median.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students get stat cards for 6 heroes and find the mean stat for each. Whose mean is highest? Does that match who'd "win"?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Define a ratio in three equivalent forms — X/Y, X:Y, "X out of Y." Marvel's 5 hero stats on a 1–7 scale; every stat is naturally a ratio.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Sum each hero's 5 stats as a ratio over 35 — the Hero Power Index. Rank 6 heroes by Index. Does the ranking match intuition?</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">2</span><span class="day-title">Normalizing &amp; ranking with percentages and ratios</span></div>
+            <div class="day-head"><span class="num">2</span><span class="day-title">Normalizing &amp; ranking — ratio to percentage</span></div>
             <div class="day-body">
               <div class="lesson-row"><div class="label">Do Now</div><div class="content">If Hero A has 70 points out of 100 and Hero B has 14 points out of 20, who scored higher?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Percentages and ratios — making different scales comparable. Demonstrate converting raw stats to percentages.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Convert the Marvel 1–7 stats to percentages and re-rank the heroes. Did anyone's rank change?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Convert any ratio to a percentage (multiply by 100, or solve the proportion X/Y = ?/100). Percentages let you compare across different scales.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Convert Marvel 1–7 stats AND a competing 1–10 universe's stats to percentages, then re-rank. Did anyone's rank change?</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">3</span><span class="day-title">Linear equations — modeling hero speed</span></div>
+            <div class="day-head"><span class="num">3</span><span class="day-title">Hero speeds — rate as ratio</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Miles can swing 30 mph. How far in 2 hours? In 15 minutes?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">y = mx + b for distance over time. Slope as speed. Plot on a graph.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Given speeds for Miles, Storm (flying), and a regular human, students write each hero's distance equation and graph all three on the same axes.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Miles can swing 30 miles in 1 hour. How far in 2 hours? In 15 minutes?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">A rate is a ratio with different units (mph = miles/hour). Unit rates. Converting between rate units — mph, km/h, ft/sec, m/s.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">5 heroes' speeds in 5 different units. Convert all to a common unit (mph). Rank from fastest to slowest.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">4</span><span class="day-title">Systems of equations — the chase scene</span></div>
+            <div class="day-head"><span class="num">4</span><span class="day-title">The Catch-Up — solving proportions</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Look at yesterday's graph. Where do any two lines cross? What does that point <em>mean</em>?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Intersection of two lines = when two heroes meet. Solve a system algebraically.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">A villain has a 10-minute head start at 40 mph. Miles is at 60 mph. When and where does Miles catch the villain? Solve algebraically AND graph.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">If Miles swings 30 miles in 1 hour, how long for 75 miles? Set it up as a proportion before solving.</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Define a proportion (a/b = c/d). Two solving methods — cross-multiplication and scaling. Walk through a worked catch-up problem.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">3 catch-up problems of increasing difficulty. Set up the proportion AND solve. Verify units and reasonableness.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">5</span><span class="day-title">Scale &amp; proportion — shrinking, growing, blueprints</span></div>
+            <div class="day-head"><span class="num">5</span><span class="day-title">Scale &amp; geometry — blueprints and dilation</span></div>
             <div class="day-body">
               <div class="lesson-row"><div class="label">Do Now</div><div class="content">Ant-Man is 6 ft tall and shrinks to ½ inch. By what factor did he shrink?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Scale factors, ratio, proportion. Brief tease of why volume changes faster than length (Science Day 6 picks this up).</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Story problems with Shuri's blueprints — if her Wakandan tech needs to be 1:48 scale for a model, what are the model dimensions?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Scale factor as proportion (1:48 means 1 model unit = 48 real units). Brief tease: linear scale <em>k</em> → area <em>k</em>² → volume <em>k</em>³ (Science Day 6 callback).</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Design a piece of hero tech. Given real-world dimensions, calculate the model size at 1:24 and 1:48 scale. Sketch with labels.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">6</span><span class="day-title">Projectile motion — the web-swing arc</span></div>
+            <div class="day-head"><span class="num">6</span><span class="day-title">The Web Swing — percent change &amp; comparing routes</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">If you throw a ball straight up, draw the path. Now imagine throwing it forward — what shape is the path?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Parabolic arc, intro to quadratics conceptually. Where is the peak? Where does it land?</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Given a simple quadratic for Miles's web-swing height, find peak height and landing distance using a table of values.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Miles can swing the long way in 5 minutes; the short way (traffic) takes 7. By what % does the short way take longer?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Percent change formula: (new − old)/old × 100%. The denominator is ALWAYS the original value — the most common mistake to avoid.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Compare two Brooklyn routes (different distances, different speeds). Calculate the percent of time saved by the faster route.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">7</span><span class="day-title">Probability of a single matchup</span></div>
+            <div class="day-head"><span class="num">7</span><span class="day-title">Hero win rates — comparing ratios with unlike denominators</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Coin flip — what's the chance of heads? Of two heads in a row?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Basic probability, independent events. Frame as "if Hero A wins 60% of fights with Hero B, what's the chance of A winning 2 in a row?"</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Given win-rate matchups for our 4 anchor heroes, calculate 2-fight and 3-fight win probabilities.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Hero A has 18 wins out of 25 fights. Hero B has 22 wins out of 30. Who's better — and how do you know?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Why direct comparison of wins fails. Two methods: convert both to percentages, OR find a common denominator.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">5 heroes with different W/L records (all unlike denominators). Convert each to a percent. Rank by win rate.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">8</span><span class="day-title">Compound probability &amp; tournament brackets</span></div>
+            <div class="day-head"><span class="num">8</span><span class="day-title">Hero gear budget — parts of a whole</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">With 4 heroes in a bracket, how many total matchups happen?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Compound probability across a bracket. Tree diagrams.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Build a 4-hero bracket and calculate the probability each hero wins the whole tournament given pairwise win rates.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">If Miles's hero budget is $1,000 and he spends 25% on his costume, how many dollars is that?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Percentages of a whole must sum to exactly 100%. Walk through a 5-category budget allocation; discuss the trade-offs when one category grows.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Design a hero gear budget across 5 categories. Percentages must sum to 100%; calculate dollar amounts; justify the top allocation.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">9</span><span class="day-title">Real-world budgets — cost of heroics</span></div>
+            <div class="day-head"><span class="num">9</span><span class="day-title">Cost of heroics — % of large numbers</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Estimate the cost to repair a skyscraper window. To replace a city block?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Reading large numbers, working with budgets and percent. Use real Deloitte-style estimates of <em>Avengers</em> movie property damage.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students get a "battle scene" damage list and calculate total cost, then figure out what percent of a hero's $X budget that represents.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Estimate the cost to replace a skyscraper window. To replace a city block?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Percentages work the same on $5K as on $5M. Real Deloitte / Kinetic Analysis estimates of <em>Avengers</em> movie property damage. Estimation matters.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Calculate total damage cost for a battle scene. Express as % of a city's reconstruction budget. Who pays in real life?</div></div>
             </div>
           </div>
           <div class="day">
             <div class="day-head"><span class="num">10</span><span class="day-title">Build Your Hero's Stat Sheet — <strong>artifact</strong></span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">What two stats matter most for <em>your</em> hero's mission? Why?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Quick review — students will now combine everything: stats with justification, a speed equation, a probability of winning their toughest matchup, and a damage budget.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students complete the <strong>Math One-Pager</strong> for their original hero (stat sheet + speed equation + win probability + budget). Goes into the pitch portfolio.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Re-read your Day 1 notes. What two stats matter most for <em>your</em> hero's mission? Why?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Walk through the Hero Stat Sheet template — 5 sections: stats (ratios + %), speed (rate), win rate (%), gear budget (%), battle cost (%). Each section needs a 1-sentence justification.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students complete the <strong>Math One-Pager</strong> for their original hero. Goes into the pitch portfolio.</div></div>
             </div>
           </div>
         </div>
@@ -679,6 +702,7 @@
           <h3>Science</h3>
           <p>Could this power actually work? Real science behind fictional abilities.</p>
         </div>
+        <a class="view-plans" href="https://github.com/breakfreejj/ma-heroes/blob/main/science.md" target="_blank" rel="noopener">View Full Lesson Plans <span aria-hidden="true">→</span></a>
       </div>
       <div class="subject-body">
         <div class="arc-label">10-Day Arc</div>
@@ -781,94 +805,97 @@
           <h3>English / Language Arts</h3>
           <p>The Hero's Journey as a spine for reading, writing, and identity.</p>
         </div>
+        <a class="view-plans" href="https://github.com/breakfreejj/ma-heroes/blob/main/ela.md" target="_blank" rel="noopener">View Full Lesson Plans <span aria-hidden="true">→</span></a>
       </div>
       <div class="subject-body">
         <div class="arc-label">10-Day Arc</div>
         <div class="arc">
-          Students learn Joseph Campbell's Hero's Journey, read short comic and graphic-novel excerpts, and
-          draft their own hero's origin story stage by stage. Days 9 and 10 are dedicated to drafting and
-          peer-revision — students leave with a polished 1–2 page narrative.
+          Joseph Campbell's Hero's Journey as the literary spine. Students study the pattern across a wide range of
+          superhero stories — anchor heroes (Miles, Shuri, Storm, Kamala), Marvel mainstays (Peter Parker, T'Challa,
+          Aunt May, Uncle Ben), and a <strong>public-domain Golden Age anchor text</strong> (Captain Marvel / Shazam
+          in <em>Whiz Comics #2</em>). They map heroes onto the 8 stages, draft scenes one stage at a time, and finish
+          with a polished 1–2 page Origin Story. Aligned to <strong>Massachusetts ELA 9–10 standards</strong>.
         </div>
         <div class="arc-label">Lesson Map</div>
         <div class="days">
           <div class="day">
-            <div class="day-head"><span class="num">1</span><span class="day-title">What is a hero? — real-life and fictional</span></div>
+            <div class="day-head"><span class="num">1</span><span class="day-title">What is a hero? — defining heroism</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Write the name of one real-life hero (not a superhero). Why them?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Definitions of hero across cultures and time. Brainstorm hero traits as a class.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students draft a personal "hero traits" list (5 traits) and rank them. Share-out.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Write the name of one real-life hero (NOT fictional). Three sentences: who, what they did, why it counts as heroic to you.</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Three working definitions side by side — Greek root <em>hērōs</em>, Merriam-Webster, Maya Angelou. What's the difference between famous, powerful, and heroic?</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Paired Top-5 hero traits ranking. Then a 5-sentence Real-Life Hero Profile using at least 2 of those traits.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">2</span><span class="day-title">The Hero's Journey — Campbell's stages mapped</span></div>
+            <div class="day-head"><span class="num">2</span><span class="day-title">The Hero's Journey — 8 stages mapped</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Watch/read a 2-min summary of one anchor hero's origin (Miles Morales recommended). What changes in him from start to end?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Campbell's Hero's Journey — 8 simplified stages. Visual diagram.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students map Miles Morales onto the 8 stages as a class with a graphic organizer.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Think of a story where the main character ends up TOTALLY different from how they started. 3–4 sentences on the before and after.</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">8-stage Hero's Journey wheel + the TED-Ed lesson "What Makes a Hero?" (Matthew Winkler, ~4 min, free).</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Class maps Spider-Man (or Miles Morales) onto all 8 stages. Then students independently map a superhero of their choice.</div></div>
             </div>
           </div>
           <div class="day">
             <div class="day-head"><span class="num">3</span><span class="day-title">Ordinary World &amp; Call to Adventure</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Describe your "ordinary world" in 3 sentences.</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Stage 1 — establishing a character's normal life makes the change matter. Show examples from Kamala Khan and Shuri.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students draft the "Ordinary World" paragraph of their own hero.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Describe your OWN ordinary morning in 3 sentences. Make it boring on purpose — name three specific things.</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Read the opening pages of <em>Whiz Comics #2</em> (Captain Marvel / Shazam origin, public domain) — Billy Batson's ordinary world on the streets. Concrete sensory details make a memorable opening.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Concrete-Detail Hunt in the comic, then draft your hero's Ordinary World in 5–7 sentences using a required-detail checklist.</div></div>
             </div>
           </div>
           <div class="day">
             <div class="day-head"><span class="num">4</span><span class="day-title">Refusal, Mentor, Crossing the Threshold</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Name a time you didn't want to do something hard. What changed your mind?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Stages 2–4. Mentors matter (Uncle Ben, T'Chaka, Professor X). Crossing the threshold = no going back.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students name a mentor figure for their hero and draft the "moment everything changes" scene.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Name ONE person who taught you something that stuck with you. Two sentences.</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Three superhero mentor types: the wizard Shazam (<em>Whiz Comics #2</em>), Uncle Ben &amp; Aunt May, Professor X. Refusal → Mentor → Threshold compressed in one comic sequence.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Mentor Trait Carousel with 6 superhero mentors. Then draft a Mentor Profile + Threshold Scene for your hero.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">5</span><span class="day-title">Trials, Allies, Enemies — character &amp; conflict</span></div>
+            <div class="day-head"><span class="num">5</span><span class="day-title">Trials, Allies, Enemies — the supporting cast</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Who are 3 people in your life who help you? Who are 3 obstacles?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Stage 5 — character building through conflict. Allies and enemies reveal who the hero is.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students design a 3-character supporting cast for their hero (1 ally, 1 enemy, 1 complicated person).</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Label 3 people in your life: one ally, one enemy, one COMPLICATED. One word each.</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Supporting characters reveal the hero. The "complicated person" is the key — Miles + Uncle Aaron (Prowler), Peter + Harry Osborn, T'Challa + Killmonger.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Lightning Round on 6 ally/enemy/complicated scenarios. Then design your hero's 3-person supporting cast.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">6</span><span class="day-title">The Ordeal &amp; Transformation</span></div>
+            <div class="day-head"><span class="num">6</span><span class="day-title">The Ordeal — loss as transformation</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Recall a moment that changed how you see yourself.</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Stage 6 — the lowest point. Why heroes have to <em>lose</em> before they win. Read a short excerpt (e.g., Spider-Man losing Uncle Ben).</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students draft their hero's "darkest moment" — what's the loss, and what do they learn?</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Think of a superhero who LOSES BIG at some point. What did they lose? Did it change them?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Two superhero ordeals (teacher-narrated): Storm's Cairo origin; Peter Parker losing Uncle Ben. Then read a curriculum-written Ordeal Exemplar as a model for student writing.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Three-color annotation of the Ordeal Exemplar (external threat / emotional cost / internal shift). Then draft your hero's lowest moment in 5–8 sentences.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">7</span><span class="day-title">Return &amp; the Gift</span></div>
+            <div class="day-head"><span class="num">7</span><span class="day-title">Return &amp; the Gift — heroism as service</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">If you could give one gift to your community, what would it be?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Stages 7–8 — the hero returns changed, with something to give. <em>Heroism is what you do with what you've been through.</em></div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students draft their hero's "gift to the world" — what they bring back.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">If you could give ONE GIFT to your community — not a thing, a piece of knowledge, a skill, or a change — what would it be?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Four superhero "Returns" — Miles Morales (Brooklyn), T'Challa (Wakanda → world), Kamala Khan (Jersey City), Billy Batson / Captain Marvel (kids).</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Gift Carousel of 4 superhero profiles. Then draft your hero's gift: what they bring back, who needs it, how they share it.</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">8</span><span class="day-title">Graphic-novel literacy — panels and gutters</span></div>
+            <div class="day-head"><span class="num">8</span><span class="day-title">Graphic-novel literacy — panels, gutters, framing</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Look at a comic page (provided). What do you "read" first — image or words?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Panels, gutters, framing, dialogue boxes vs. narration. How visual storytelling works.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students sketch a 4-panel sequence of one scene from their hero's story (stick figures fine — focus on panel choices).</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Look at the projected comic page (<em>Whiz Comics #2</em>). Without instruction yet: what do you "read" first — image or words?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Comics vocabulary — panel, gutter, framing, speech vs. thought vs. narration boxes. Anchor text: the wizard-Shazam transformation sequence (public domain).</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Storyboard one scene from your hero's origin in 4 panels (stick figures fine — the point is panel CHOICES).</div></div>
             </div>
           </div>
           <div class="day">
-            <div class="day-head"><span class="num">9</span><span class="day-title">Drafting the full origin story</span></div>
+            <div class="day-head"><span class="num">9</span><span class="day-title">Drafting the full Origin Story</span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Skim your Days 3–7 drafts. Which part is strongest?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Combining scenes into a flowing 1–2 page origin story. Show a model origin story.</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Students draft the full origin story in class, pulling from the pieces they've built.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Pull out your Day 3, 4, 6, 7 drafts. Underline ONE sentence you're proud of.</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Read a curriculum-written Model Origin Story; identify each Hero's Journey stage. Bridge sentences as the glue between scenes.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Bridge Sentence Mini-Drill (4 disconnected scene pairs), then draft your full 1–2 page Origin Story (300–500 words) in class.</div></div>
             </div>
           </div>
           <div class="day">
             <div class="day-head"><span class="num">10</span><span class="day-title">Revision &amp; peer feedback — <strong>artifact</strong></span></div>
             <div class="day-body">
-              <div class="lesson-row"><div class="label">Do Now</div><div class="content">What's one thing a good reader would tell you to fix in your draft?</div></div>
-              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">Peer feedback protocol — 2 stars (what's working) and 1 wish (what to develop).</div></div>
-              <div class="lesson-row"><div class="label">Activity</div><div class="content">Pairs trade and give feedback. Students do one revision pass. Final origin story goes into the pitch portfolio.</div></div>
+              <div class="lesson-row"><div class="label">Do Now</div><div class="content">Re-read your draft from yesterday. What's one sentence a reader would tell you needs work?</div></div>
+              <div class="lesson-row"><div class="label">Mini Lesson</div><div class="content">2 Stars and 1 Wish peer-feedback protocol — specific, low-threat, repeatable. Teacher models on a sample paragraph.</div></div>
+              <div class="lesson-row"><div class="label">Activity</div><div class="content">Peer feedback exchange. Then a revision pass making THREE deliberate changes (each marked with a margin star). Final Origin Story → pitch portfolio.</div></div>
             </div>
           </div>
         </div>
@@ -883,6 +910,7 @@
           <h3>Social Studies</h3>
           <p>Heroes across cultures, history, and the civic life of a community.</p>
         </div>
+        <a class="view-plans" href="https://github.com/breakfreejj/ma-heroes/blob/main/social-studies.md" target="_blank" rel="noopener">View Full Lesson Plans <span aria-hidden="true">→</span></a>
       </div>
       <div class="subject-body">
         <div class="arc-label">10-Day Arc</div>
