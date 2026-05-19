@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Words Unlocked — Poetry Competition</title>
+<link rel="icon" type="image/png" href="design/Words Unlocked.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue:      #1F3A93;
+    --turquoise: #00B2A9;
+    --yellow:    #FDB82C;
+    --green:     #91D5AC;
+    --orange:    #F57430;
+    --charcoal:  #414042;
+    --bg:        #FAFAF7;
+    --bg-card:   #FFFFFF;
+    --border:    #E6E6E0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--charcoal);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .display { font-family: 'Bangers', 'Inter', sans-serif; letter-spacing: 0.02em; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--blue);
+    color: white;
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 0 var(--green);
+  }
+  .topbar .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+  .topbar .brand .logo-mark {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--green);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--blue); font-weight: 800; font-family: 'Bangers', sans-serif;
+    font-size: 20px;
+  }
+  .topbar nav { display: flex; gap: 22px; font-size: 14px; }
+  .topbar nav a { color: white; text-decoration: none; opacity: 0.85; }
+  .topbar nav a:hover { opacity: 1; text-decoration: underline; }
+  @media (max-width: 720px) { .topbar nav { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(circle at 12% 20%, rgba(253,184,44,0.18), transparent 38%),
+      radial-gradient(circle at 88% 80%, rgba(145,213,172,0.22), transparent 42%),
+      linear-gradient(135deg, var(--blue) 0%, #2a4cb3 100%);
+    color: white;
+    padding: 88px 32px 80px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.10) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; position: relative;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center;
+  }
+  @media (max-width: 880px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  }
+  .eyebrow {
+    display: inline-block;
+    background: var(--yellow); color: var(--blue);
+    padding: 6px 14px; border-radius: 999px;
+    font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Bangers', sans-serif;
+    font-size: clamp(48px, 8vw, 92px);
+    line-height: 1; letter-spacing: 0.02em;
+    margin-bottom: 18px;
+  }
+  .hero h1 .accent { color: var(--green); }
+  .hero .tagline {
+    font-size: clamp(18px, 2vw, 22px);
+    max-width: 540px; opacity: 0.95;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 880px) { .hero .tagline { margin-left: auto; margin-right: auto; } }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 880px) { .cta-row { justify-content: center; } }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 999px;
+    font-weight: 700; font-size: 15px; letter-spacing: 0.02em;
+    text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary { background: var(--yellow); color: var(--blue); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+  .btn-ghost { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.3); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+
+  .hero-art {
+    display: flex; justify-content: center;
+  }
+  .hero-art img {
+    width: 100%; max-width: 420px; height: auto;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.28);
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 80px 32px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-head { margin-bottom: 44px; max-width: 760px; }
+  .section-eyebrow {
+    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 700; color: var(--turquoise); margin-bottom: 12px;
+  }
+  h2.display {
+    font-size: clamp(34px, 5vw, 54px);
+    color: var(--blue);
+    line-height: 1.05; margin-bottom: 14px;
+  }
+  .lede { font-size: 18px; color: var(--charcoal); opacity: 0.85; }
+
+  /* ---------- About / pillars ---------- */
+  .pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 8px;
+  }
+  @media (max-width: 800px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 6px solid;
+    border-radius: 14px;
+    padding: 26px 22px;
+  }
+  .pillar:nth-child(1) { border-top-color: var(--green); }
+  .pillar:nth-child(2) { border-top-color: var(--turquoise); }
+  .pillar:nth-child(3) { border-top-color: var(--orange); }
+  .pillar h3 {
+    font-family: 'Bangers', sans-serif; font-size: 26px;
+    color: var(--blue); letter-spacing: 0.02em; margin-bottom: 8px;
+  }
+  .pillar p { font-size: 15px; }
+
+  /* ---------- Resources ---------- */
+  .alt { background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .res-group { margin-bottom: 40px; }
+  .res-group:last-child { margin-bottom: 0; }
+  .res-group h3 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 28px; color: var(--blue);
+    letter-spacing: 0.02em; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .res-group h3 .dot {
+    display: inline-block; width: 14px; height: 14px; border-radius: 50%;
+  }
+  .res-group.facilitation h3 .dot { background: var(--turquoise); }
+  .res-group.lessons      h3 .dot { background: var(--green); }
+  .res-group.contest      h3 .dot { background: var(--yellow); }
+  .res-group.optional     h3 .dot { background: var(--orange); }
+
+  .res-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  }
+  @media (max-width: 720px) { .res-grid { grid-template-columns: 1fr; } }
+  .res-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none; color: var(--charcoal);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .res-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(31,58,147,0.08);
+    border-color: var(--turquoise);
+  }
+  .res-card .ftype {
+    flex-shrink: 0;
+    width: 46px; height: 46px; border-radius: 10px;
+    background: var(--blue); color: white;
+    font-family: 'Bangers', sans-serif; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: 0.05em;
+  }
+  .res-card .ftype.pdf  { background: var(--orange); }
+  .res-card .ftype.docx { background: var(--turquoise); }
+  .res-card .title { font-weight: 600; font-size: 15px; line-height: 1.35; }
+  .res-card .arrow { margin-left: auto; color: var(--blue); font-size: 20px; opacity: 0.5; }
+  .res-card:hover .arrow { opacity: 1; }
+
+  /* ---------- CTA strip ---------- */
+  .cta {
+    background: var(--blue); color: white;
+    text-align: center;
+  }
+  .cta h2 { color: white; }
+  .cta .lede { color: rgba(255,255,255,0.85); margin-bottom: 28px; }
+  .cta .btn-primary { background: var(--green); color: var(--blue); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 28px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--charcoal); opacity: 0.7;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo-mark">W</span>
+    <span>Words Unlocked</span>
+  </div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#resources">Resources</a>
+    <a href="../index.html">&larr; BreakFree</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Poetry Competition</span>
+      <h1>Words <span class="accent">Unlocked</span></h1>
+      <p class="tagline">A national poetry program and contest for incarcerated youth — built around weekly challenges, classroom lessons, and a culminating contest.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#resources">Browse Resources &rarr;</a>
+        <a class="btn btn-ghost" href="#about">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="design/Words Unlocked.png" alt="Words Unlocked — Poetry Competition logo" />
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">About</div>
+      <h2 class="display">Giving young people a voice through poetry.</h2>
+      <p class="lede">Words Unlocked centers the creative voices of incarcerated and system-involved youth. Educators receive a complete set of lessons, slides, and facilitation tools so any classroom can run the program — from first weekly challenge to final contest submission.</p>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Weekly Challenges</h3>
+        <p>Short, structured prompts that build poetic skill across the program — students write, share, and revise in low-stakes weekly rounds.</p>
+      </div>
+      <div class="pillar">
+        <h3>Classroom Lessons</h3>
+        <p>Ready-to-teach lesson plans, slides, handouts, and a poetic devices glossary — designed for secure classroom settings.</p>
+      </div>
+      <div class="pillar">
+        <h3>National Contest</h3>
+        <p>Students submit original work to the annual Words Unlocked contest, judged against a published rubric with clear guidelines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resources" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Resources</div>
+      <h2 class="display">Everything you need to run the program.</h2>
+      <p class="lede">All facilitator and student materials for the 2025–2026 cycle. Click any item to open or download.</p>
+    </div>
+
+    <div class="res-group facilitation">
+      <h3><span class="dot"></span> Facilitation</h3>
+      <div class="res-grid">
+        <a class="res-card" href="sources/8 APR Words Unlocked Facilitation Guide.docx">
+          <span class="ftype docx">DOCX</span>
+          <span class="title">Facilitation Guide (8 APR)</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="res-card" href="sources/Virtual Poetry Cafe_ Poetry Slam Guide.docx">
+          <span class="ftype docx">DOCX</span>
+          <span class="title">Virtual Poetry Cafe &amp; Slam Guide</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="res-group lessons">
+      <h3><span class="dot"></span> Lessons &amp; Materials</h3>
+      <div class="res-grid">
+        <a class="res-card" href="sources/WU Lesson Plans ALL.docx">
+          <span class="ftype docx">DOCX</span>
+          <span class="title">Lesson Plans (Full Set)</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="res-card" href="sources/Words Unlocked Lesson Slides 25-26.pdf">
+          <span class="ftype pdf">PDF</span>
+          <span class="title">Lesson Slides 2025–2026</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="res-card" href="sources/WU Handouts .docx">
+          <span class="ftype docx">DOCX</span>
+          <span class="title">Student Handouts</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="res-card" href="sources/WU Poetic Devices Glossary.docx">
+          <span class="ftype docx">DOCX</span>
+          <span class="title">Poetic Devices Glossary</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="res-group contest">
+      <h3><span class="dot"></span> Contest</h3>
+      <div class="res-grid">
+        <a class="res-card" href="sources/WU Poetry Contest Guidelines 2025-2026.docx">
+          <span class="ftype docx">DOCX</span>
+          <span class="title">Contest Guidelines 2025–2026</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="res-card" href="sources/WU Rubric 25-26.docx">
+          <span class="ftype docx">DOCX</span>
+          <span class="title">Judging Rubric 2025–2026</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+        <a class="res-card" href="sources/WU Weekly Challenges (1) (1).pdf">
+          <span class="ftype pdf">PDF</span>
+          <span class="title">Weekly Challenges</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="res-group optional">
+      <h3><span class="dot"></span> Optional Extensions</h3>
+      <div class="res-grid">
+        <a class="res-card" href="sources/Words Unlocked Optional Lessons.pdf">
+          <span class="ftype pdf">PDF</span>
+          <span class="title">Optional Lessons</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2 class="display">Bring Words Unlocked to your classroom.</h2>
+    <p class="lede">Have questions about running the program, judging the contest, or facilitating a poetry cafe? Reach out to the BreakFree team.</p>
+    <a class="btn btn-primary" href="mailto:initiatives@breakfree-ed.org">Get in Touch &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  Part of <a href="../index.html">BreakFree</a> &middot; Words Unlocked Poetry Competition
+</footer>
+
+</body>
+</html>
