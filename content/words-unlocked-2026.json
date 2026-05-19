@@ -1,0 +1,430 @@
+{
+  "meta": {
+    "slug": "words-unlocked-2026",
+    "title": "Words Unlocked 2026",
+    "subtitle": "A national poetry program and contest for incarcerated youth",
+    "theme": {
+      "name": "To Let Go",
+      "definition": "Sometimes holding on feels safer. But real strength can live in release. To let go means to make peace with what we can't change, to forgive what hurt us, and to open space for something new to grow. It's not giving up, it's growing up. It's learning that freedom often starts with an open hand."
+    },
+    "submissionDeadline": "2026-04-30"
+  },
+  "poems": {
+    "sometimes-tank-ball": {
+      "id": "sometimes-tank-ball",
+      "title": "Sometimes",
+      "author": "Tarriana \"Tank\" Ball",
+      "lines": [
+        "Sometimes",
+        "I'm afraid to hold on",
+        "Because I'm afraid to let go"
+      ],
+      "themes": ["letting-go", "fear", "release"],
+      "rightsCleared": false
+    },
+    "harlem-hughes": {
+      "id": "harlem-hughes",
+      "title": "Harlem",
+      "author": "Langston Hughes",
+      "lines": [
+        "What happens to a dream deferred?",
+        "Does it dry up like a raisin in the sun?",
+        "Or fester like a sore— and then run?",
+        "Does it stink like rotten meat?",
+        "Or crust and sugar over— like a syrupy sweet?",
+        "Maybe it just sags like a heavy load.",
+        "Or does it explode?"
+      ],
+      "themes": ["dreams", "deferral", "identity"],
+      "rightsCleared": false
+    },
+    "metaphor-original-1": {
+      "id": "metaphor-original-1",
+      "title": "My Phone",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "My phone is a window I keep cleaning.",
+        "My phone is a mirror I keep angry.",
+        "My phone is a door that opens only outward.",
+        "My phone is a friend with a quiet name."
+      ],
+      "themes": ["metaphor", "identity", "everyday"],
+      "rightsCleared": true
+    },
+    "personification-original-1": {
+      "id": "personification-original-1",
+      "title": "The Streetlight",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "The streetlight clears its throat at dusk",
+        "and tells its same old joke to the moths.",
+        "The moths laugh in tiny circles.",
+        "Nobody but me is listening."
+      ],
+      "themes": ["personification", "loneliness", "city"],
+      "rightsCleared": true
+    },
+    "alliteration-original-1": {
+      "id": "alliteration-original-1",
+      "title": "Bricks",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "Brother breaks the brick, builds the bridge,",
+        "borrows back the boy he used to be.",
+        "Brave is not a building. Brave is the brick.",
+        "Brave is the boy, building."
+      ],
+      "themes": ["alliteration", "transformation", "identity"],
+      "rightsCleared": true
+    },
+    "onomatopoeia-original-1": {
+      "id": "onomatopoeia-original-1",
+      "title": "Block Party",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "Boom — the speakers learn a new word.",
+        "Crackle — the foil unwraps the chicken.",
+        "Pop — the can confesses.",
+        "Shh — the baby agrees with the music."
+      ],
+      "themes": ["onomatopoeia", "community", "joy"],
+      "rightsCleared": true
+    },
+    "spoken-word-original-1": {
+      "id": "spoken-word-original-1",
+      "title": "Mic Check",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "One. Two. One. Two.",
+        "If you can hear me — I have been quiet for a long time.",
+        "If you can hear me — I am still here.",
+        "If you can hear me — I am not done.",
+        "Check. Check. Check."
+      ],
+      "themes": ["spoken-word", "voice", "presence"],
+      "rightsCleared": true
+    }
+  },
+  "lessons": [
+    {
+      "id": "lesson-1",
+      "day": 1,
+      "title": "Unit Launch & Poetry Introduction",
+      "objectives": [
+        "Analyze poems in literature circles to answer the question \"What is poetry?\"",
+        "Synthesize information from readings in literature circles and present findings"
+      ],
+      "keyPoints": [
+        "Today is the first day of the poetry unit.",
+        "Students will work in small groups (literature circles) with assigned roles.",
+        "Groups analyze why poems are written and what techniques they use."
+      ],
+      "activities": [
+        {
+          "id": "l1-do-now",
+          "kind": "do-now",
+          "title": "Define Poetry",
+          "durationMin": 5,
+          "prompt": "Write your own definition of poetry. What makes a piece of writing a poem?",
+          "poemRefs": [],
+          "materials": ["Student journal/notebook"],
+          "required": true
+        },
+        {
+          "id": "l1-intro",
+          "kind": "mini-lesson",
+          "title": "Unit Launch",
+          "durationMin": 15,
+          "content": "Introduce the Words Unlocked unit: focus poets, contest theme \"To Let Go,\" the 7-lesson arc, and the culminating Poetry Slam. Read one poem from a focus poet aloud and model annotation.",
+          "poemRefs": ["sometimes-tank-ball"],
+          "materials": ["Slides", "Note to Students handout"],
+          "required": true
+        },
+        {
+          "id": "l1-guided",
+          "kind": "guided-practice",
+          "title": "Literature Circles Setup",
+          "durationMin": 15,
+          "content": "Explain literature circle roles: Reader, Discussion Leader, Summarizer, Presenter. Each group gets two poems pre-selected by the teacher and a guided analysis sheet.",
+          "poemRefs": [],
+          "materials": ["Lesson Handouts", "2 poems per group"],
+          "required": true
+        },
+        {
+          "id": "l1-independent",
+          "kind": "independent-practice",
+          "title": "Literature Circle Work",
+          "durationMin": 20,
+          "content": "Groups read assigned poems, complete the analysis handout, and build a poster to present back to the class.",
+          "poemRefs": [],
+          "materials": ["Lesson Handouts", "Poster paper"],
+          "required": true
+        },
+        {
+          "id": "l1-exit",
+          "kind": "exit-ticket",
+          "title": "Group Sheet Turn-in",
+          "durationMin": 5,
+          "prompt": "Submit the group literature circle analysis sheet. Each student rates the group's collaboration on the reflection sheet.",
+          "poemRefs": [],
+          "materials": [],
+          "required": true
+        }
+      ],
+      "standards": [
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.RL.6-12.1", "description": "Cite textual evidence to support analysis" },
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.SL.6-12.1", "description": "Engage effectively in collaborative discussions" }
+      ],
+      "differentiation": [
+        "Support during literature circle for struggling readers",
+        "Tiered text selection (high, medium, low)"
+      ]
+    },
+    {
+      "id": "lesson-2",
+      "day": 2,
+      "title": "Metaphor & Simile",
+      "objectives": [
+        "Identify similes and metaphors within a poem and analyze the significance of their use",
+        "Differentiate between similes and metaphors",
+        "Create original similes and metaphors"
+      ],
+      "keyPoints": [
+        "A simile is a comparison using 'like' or 'as'.",
+        "A metaphor is a comparison that calls one thing by the name of another.",
+        "Good readers don't just identify these — they ask \"why is this comparison significant?\""
+      ],
+      "activities": [
+        {
+          "id": "l2-do-now",
+          "kind": "do-now",
+          "title": "Find the Comparison",
+          "durationMin": 5,
+          "prompt": "Read the following sentences. Identify what two things are being compared and explain what the author means by the comparison.",
+          "poemRefs": [],
+          "materials": ["Lesson Handouts: Do Now"],
+          "required": true
+        },
+        {
+          "id": "l2-intro",
+          "kind": "mini-lesson",
+          "title": "Metaphor & Simile",
+          "durationMin": 10,
+          "content": "Define metaphor and simile. Students record definitions and examples in their figurative language dictionary.",
+          "poemRefs": [],
+          "materials": ["Slides"],
+          "required": true
+        },
+        {
+          "id": "l2-guided",
+          "kind": "guided-practice",
+          "title": "Analyze \"Happiness\"",
+          "durationMin": 15,
+          "content": "Read the first stanza of \"Happiness\" together. Model: identify the figurative language, name the two things compared, explain significance.",
+          "poemRefs": ["metaphor-original-1"],
+          "materials": ["Lesson Handouts"],
+          "required": true
+        },
+        {
+          "id": "l2-independent",
+          "kind": "independent-practice",
+          "title": "Analyze + Compose",
+          "durationMin": 30,
+          "content": "Students analyze \"Harlem\" using the graphic organizer, then write an original 8-line poem comparing two things. Sentence starters available for support.",
+          "poemRefs": ["harlem-hughes"],
+          "materials": ["Lesson Handouts"],
+          "required": true
+        },
+        {
+          "id": "l2-exit",
+          "kind": "exit-ticket",
+          "title": "Define Both",
+          "durationMin": 5,
+          "prompt": "1. What is a metaphor? 2. What is a simile?",
+          "poemRefs": [],
+          "materials": [],
+          "required": true
+        }
+      ],
+      "standards": [
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.L.6-12.5", "description": "Demonstrate understanding of figurative language" }
+      ],
+      "differentiation": [
+        "Tiered text selection",
+        "Sentence starters for the independent composition"
+      ]
+    },
+    {
+      "id": "lesson-3",
+      "day": 3,
+      "title": "Personification",
+      "objectives": [
+        "Identify personification in poems",
+        "Analyze how personification creates meaning",
+        "Write original personification"
+      ],
+      "keyPoints": [
+        "Personification gives human qualities to non-human things.",
+        "It creates vivid imagery and emotional resonance."
+      ],
+      "activities": [
+        { "id": "l3-do-now", "kind": "do-now", "title": "Flocabulary Video", "durationMin": 5, "prompt": "Watch the Flocabulary video on personification. Write down two examples you notice.", "poemRefs": [], "materials": ["Video link", "Student notebook"], "required": true },
+        { "id": "l3-intro", "kind": "mini-lesson", "title": "Personification", "durationMin": 10, "content": "Define personification with examples. Add to the figurative language dictionary.", "poemRefs": [], "materials": ["Slides", "Glossary"], "required": true },
+        { "id": "l3-guided", "kind": "guided-practice", "title": "Analyze a Poem", "durationMin": 15, "content": "Read a poem rich in personification together. Identify each instance and discuss what it makes the reader feel.", "poemRefs": ["personification-original-1"], "materials": ["Lesson Handouts"], "required": true },
+        { "id": "l3-independent", "kind": "independent-practice", "title": "Write Your Own", "durationMin": 20, "content": "Students write an 8-line poem using personification to bring an object or place to life.", "poemRefs": [], "materials": ["Lesson Handouts"], "required": true },
+        { "id": "l3-exit", "kind": "exit-ticket", "title": "Best Line", "durationMin": 5, "prompt": "Share the best line of personification from your poem. Why is it your favorite?", "poemRefs": [], "materials": [], "required": true }
+      ],
+      "standards": [
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.L.6-12.5", "description": "Demonstrate understanding of figurative language" }
+      ],
+      "differentiation": ["Sentence starters", "Video as accessible entry point"]
+    },
+    {
+      "id": "lesson-4",
+      "day": 4,
+      "title": "Alliteration & Symbolism",
+      "objectives": [
+        "Identify alliteration and symbolism in poems",
+        "Analyze how each device contributes to meaning",
+        "Write original lines using both devices"
+      ],
+      "keyPoints": [
+        "Alliteration is the repetition of initial consonant sounds.",
+        "Symbolism uses concrete objects to stand for abstract ideas."
+      ],
+      "activities": [
+        { "id": "l4-do-now", "kind": "do-now", "title": "What do the images mean?", "durationMin": 5, "prompt": "Look at the three images on the slide. What ideas or feelings might each one symbolize?", "poemRefs": [], "materials": ["Slides"], "required": true },
+        { "id": "l4-intro", "kind": "mini-lesson", "title": "Alliteration & Symbolism", "durationMin": 10, "content": "Define alliteration and symbolism with examples. Add to the dictionary.", "poemRefs": [], "materials": ["Slides", "Glossary"], "required": true },
+        { "id": "l4-guided", "kind": "guided-practice", "title": "Analyze Poems", "durationMin": 15, "content": "Read two short poems — one heavy in alliteration, one heavy in symbolism. Annotate together.", "poemRefs": ["alliteration-original-1"], "materials": ["Lesson Handouts"], "required": true },
+        { "id": "l4-independent", "kind": "independent-practice", "title": "Write Your Own", "durationMin": 20, "content": "Students write an 8-line poem using at least one instance of alliteration and one symbol.", "poemRefs": [], "materials": ["Lesson Handouts"], "required": true },
+        { "id": "l4-exit", "kind": "exit-ticket", "title": "Name the Symbol", "durationMin": 5, "prompt": "Identify the symbol in your poem and explain what it represents.", "poemRefs": [], "materials": [], "required": true }
+      ],
+      "standards": [
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.RL.7.4", "description": "Analyze the impact of rhymes and other repetitions of sounds" }
+      ],
+      "differentiation": ["Tiered text selection", "Image-based entry point for visual learners"]
+    },
+    {
+      "id": "lesson-5",
+      "day": 5,
+      "title": "Onomatopoeia & Imagery",
+      "objectives": [
+        "Identify onomatopoeia and imagery in poems",
+        "Analyze how sensory detail builds tone and meaning",
+        "Compose lines rich in sound and sensory imagery"
+      ],
+      "keyPoints": [
+        "Onomatopoeia: words that imitate sounds.",
+        "Imagery: language that appeals to the senses."
+      ],
+      "activities": [
+        { "id": "l5-do-now", "kind": "do-now", "title": "Describe a Scene", "durationMin": 5, "prompt": "Describe a place you know well using all five senses. No emotions allowed — only what you see, hear, smell, taste, touch.", "poemRefs": [], "materials": [], "required": true },
+        { "id": "l5-intro", "kind": "mini-lesson", "title": "Onomatopoeia & Imagery", "durationMin": 10, "content": "Define onomatopoeia and imagery. Listen to a recording of a poem rich in both.", "poemRefs": ["onomatopoeia-original-1"], "materials": ["Slides", "Audio clip"], "required": true },
+        { "id": "l5-guided", "kind": "guided-practice", "title": "Analyze Poems", "durationMin": 15, "content": "Read two poems together. Highlight every sense the poet activates.", "poemRefs": [], "materials": ["Lesson Handouts"], "required": true },
+        { "id": "l5-independent", "kind": "independent-practice", "title": "Write Your Own", "durationMin": 20, "content": "Students write a poem that uses at least one onomatopoeia and engages at least three of the five senses.", "poemRefs": [], "materials": ["Lesson Handouts"], "required": true },
+        { "id": "l5-exit", "kind": "exit-ticket", "title": "Read Aloud", "durationMin": 5, "prompt": "Read your favorite line out loud to a partner. Which sense did you activate?", "poemRefs": [], "materials": [], "required": true }
+      ],
+      "standards": [
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.RL.6-12.4", "description": "Determine the meaning of words and phrases including figurative meanings" }
+      ],
+      "differentiation": ["Audio recording for accessibility", "Sentence stems"]
+    },
+    {
+      "id": "lesson-6",
+      "day": 6,
+      "title": "Spoken Word",
+      "objectives": [
+        "Identify what makes spoken-word poetry distinct from page poetry",
+        "Practice performance techniques (pace, volume, breath, gesture)",
+        "Begin drafting a spoken-word piece on the theme"
+      ],
+      "keyPoints": [
+        "Spoken word is poetry made for performance.",
+        "It centers voice, rhythm, and presence.",
+        "It often takes on social, personal, and political themes."
+      ],
+      "activities": [
+        { "id": "l6-do-now", "kind": "do-now", "title": "Name That Device", "durationMin": 5, "prompt": "On the slide are five short lines of poetry. Name the device in each (metaphor, simile, personification, alliteration, imagery).", "poemRefs": [], "materials": ["Slides"], "required": true },
+        { "id": "l6-intro", "kind": "mini-lesson", "title": "Spoken Word & Slam", "durationMin": 15, "content": "Show two short spoken-word video clips. Discuss what makes them work: pacing, repetition, breath, the body. Introduce performance techniques.", "poemRefs": ["spoken-word-original-1"], "materials": ["Slides", "Video clips"], "required": true },
+        { "id": "l6-independent", "kind": "independent-practice", "title": "Draft Your Piece", "durationMin": 20, "content": "Students draft a spoken-word piece engaging the year's theme of \"To Let Go.\" Encourage repetition, direct address, and rhythm.", "poemRefs": [], "materials": ["Lesson Handouts"], "required": true },
+        { "id": "l6-exit", "kind": "exit-ticket", "title": "One Line, Out Loud", "durationMin": 5, "prompt": "Stand and read one line of your draft aloud. Pay attention to your breath.", "poemRefs": [], "materials": [], "required": true }
+      ],
+      "standards": [
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.SL.6-12.6", "description": "Adapt speech to a variety of contexts and tasks" }
+      ],
+      "differentiation": ["Video models", "Allow students to perform to a partner first"]
+    },
+    {
+      "id": "lesson-7",
+      "day": 7,
+      "title": "Poetry Recital / Poetry Slam",
+      "objectives": [
+        "Perform an original poem with intentional voice and presence",
+        "Listen to peers with attention and respect",
+        "Provide constructive, specific feedback"
+      ],
+      "keyPoints": [
+        "Today is the culminating performance.",
+        "Every poet is heard.",
+        "Audience signals (snaps, applause) are part of the form."
+      ],
+      "activities": [
+        { "id": "l7-do-now", "kind": "do-now", "title": "Relaxation", "durationMin": 5, "prompt": "Three deep breaths. Read your poem silently to yourself once.", "poemRefs": [], "materials": [], "required": true },
+        { "id": "l7-intro", "kind": "mini-lesson", "title": "Recital Expectations", "durationMin": 10, "content": "Set norms for the recital: how performers are introduced, how the audience responds, how feedback works. Show an example from a focus poet.", "poemRefs": [], "materials": ["Slides"], "required": true },
+        { "id": "l7-independent", "kind": "independent-practice", "title": "Poetry Slam / Recital", "durationMin": 25, "content": "Each poet is introduced by name and takes the stage to perform. After the round, peers offer one piece of specific, kind feedback per performer.", "poemRefs": [], "materials": ["Run-of-show program"], "required": true },
+        { "id": "l7-exit", "kind": "exit-ticket", "title": "One Thing I'll Keep", "durationMin": 5, "prompt": "Name one thing you'll carry forward from this unit — a line, a technique, a feeling, anything.", "poemRefs": [], "materials": [], "required": true }
+      ],
+      "standards": [
+        { "framework": "Common Core", "code": "CCSS.ELA-Literacy.SL.6-12.6", "description": "Adapt speech to a variety of contexts and tasks" }
+      ],
+      "differentiation": [
+        "Option to perform seated or read off the page",
+        "Audio-only option for performance-anxious students"
+      ]
+    }
+  ],
+  "handouts": [
+    {
+      "id": "do-now-lesson-1",
+      "lessonId": "lesson-1",
+      "title": "Lesson 1 — Do Now",
+      "body": "Write your own definition of poetry. What makes a piece of writing a poem? Be specific and use at least two complete sentences."
+    },
+    {
+      "id": "do-now-lesson-2",
+      "lessonId": "lesson-2",
+      "title": "Lesson 2 — Do Now",
+      "body": "Read the following sentences. First identify what two things are being compared and then explain what the author means by the comparison."
+    },
+    {
+      "id": "do-now-lesson-3",
+      "lessonId": "lesson-3",
+      "title": "Lesson 3 — Do Now",
+      "body": "Watch the Flocabulary video on personification. Write down two examples of personification you notice from the video."
+    },
+    {
+      "id": "do-now-lesson-4",
+      "lessonId": "lesson-4",
+      "title": "Lesson 4 — Do Now",
+      "body": "Look at the three images on the board. For each image, write down what idea, feeling, or concept it might symbolize."
+    },
+    {
+      "id": "do-now-lesson-5",
+      "lessonId": "lesson-5",
+      "title": "Lesson 5 — Do Now",
+      "body": "Describe a place you know well using all five senses (sight, sound, smell, taste, touch). No emotions allowed — only what you sense directly."
+    },
+    {
+      "id": "do-now-lesson-6",
+      "lessonId": "lesson-6",
+      "title": "Lesson 6 — Do Now",
+      "body": "On the board are five short lines of poetry. Name the poetic device used in each: metaphor, simile, personification, alliteration, or imagery."
+    },
+    {
+      "id": "do-now-lesson-7",
+      "lessonId": "lesson-7",
+      "title": "Lesson 7 — Do Now",
+      "body": "Three deep breaths. Read your poem silently to yourself once. Underline the line you are most proud of."
+    }
+  ]
+}

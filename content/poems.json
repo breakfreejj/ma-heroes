@@ -1,0 +1,379 @@
+{
+  "poems": [
+    {
+      "id": "sometimes-tank-ball",
+      "title": "Sometimes",
+      "author": "Tarriana \"Tank\" Ball",
+      "lines": [
+        "Sometimes",
+        "I'm afraid to hold on",
+        "Because I'm afraid to let go"
+      ],
+      "themes": ["letting-go", "fear", "release"],
+      "rightsCleared": false,
+      "source": "Featured in original Words Unlocked Lesson 1"
+    },
+    {
+      "id": "harlem-hughes",
+      "title": "Harlem",
+      "author": "Langston Hughes",
+      "lines": [
+        "What happens to a dream deferred?",
+        "Does it dry up like a raisin in the sun?",
+        "Or fester like a sore—",
+        "And then run?",
+        "Does it stink like rotten meat?",
+        "Or crust and sugar over—",
+        "like a syrupy sweet?",
+        "Maybe it just sags",
+        "like a heavy load.",
+        "Or does it explode?"
+      ],
+      "themes": ["dreams", "deferral", "identity", "civil-rights"],
+      "rightsCleared": false,
+      "source": "Featured in original Words Unlocked Lesson 2"
+    },
+    {
+      "id": "still-i-rise-angelou",
+      "title": "Still I Rise (excerpt)",
+      "author": "Maya Angelou",
+      "lines": [
+        "You may write me down in history",
+        "With your bitter, twisted lies,",
+        "You may trod me in the very dirt",
+        "But still, like dust, I'll rise.",
+        "Just like moons and like suns,",
+        "With the certainty of tides,",
+        "Just like hopes springing high,",
+        "Still I'll rise."
+      ],
+      "themes": ["resilience", "rising", "identity", "letting-go"],
+      "rightsCleared": false,
+      "source": "Commonly taught; rights status to verify before printing"
+    },
+    {
+      "id": "caged-bird-dunbar",
+      "title": "Sympathy",
+      "author": "Paul Laurence Dunbar",
+      "lines": [
+        "I know what the caged bird feels, alas!",
+        "When the sun is bright on the upland slopes;",
+        "When the wind stirs soft through the springing grass,",
+        "And the river flows like a stream of glass;",
+        "When the first bird sings and the first bud opes,",
+        "And the faint perfume from its chalice steals—",
+        "I know what the caged bird feels!"
+      ],
+      "themes": ["confinement", "longing", "freedom", "letting-go"],
+      "rightsCleared": true,
+      "source": "Public domain (1899)"
+    },
+    {
+      "id": "invictus-henley",
+      "title": "Invictus",
+      "author": "William Ernest Henley",
+      "lines": [
+        "Out of the night that covers me,",
+        "Black as the pit from pole to pole,",
+        "I thank whatever gods may be",
+        "For my unconquerable soul.",
+        "In the fell clutch of circumstance",
+        "I have not winced nor cried aloud.",
+        "Under the bludgeonings of chance",
+        "My head is bloody, but unbowed."
+      ],
+      "themes": ["resilience", "self-determination", "endurance"],
+      "rightsCleared": true,
+      "source": "Public domain (1888)"
+    },
+    {
+      "id": "hope-dickinson",
+      "title": "\"Hope\" is the thing with feathers",
+      "author": "Emily Dickinson",
+      "lines": [
+        "\"Hope\" is the thing with feathers -",
+        "That perches in the soul -",
+        "And sings the tune without the words -",
+        "And never stops - at all -"
+      ],
+      "themes": ["hope", "resilience", "metaphor"],
+      "rightsCleared": true,
+      "source": "Public domain"
+    },
+    {
+      "id": "the-road-not-taken-frost",
+      "title": "The Road Not Taken (excerpt)",
+      "author": "Robert Frost",
+      "lines": [
+        "Two roads diverged in a yellow wood,",
+        "And sorry I could not travel both",
+        "And be one traveler, long I stood",
+        "And looked down one as far as I could",
+        "To where it bent in the undergrowth;"
+      ],
+      "themes": ["choice", "regret", "letting-go", "identity"],
+      "rightsCleared": false,
+      "source": "1916 — public domain in US but verify printing rights"
+    },
+    {
+      "id": "song-of-myself-1-whitman",
+      "title": "Song of Myself, 1 (excerpt)",
+      "author": "Walt Whitman",
+      "lines": [
+        "I celebrate myself, and sing myself,",
+        "And what I assume you shall assume,",
+        "For every atom belonging to me as good belongs to you."
+      ],
+      "themes": ["identity", "self", "voice"],
+      "rightsCleared": true,
+      "source": "Public domain (1855)"
+    },
+    {
+      "id": "letting-go-original-1",
+      "title": "What the Hand Releases",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "There is a weight you do not name,",
+        "the kind your knuckles learn before your tongue does.",
+        "Open your hand.",
+        "Watch what falls is not your name.",
+        "Watch what stays is not your shame.",
+        "Open your hand.",
+        "The sky is what you make of it."
+      ],
+      "themes": ["letting-go", "release", "identity", "freedom"],
+      "rightsCleared": true,
+      "source": "Original sample poem for theme alignment"
+    },
+    {
+      "id": "letting-go-original-2",
+      "title": "Forecast",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "Today I forgive the rain.",
+        "Yesterday I forgave the sun.",
+        "Tomorrow there will be a sky",
+        "I have not yet learned the name of.",
+        "I will know it",
+        "the way I have learned to know my own breath:",
+        "by losing it, and finding it again."
+      ],
+      "themes": ["letting-go", "forgiveness", "growth"],
+      "rightsCleared": true,
+      "source": "Original sample poem for theme alignment"
+    },
+    {
+      "id": "metaphor-original-1",
+      "title": "My Phone",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "My phone is a window I keep cleaning.",
+        "My phone is a mirror I keep angry.",
+        "My phone is a door that opens only outward.",
+        "My phone is a friend with a quiet name."
+      ],
+      "themes": ["metaphor", "identity", "everyday"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 2"
+    },
+    {
+      "id": "simile-original-1",
+      "title": "Recess",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "The bell rings like a starter pistol.",
+        "The hallway moves like a river that knows where it's going.",
+        "I run like a sentence with no period.",
+        "I land like a question someone asked twice."
+      ],
+      "themes": ["simile", "identity", "school"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 2"
+    },
+    {
+      "id": "personification-original-1",
+      "title": "The Streetlight",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "The streetlight clears its throat at dusk",
+        "and tells its same old joke to the moths.",
+        "The moths laugh in tiny circles.",
+        "Nobody but me is listening."
+      ],
+      "themes": ["personification", "loneliness", "city"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 3"
+    },
+    {
+      "id": "alliteration-original-1",
+      "title": "Bricks",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "Brother breaks the brick, builds the bridge,",
+        "borrows back the boy he used to be.",
+        "Brave is not a building. Brave is the brick.",
+        "Brave is the boy, building."
+      ],
+      "themes": ["alliteration", "transformation", "identity"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 4"
+    },
+    {
+      "id": "symbolism-original-1",
+      "title": "Key",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "I keep an old key in my pocket.",
+        "It does not open any door I still own.",
+        "I keep it anyway.",
+        "Some locks live inside you long after the house is gone."
+      ],
+      "themes": ["symbolism", "memory", "letting-go"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 4"
+    },
+    {
+      "id": "onomatopoeia-original-1",
+      "title": "Block Party",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "Boom — the speakers learn a new word.",
+        "Crackle — the foil unwraps the chicken.",
+        "Pop — the can confesses.",
+        "Shh — the baby agrees with the music."
+      ],
+      "themes": ["onomatopoeia", "community", "joy"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 5"
+    },
+    {
+      "id": "imagery-original-1",
+      "title": "First Visit",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "The waiting room smells like vending machine coffee and old magazines.",
+        "The lights buzz like a forgotten promise.",
+        "My mother's coat is the color of a stop sign in rain.",
+        "She brought me a sandwich I can't taste."
+      ],
+      "themes": ["imagery", "family", "sensory"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 5"
+    },
+    {
+      "id": "spoken-word-original-1",
+      "title": "Mic Check",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "One. Two. One. Two.",
+        "If you can hear me — I have been quiet for a long time.",
+        "If you can hear me — I am still here.",
+        "If you can hear me — I am not done.",
+        "Check. Check. Check."
+      ],
+      "themes": ["spoken-word", "voice", "presence"],
+      "rightsCleared": true,
+      "source": "Original sample for Lesson 6"
+    },
+    {
+      "id": "resilience-original-1",
+      "title": "Practice",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "I am practicing the long sentence of myself.",
+        "I am practicing the comma where I used to put the period.",
+        "I am practicing the question mark",
+        "in the middle of my own name.",
+        "Tomorrow I will practice the answer."
+      ],
+      "themes": ["resilience", "identity", "growth"],
+      "rightsCleared": true,
+      "source": "Original sample"
+    },
+    {
+      "id": "basketball-original-1",
+      "title": "Court",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "The court is a country I learned to read in.",
+        "The ball is a sentence I taught my hands to finish.",
+        "The hoop is a small mouth that says yes when I am honest.",
+        "The buzzer is a teacher who never grades on a curve."
+      ],
+      "themes": ["sports", "metaphor", "identity"],
+      "rightsCleared": true,
+      "source": "Original sample"
+    },
+    {
+      "id": "family-original-1",
+      "title": "Sunday",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "My grandmother's hands smell like onion and Pine-Sol.",
+        "My grandmother's hands have buried two husbands and three brothers.",
+        "My grandmother's hands have never stopped cooking.",
+        "My grandmother's hands are the recipe."
+      ],
+      "themes": ["family", "imagery", "memory"],
+      "rightsCleared": true,
+      "source": "Original sample"
+    },
+    {
+      "id": "music-original-1",
+      "title": "Kitchen Radio",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "The kitchen radio remembers the words my mother forgot.",
+        "It is older than my brother and twice as patient.",
+        "It hums the way pots do before they boil.",
+        "Nothing in this house is louder than its love."
+      ],
+      "themes": ["music", "family", "memory"],
+      "rightsCleared": true,
+      "source": "Original sample"
+    },
+    {
+      "id": "city-original-1",
+      "title": "Subway",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "The train arrives like an argument finally over.",
+        "We board like a question the city forgot to ask.",
+        "The lights flicker like a song nobody requested.",
+        "We arrive somewhere our parents never named."
+      ],
+      "themes": ["city", "imagery", "belonging"],
+      "rightsCleared": true,
+      "source": "Original sample"
+    },
+    {
+      "id": "growth-original-1",
+      "title": "Seedling",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "I broke through dirt before I had a name.",
+        "I bent toward light before I knew it was light.",
+        "I am still bending.",
+        "I am still becoming a kind of green I have not been before."
+      ],
+      "themes": ["growth", "nature", "becoming"],
+      "rightsCleared": true,
+      "source": "Original sample"
+    },
+    {
+      "id": "forgiveness-original-1",
+      "title": "What I Am Practicing",
+      "author": "BreakFree (sample)",
+      "lines": [
+        "Forgiveness is a small door.",
+        "I keep walking past it.",
+        "Today I stopped.",
+        "Today I did not open it,",
+        "but I touched the handle, and the handle did not burn."
+      ],
+      "themes": ["forgiveness", "letting-go", "growth"],
+      "rightsCleared": true,
+      "source": "Original sample"
+    }
+  ]
+}
