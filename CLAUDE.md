@@ -34,10 +34,12 @@ The approved implementation plan with the full architecture lives at `~/.claude/
 │   ├── globals.css        # Tailwind import + BreakFree palette as @theme tokens
 │   └── customize/page.tsx # Stub for the Words Unlocked Customizer
 ├── public/
-│   └── ma/                # Legacy Origin Story static unit (see public/ma/CLAUDE.md)
-├── wordsunlocked/
-│   ├── CLAUDE.md          # Words Unlocked curriculum context
-│   └── sources/           # Canonical curriculum source files (.docx + .pdf)
+│   ├── ma/                # Legacy Origin Story static unit (see public/ma/CLAUDE.md)
+│   └── wordsunlocked/     # Danielle's WU landing page + curriculum sources
+│       ├── CLAUDE.md      # Words Unlocked curriculum context
+│       ├── index.html     # Landing page (Customize Here → /customize)
+│       ├── design/        # Logo + brand assets
+│       └── sources/       # Canonical curriculum source files (.docx + .pdf)
 ├── next.config.ts
 ├── tsconfig.json
 ├── package.json
@@ -47,7 +49,7 @@ The approved implementation plan with the full architecture lives at `~/.claude/
 
 Subdirectory CLAUDE.md files scope context to their tree:
 - `public/ma/CLAUDE.md` — Origin Story unit context
-- `wordsunlocked/CLAUDE.md` — Words Unlocked curriculum context (source materials, theme, contest rules, file map)
+- `public/wordsunlocked/CLAUDE.md` — Words Unlocked curriculum context (source materials, theme, contest rules, file map)
 
 ---
 

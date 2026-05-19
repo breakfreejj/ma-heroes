@@ -17,10 +17,10 @@ export default function Home() {
           Origin Story unit &rarr;
         </Link>
         <Link
-          href="/customize"
+          href="/wordsunlocked/index.html"
           className="text-bf-yellow hover:underline"
         >
-          Words Unlocked customizer &rarr;
+          Words Unlocked &rarr;
         </Link>
       </nav>
     </main>
