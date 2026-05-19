@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bf-blue: #1f3a93;
+  --color-bf-turquoise: #00b2a9;
+  --color-bf-yellow: #fdb82c;
+  --color-bf-green: #91d5ac;
+  --color-bf-pink: #ff366d;
+  --color-bf-orange: #f57430;
+  --color-bf-charcoal: #414143;
+
+  --font-display: "Bangers", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-bf-charcoal);
+  background: #fff;
+}

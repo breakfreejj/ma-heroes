@@ -16,3 +16,17 @@
 
 # Local Claude settings
 .claude/settings.local.json
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Env
+.env
+.env*.local
+
+# Vercel
+.vercel/
