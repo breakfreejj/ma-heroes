@@ -18,65 +18,69 @@ export default function Home() {
     <>
       <SiteHeader />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-bf-blue px-7 py-20 text-white sm:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1.5px,transparent_1.5px)] [background-size:22px_22px]" />
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(circle at 12% 20%, rgba(253,184,44,0.18), transparent 40%), radial-gradient(circle at 88% 80%, rgba(145,213,172,0.22), transparent 42%)",
-          }}
-        />
-        <div className="relative mx-auto grid max-w-[1180px] items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
-          <div>
-            <span className="mb-6 inline-block rounded-full bg-bf-yellow px-3.5 py-1.5 text-[13px] font-bold uppercase tracking-[0.08em] text-bf-blue">
-              BreakFree Education
-            </span>
-            <h1
-              className="mb-5 font-display font-extrabold tracking-wide"
-              style={{ fontSize: "clamp(44px, 7vw, 84px)", lineHeight: 1.02 }}
+      {/* Hero — full-bleed photo with text overlay */}
+      <section className="relative overflow-hidden bg-bf-blue text-white">
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <Image
+            src="/brand/landing-page-pic.jpg"
+            alt="A young person seated alone at an institutional desk between cell doors at Pueblo Youth Services Center"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          {/* Flat 40% cobalt overlay — keeps the photo readable while preserving text contrast */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "rgba(31,58,147,0.40)" }}
+          />
+        </div>
+
+        {/* Halftone dot pattern over everything */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1.5px,transparent_1.5px)] [background-size:22px_22px]" />
+
+        {/* Content */}
+        <div className="relative mx-auto max-w-[1180px] px-7 py-32 sm:py-40 lg:py-48">
+          <span className="mb-6 inline-block rounded-full bg-bf-yellow px-3.5 py-1.5 text-[13px] font-bold uppercase tracking-[0.08em] text-bf-blue">
+            BreakFree Education
+          </span>
+          <h1
+            className="mb-5 max-w-3xl font-display font-extrabold tracking-wide"
+            style={{
+              fontSize: "clamp(44px, 7vw, 84px)",
+              lineHeight: 1.02,
+              textShadow: "0 2px 12px rgba(0,0,0,0.4)",
+            }}
+          >
+            A student's potential{" "}
+            <span className="text-bf-yellow">cannot be confined.</span>
+          </h1>
+          <p
+            className="mb-8 max-w-xl opacity-95"
+            style={{
+              fontSize: "clamp(17px, 1.6vw, 20px)",
+              textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+            }}
+          >
+            We believe that all children have the right to learn, grow, and
+            dream. Our mission is to radically improve education in the
+            juvenile and criminal justice systems by investing in the
+            potential and dignity of all its students.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 rounded-full bg-bf-yellow px-6 py-3 text-[15px] font-bold text-bf-blue transition hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.35)]"
             >
-              A student's potential{" "}
-              <span className="text-bf-yellow">cannot be confined.</span>
-            </h1>
-            <p
-              className="mb-8 max-w-xl opacity-95"
-              style={{ fontSize: "clamp(17px, 1.6vw, 20px)" }}
+              More About Us &rarr;
+            </Link>
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-6 py-3 text-[15px] font-bold text-white backdrop-blur-sm transition hover:bg-white/25"
             >
-              We believe that all children have the right to learn, grow, and
-              dream. Our mission is to radically improve education in the
-              juvenile and criminal justice systems by investing in the
-              potential and dignity of all its students.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 rounded-full bg-bf-yellow px-6 py-3 text-[15px] font-bold text-bf-blue transition hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.18)]"
-              >
-                More About Us &rarr;
-              </Link>
-              <Link
-                href="/work"
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-[15px] font-bold text-white transition hover:bg-white/20"
-              >
-                Explore Our Work
-              </Link>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="overflow-hidden rounded-3xl border-4 border-white/20 shadow-[0_30px_60px_rgba(0,0,0,0.35)]">
-              <Image
-                src="/brand/landing-page-pic.jpg"
-                alt="A young person seated alone at an institutional desk between cell doors at Pueblo Youth Services Center"
-                width={2000}
-                height={1317}
-                priority
-                className="h-auto w-full"
-              />
-            </div>
-            <div className="pointer-events-none absolute -bottom-4 -left-4 -z-10 h-32 w-32 rounded-full bg-bf-yellow/40 blur-2xl" />
-            <div className="pointer-events-none absolute -right-6 -top-6 -z-10 h-40 w-40 rounded-full bg-bf-green/40 blur-3xl" />
+              Explore Our Work
+            </Link>
           </div>
         </div>
       </section>
