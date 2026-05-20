@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "../_components/SiteHeader";
 import { SiteFooter } from "../_components/SiteFooter";
@@ -69,14 +70,30 @@ export default function AboutPage() {
       <SiteHeader />
 
       {/* Page header */}
-      <section className="relative overflow-hidden bg-bf-blue px-7 py-20 text-white">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1.5px,transparent_1.5px)] [background-size:22px_22px]" />
-        <div className="relative mx-auto max-w-[1180px]">
+      <section className="relative overflow-hidden bg-bf-blue text-white">
+        <div className="absolute inset-0">
+          <Image
+            src="/brand/photo-classroom-circle-richard-ross.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover opacity-25"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(31,58,147,0.92) 0%, rgba(31,58,147,0.78) 100%)",
+            }}
+          />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1.5px,transparent_1.5px)] [background-size:22px_22px]" />
+        <div className="relative mx-auto max-w-[1180px] px-7 py-20">
           <span className="mb-5 inline-block rounded-full bg-bf-yellow px-3.5 py-1.5 text-[13px] font-bold uppercase tracking-[0.08em] text-bf-blue">
             About BreakFree
           </span>
           <h1
-            className="mb-3.5 font-display tracking-wide"
+            className="mb-3.5 font-display font-extrabold tracking-wide"
             style={{ fontSize: "clamp(40px, 6vw, 72px)", lineHeight: 1.05 }}
           >
             Investing in the potential and dignity of every student.
@@ -100,7 +117,7 @@ export default function AboutPage() {
               What We Do
             </div>
             <h2
-              className="mb-4 font-display tracking-wide text-bf-blue"
+              className="mb-4 font-display font-extrabold tracking-wide text-bf-blue"
               style={{ fontSize: "clamp(34px, 5vw, 54px)", lineHeight: 1.05 }}
             >
               Three connected commitments.
@@ -115,7 +132,7 @@ export default function AboutPage() {
                 <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-bf-turquoise">
                   {c.tag}
                 </span>
-                <h3 className="font-display text-[26px] tracking-wide text-bf-blue">
+                <h3 className="font-display font-bold text-[26px] tracking-wide text-bf-blue">
                   {c.title}
                 </h3>
                 <p className="text-[15px]">{c.body}</p>
@@ -133,7 +150,7 @@ export default function AboutPage() {
               Board of Directors
             </div>
             <h2
-              className="mb-4 font-display tracking-wide text-bf-blue"
+              className="mb-4 font-display font-extrabold tracking-wide text-bf-blue"
               style={{ fontSize: "clamp(34px, 5vw, 54px)", lineHeight: 1.05 }}
             >
               Leadership.
@@ -161,7 +178,7 @@ export default function AboutPage() {
       <section className="bg-bf-blue px-7 py-18 text-center text-white">
         <div className="mx-auto max-w-[1180px] py-2">
           <h2
-            className="mb-3.5 font-display tracking-wide"
+            className="mb-3.5 font-display font-extrabold tracking-wide"
             style={{ fontSize: "clamp(34px, 5vw, 54px)" }}
           >
             Want to dig deeper?

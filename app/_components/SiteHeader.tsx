@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -12,14 +13,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white">
       <div className="mx-auto flex max-w-[1180px] items-center justify-between gap-6 px-7 py-3">
-        <Link
-          href="/"
-          className="flex items-center gap-3 whitespace-nowrap font-display text-2xl tracking-wider text-bf-blue"
-        >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-bf-blue text-xl text-bf-yellow">
-            B
-          </span>
-          BreakFree
+        <Link href="/" className="flex items-center" aria-label="BreakFree Education home">
+          <Image
+            src="/brand/logo.png"
+            alt="BreakFree Education"
+            width={1411}
+            height={421}
+            priority
+            className="h-9 w-auto sm:h-10"
+          />
         </Link>
 
         <button

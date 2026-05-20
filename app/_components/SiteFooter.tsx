@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const DONATE_URL =
@@ -12,12 +13,16 @@ export function SiteFooter() {
         <div>
           <Link
             href="/"
-            className="mb-4 inline-flex items-center gap-3 font-display text-2xl tracking-wider text-white"
+            className="mb-4 inline-flex rounded-lg bg-white p-3"
+            aria-label="BreakFree Education home"
           >
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-bf-blue text-xl text-bf-yellow">
-              B
-            </span>
-            BreakFree
+            <Image
+              src="/brand/logo.png"
+              alt="BreakFree Education"
+              width={1411}
+              height={421}
+              className="h-9 w-auto"
+            />
           </Link>
           <p className="max-w-xs text-sm opacity-75">
             Radically improving education in the juvenile and criminal justice
@@ -88,7 +93,7 @@ function FooterCol({
 }) {
   return (
     <div>
-      <h4 className="mb-3.5 font-display text-xl tracking-wide text-bf-yellow">
+      <h4 className="mb-3.5 font-display font-bold text-xl tracking-wide text-bf-yellow">
         {title}
       </h4>
       <div className="flex flex-col">{children}</div>

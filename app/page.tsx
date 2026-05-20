@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "./_components/SiteHeader";
 import { SiteFooter } from "./_components/SiteFooter";
@@ -18,7 +19,7 @@ export default function Home() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-bf-blue px-7 py-24 text-white sm:py-28">
+      <section className="relative overflow-hidden bg-bf-blue px-7 py-20 text-white sm:py-24">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1.5px,transparent_1.5px)] [background-size:22px_22px]" />
         <div
           className="pointer-events-none absolute inset-0"
@@ -27,39 +28,55 @@ export default function Home() {
               "radial-gradient(circle at 12% 20%, rgba(253,184,44,0.18), transparent 40%), radial-gradient(circle at 88% 80%, rgba(145,213,172,0.22), transparent 42%)",
           }}
         />
-        <div className="relative mx-auto max-w-[1180px]">
-          <span className="mb-6 inline-block rounded-full bg-bf-yellow px-3.5 py-1.5 text-[13px] font-bold uppercase tracking-[0.08em] text-bf-blue">
-            BreakFree Education
-          </span>
-          <h1
-            className="mb-5 max-w-4xl font-display tracking-wide"
-            style={{ fontSize: "clamp(48px, 8vw, 96px)", lineHeight: 1.02 }}
-          >
-            A student's potential{" "}
-            <span className="text-bf-yellow">cannot be confined.</span>
-          </h1>
-          <p
-            className="mb-8 max-w-2xl opacity-95"
-            style={{ fontSize: "clamp(18px, 2vw, 22px)" }}
-          >
-            We believe that all children have the right to learn, grow, and
-            dream. Our mission is to radically improve education in the juvenile
-            and criminal justice systems by investing in the potential and
-            dignity of all its students.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 rounded-full bg-bf-yellow px-6 py-3 text-[15px] font-bold text-bf-blue transition hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.18)]"
+        <div className="relative mx-auto grid max-w-[1180px] items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+          <div>
+            <span className="mb-6 inline-block rounded-full bg-bf-yellow px-3.5 py-1.5 text-[13px] font-bold uppercase tracking-[0.08em] text-bf-blue">
+              BreakFree Education
+            </span>
+            <h1
+              className="mb-5 font-display font-extrabold tracking-wide"
+              style={{ fontSize: "clamp(44px, 7vw, 84px)", lineHeight: 1.02 }}
             >
-              More About Us &rarr;
-            </Link>
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-[15px] font-bold text-white transition hover:bg-white/20"
+              A student's potential{" "}
+              <span className="text-bf-yellow">cannot be confined.</span>
+            </h1>
+            <p
+              className="mb-8 max-w-xl opacity-95"
+              style={{ fontSize: "clamp(17px, 1.6vw, 20px)" }}
             >
-              Explore Our Work
-            </Link>
+              We believe that all children have the right to learn, grow, and
+              dream. Our mission is to radically improve education in the
+              juvenile and criminal justice systems by investing in the
+              potential and dignity of all its students.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 rounded-full bg-bf-yellow px-6 py-3 text-[15px] font-bold text-bf-blue transition hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.18)]"
+              >
+                More About Us &rarr;
+              </Link>
+              <Link
+                href="/work"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-[15px] font-bold text-white transition hover:bg-white/20"
+              >
+                Explore Our Work
+              </Link>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="overflow-hidden rounded-3xl border-4 border-white/20 shadow-[0_30px_60px_rgba(0,0,0,0.35)]">
+              <Image
+                src="/brand/landing-page-pic.jpg"
+                alt="A young person seated alone at an institutional desk between cell doors at Pueblo Youth Services Center"
+                width={2000}
+                height={1317}
+                priority
+                className="h-auto w-full"
+              />
+            </div>
+            <div className="pointer-events-none absolute -bottom-4 -left-4 -z-10 h-32 w-32 rounded-full bg-bf-yellow/40 blur-2xl" />
+            <div className="pointer-events-none absolute -right-6 -top-6 -z-10 h-40 w-40 rounded-full bg-bf-green/40 blur-3xl" />
           </div>
         </div>
       </section>
@@ -73,13 +90,32 @@ export default function Home() {
             lede="We build curriculum, run schools, train educators, and partner with agencies — so young people in confinement get the kind of education they deserve."
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <ProgramCard
-              href="/work/teacher-resources"
-              tag="For Educators"
-              title="Teacher Resources"
-              body="A year-round library of lessons, monthly competitions, and curriculum mini-units built for juvenile justice classrooms."
-              cta="Browse Resources"
-            />
+            <div className="flex flex-col gap-2.5 rounded-2xl border border-neutral-200 bg-white p-7 transition hover:border-bf-turquoise hover:shadow-[0_14px_30px_rgba(31,58,147,0.10)]">
+              <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-bf-turquoise">
+                For Educators
+              </span>
+              <h3 className="font-display font-bold text-[26px] tracking-wide text-bf-blue">
+                Teacher Resources
+              </h3>
+              <p className="text-[15px]">
+                A year-round library of lessons, monthly competitions, and
+                curriculum mini-units built for juvenile justice classrooms.
+              </p>
+              <div className="mt-auto flex flex-col items-start gap-2 pt-3">
+                <a
+                  href="/ma/index.html"
+                  className="inline-flex items-center gap-2 rounded-lg bg-bf-blue px-4 py-2.5 font-bold text-bf-yellow transition hover:bg-bf-yellow hover:text-bf-blue"
+                >
+                  Origin Story Unit <span aria-hidden>&rarr;</span>
+                </a>
+                <a
+                  href="/wordsunlocked/index.html"
+                  className="inline-flex items-center gap-2 rounded-lg bg-bf-blue px-4 py-2.5 font-bold text-bf-yellow transition hover:bg-bf-yellow hover:text-bf-blue"
+                >
+                  Words Unlocked <span aria-hidden>&rarr;</span>
+                </a>
+              </div>
+            </div>
             <ProgramCard
               href="/work/cultivate"
               tag="Cultivate Series"
@@ -151,7 +187,7 @@ export default function Home() {
               Get in Touch
             </div>
             <h2
-              className="mb-3 font-display tracking-wide"
+              className="mb-3 font-display font-extrabold tracking-wide"
               style={{ fontSize: "clamp(34px, 5vw, 54px)", lineHeight: 1.05 }}
             >
               Stay connected.
@@ -187,7 +223,7 @@ export default function Home() {
             </form>
           </div>
           <div className="self-start rounded-2xl border border-white/20 bg-white/5 p-7">
-            <h3 className="mb-3.5 font-display text-2xl tracking-wide text-bf-yellow">
+            <h3 className="mb-3.5 font-display font-bold text-2xl tracking-wide text-bf-yellow">
               Washington, DC Office
             </h3>
             <p className="mb-2.5">
@@ -239,7 +275,7 @@ function SectionHead({
         {eyebrow}
       </div>
       <h2
-        className="mb-4 font-display tracking-wide text-bf-blue"
+        className="mb-4 font-display font-extrabold tracking-wide text-bf-blue"
         style={{ fontSize: "clamp(34px, 5vw, 54px)", lineHeight: 1.05 }}
       >
         {title}
@@ -270,7 +306,7 @@ function ProgramCard({
       <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-bf-turquoise">
         {tag}
       </span>
-      <h3 className="font-display text-[26px] tracking-wide text-bf-blue">
+      <h3 className="font-display font-bold text-[26px] tracking-wide text-bf-blue">
         {title}
       </h3>
       <p className="text-[15px]">{body}</p>
@@ -299,7 +335,7 @@ function StatCard({
       className={`rounded-xl border border-neutral-200 border-t-[6px] ${borderMap[accent]} bg-white p-7`}
     >
       <div
-        className="mb-1.5 font-display text-bf-blue"
+        className="mb-1.5 font-display font-extrabold text-bf-blue"
         style={{ fontSize: 52, lineHeight: 1 }}
       >
         {num}

@@ -114,7 +114,7 @@ Available as Tailwind color tokens via `@theme` in `app/globals.css`:
 | `bf-orange` | `#F57430` | Social Studies |
 | `bf-charcoal` | `#414143` | Body text |
 
-Fonts: `font-display` = **Bangers** (comic headers), `font-body` = **Inter** (body, default).
+Fonts: `font-display` = **Raleway** (headlines, callouts), `font-body` = **Roboto** (body, default). Per the brand guide (see `docs/style-guide.md` §4). Program subsites in `public/` keep their original Bangers + Inter.
 
 ---
 
