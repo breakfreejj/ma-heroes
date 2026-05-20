@@ -52,7 +52,7 @@ Setup is documented in [`SETUP.md`](./SETUP.md). The approved implementation pla
 │   ├── poems.ts               # Corpus access + search
 │   ├── agent/
 │   │   ├── system-prompt.ts   # System prompt builder
-│   │   └── tools.ts           # read_lesson, search_poems, swap_poem, update_activity, update_lesson_duration_target
+│   │   └── tools.ts           # read_lesson, place_poem (web-sourced), list_corpus/search_corpus/swap_poem_from_corpus (fallback), update_activity, update_lesson_duration_target
 │   ├── export/docx.ts         # generateLessonPlansDocx / generateHandoutsDocx
 │   └── supabase/
 │       ├── server.ts          # Server (RSC + route handler) client
@@ -94,9 +94,13 @@ Subdirectory CLAUDE.md files scope context to their tree:
 
 ## Agent design
 
-`POST /api/chat` loads the current snapshot, hydrates an in-memory `Curriculum`, and runs `streamText` with five tools (`read_lesson`, `list_poems`, `search_poems`, `swap_poem`, `update_activity`, `update_lesson_duration_target`). Mutating tools call `ctx.onSnapshot(next, message)` which inserts a new `snapshots` row and bumps `projects.current_snapshot_id`. Prompt caching is enabled via `providerOptions.anthropic.cacheControl`. Model: `claude-sonnet-4-5`.
+`POST /api/chat` loads the current snapshot, hydrates an in-memory `Curriculum`, and runs `streamText` with two tool sets:
+- **Local tools** (`buildTools` in `lib/agent/tools.ts`): `read_lesson`, `place_poem`, `list_corpus`, `search_corpus`, `swap_poem_from_corpus`, `update_activity`, `update_lesson_duration_target`. Mutating tools call `ctx.onSnapshot(next, message)` which inserts a new `snapshots` row and bumps `projects.current_snapshot_id`.
+- **Anthropic-hosted server tools**: `web_search` (`webSearch_20260209`) and `web_fetch` (`webFetch_20260209`), 5 uses each per turn, so the agent can pull poems live from Poetry Foundation and poets.org.
 
-The MVP supports three customization verbs: swap a poem, adjust lesson length, rewrite a Do Now or Exit Ticket. See the plan for the path-to-maximal (standards retargeting, add-new-lessons, slide regeneration).
+`stopWhen: ({ steps }) => steps.length >= 12` caps the loop at 12 tool calls per turn (search → fetch → place needs ~3, so room for retries). Prompt caching enabled via `providerOptions.anthropic.cacheControl`. Model: `claude-sonnet-4-5`.
+
+The MVP supports three customization verbs: swap a poem (web-sourced by default, full text embedded with source attribution), adjust lesson length, rewrite a Do Now or Exit Ticket. See the plan for the path-to-maximal (standards retargeting, add-new-lessons, slide regeneration).
 
 ---
 
