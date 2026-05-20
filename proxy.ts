@@ -5,7 +5,7 @@ import { NextResponse, type NextRequest } from "next/server";
 // app/customize/page.tsx via createServerClient (which IS edge-incompatible,
 // so we keep it out of middleware). This avoids the __dirname / ERR_MODULE_NOT_FOUND
 // errors from @supabase/ssr when bundled for the edge runtime.
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const isProtected = request.nextUrl.pathname.startsWith("/customize");
   if (!isProtected) return NextResponse.next();
 
