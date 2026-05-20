@@ -65,7 +65,7 @@ export async function POST(req: Request) {
     }
   }
 
-  const tools = buildTools({
+  const localTools = buildTools({
     curriculum,
     async onSnapshot(next, message) {
       const { data: snap, error } = await supabase
@@ -91,6 +91,18 @@ export async function POST(req: Request) {
     },
   });
 
+  // Anthropic-hosted server tools: real web search + fetch so the agent can
+  // pull poems straight from Poetry Foundation, poets.org, etc.
+  const tools = {
+    ...localTools,
+    web_search: anthropic.tools.webSearch_20260209({
+      maxUses: 5,
+    }),
+    web_fetch: anthropic.tools.webFetch_20260209({
+      maxUses: 5,
+    }),
+  };
+
   const system = buildSystemPrompt(curriculum);
 
   const modelMessages = await convertToModelMessages(messages);
@@ -100,7 +112,7 @@ export async function POST(req: Request) {
     system,
     messages: modelMessages,
     tools,
-    stopWhen: ({ steps }) => steps.length >= 8,
+    stopWhen: ({ steps }) => steps.length >= 12,
     providerOptions: {
       anthropic: {
         cacheControl: { type: "ephemeral" },

@@ -2,11 +2,20 @@ import { tool } from "ai";
 import { z } from "zod";
 import {
   CurriculumSchema,
+  PoemSchema,
   type Activity,
   type Curriculum,
   type Lesson,
 } from "@/lib/schema";
 import { allPoems, getPoem, searchPoems as searchCorpus } from "@/lib/poems";
+
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+}
 
 export type AgentContext = {
   curriculum: Curriculum;
@@ -45,9 +54,9 @@ export function buildTools(ctx: AgentContext) {
       },
     }),
 
-    list_poems: tool({
+    list_corpus: tool({
       description:
-        "List the curated poem corpus available for swapping into lessons. Returns id, title, author, and themes for each.",
+        "List the small BreakFree-vetted poem corpus (~25 poems). Only consult this if the teacher specifically asks for a BreakFree-vetted poem; otherwise prefer web_search for fresh poems from Poetry Foundation, poets.org, etc.",
       inputSchema: z.object({}),
       execute: async () => {
         return {
@@ -62,9 +71,9 @@ export function buildTools(ctx: AgentContext) {
       },
     }),
 
-    search_poems: tool({
+    search_corpus: tool({
       description:
-        "Search the curated poem corpus by keyword and/or theme tags. Returns up to 5 best matches with full text included so you can decide whether to suggest one.",
+        "Search the BreakFree-vetted poem corpus by keyword and/or theme tags. Use this only when the teacher asks specifically for a BreakFree-vetted poem; otherwise prefer web_search for finding poems on poetryfoundation.org or poets.org.",
       inputSchema: z.object({
         query: z
           .string()
@@ -96,9 +105,9 @@ export function buildTools(ctx: AgentContext) {
       },
     }),
 
-    swap_poem: tool({
+    swap_poem_from_corpus: tool({
       description:
-        "Replace the poem referenced by a specific activity in a lesson. The activity's poemRefs[0] is replaced with the new poem id, and the poem is added to the curriculum's poem dictionary if not already there. Returns the updated lesson summary.",
+        "Replace the poem referenced by a specific activity using a poem already in the BreakFree-vetted corpus. Use this only when the teacher specifically asks for a BreakFree-vetted poem; for everything else use place_poem after web search.",
       inputSchema: z.object({
         lesson_id: z.string(),
         activity_id: z.string(),
@@ -121,7 +130,7 @@ export function buildTools(ctx: AgentContext) {
         const newPoem = getPoem(new_poem_id);
         if (!newPoem)
           return {
-            error: `No poem with id '${new_poem_id}' in the corpus. Use search_poems or list_poems first.`,
+            error: `No poem with id '${new_poem_id}' in the corpus. Use search_corpus or list_corpus first, or place_poem with a web-sourced poem.`,
           };
 
         const oldPoemId = activity.poemRefs[0];
@@ -138,6 +147,89 @@ export function buildTools(ctx: AgentContext) {
           ok: true,
           snapshotId,
           summary: `Swapped to "${newPoem.title}" by ${newPoem.author} in ${lesson.title} → ${activity.title ?? activity.id}.`,
+        };
+      },
+    }),
+
+    place_poem: tool({
+      description:
+        "Place a poem you've found via web_search + web_fetch into a specific activity. The full poem text is embedded in the curriculum and the source attribution + URL are stored so they render in the preview and downloads. Use this AFTER you've fetched the full poem text from a source URL (typically poetryfoundation.org or poets.org). Do not invent poem text — only use text you've fetched.",
+      inputSchema: z.object({
+        lesson_id: z.string(),
+        activity_id: z.string(),
+        poem: z.object({
+          title: z.string(),
+          author: z.string(),
+          lines: z
+            .array(z.string())
+            .min(1)
+            .describe(
+              "The poem text, one element per line. Preserve original line breaks and stanza spacing (use empty strings for stanza breaks).",
+            ),
+          source_name: z
+            .string()
+            .describe(
+              "Where you found this poem (e.g., 'Poetry Foundation', 'poets.org', 'Project Gutenberg').",
+            ),
+          source_url: z
+            .string()
+            .url()
+            .describe("Direct link to the source page."),
+          themes: z
+            .array(z.string())
+            .optional()
+            .describe(
+              "Theme tags relevant to the curriculum (e.g., ['resilience', 'letting-go']).",
+            ),
+        }),
+        rationale: z
+          .string()
+          .describe(
+            "Brief explanation (1 sentence) of why this poem fits the activity — surfaced to the teacher.",
+          ),
+      }),
+      execute: async ({ lesson_id, activity_id, poem, rationale }) => {
+        const draft = clone(ctx.curriculum);
+        const lesson = draft.lessons.find((l) => l.id === lesson_id);
+        if (!lesson) return { error: `No lesson '${lesson_id}'` };
+        const activity = findActivity(lesson, activity_id);
+        if (!activity)
+          return {
+            error: `No activity '${activity_id}' in lesson '${lesson_id}'`,
+          };
+
+        const baseId = `${slugify(poem.title)}-${slugify(poem.author)}`;
+        let id = baseId;
+        let n = 2;
+        while (draft.poems[id]) {
+          id = `${baseId}-${n++}`;
+        }
+
+        const validatedPoem = PoemSchema.parse({
+          id,
+          title: poem.title,
+          author: poem.author,
+          lines: poem.lines,
+          themes: poem.themes ?? [],
+          rightsCleared: false,
+          source: poem.source_name,
+          sourceUrl: poem.source_url,
+        });
+
+        draft.poems[id] = validatedPoem;
+        const oldPoemId = activity.poemRefs[0];
+        activity.poemRefs = [id, ...activity.poemRefs.slice(1)];
+
+        const validated = CurriculumSchema.parse(draft);
+        ctx.curriculum = validated;
+        const { snapshotId } = await ctx.onSnapshot(
+          validated,
+          `Placed "${poem.title}" by ${poem.author} (from ${poem.source_name}) in ${lesson.id}/${activity.id}; replaced ${oldPoemId ?? "(none)"}. ${rationale}`,
+        );
+        return {
+          ok: true,
+          snapshotId,
+          summary: `Placed "${poem.title}" by ${poem.author} in ${lesson.title} → ${activity.title ?? activity.id}. Source: ${poem.source_name}.`,
         };
       },
     }),

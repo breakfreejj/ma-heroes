@@ -8,6 +8,7 @@ export const PoemSchema = z.object({
   themes: z.array(z.string()).default([]),
   rightsCleared: z.boolean().default(false),
   source: z.string().optional(),
+  sourceUrl: z.string().url().optional(),
 });
 export type Poem = z.infer<typeof PoemSchema>;
 

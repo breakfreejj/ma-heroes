@@ -110,15 +110,40 @@ function LessonCard({
                   </p>
                 )}
                 {a.poemRefs.length > 0 && (
-                  <p className="mt-0.5 text-xs text-gray-500">
-                    Poems:{" "}
-                    {a.poemRefs
-                      .map((id) => {
-                        const p = curriculum.poems[id];
-                        return p ? `"${p.title}" — ${p.author}` : id;
-                      })
-                      .join(", ")}
-                  </p>
+                  <div className="mt-1 space-y-2 text-xs">
+                    {a.poemRefs.map((id) => {
+                      const p = curriculum.poems[id];
+                      if (!p) return null;
+                      return (
+                        <div
+                          key={id}
+                          className="rounded border-l-2 border-bf-yellow bg-white px-3 py-2"
+                        >
+                          <div className="font-medium text-bf-charcoal">
+                            &ldquo;{p.title}&rdquo;{" "}
+                            <span className="text-gray-500">— {p.author}</span>
+                          </div>
+                          {(p.source || p.sourceUrl) && (
+                            <div className="mt-0.5 text-[11px] text-gray-500">
+                              Source:{" "}
+                              {p.sourceUrl ? (
+                                <a
+                                  href={p.sourceUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-bf-blue underline hover:opacity-80"
+                                >
+                                  {p.source ?? p.sourceUrl}
+                                </a>
+                              ) : (
+                                p.source
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 )}
               </div>
             </li>

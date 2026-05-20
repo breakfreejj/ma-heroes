@@ -164,6 +164,15 @@ function lessonSection(lesson: Lesson, curriculum: Curriculum): unknown[] {
       for (const line of poem.lines) {
         out.push(p(line));
       }
+      if (poem.source || poem.sourceUrl) {
+        const attribution =
+          poem.source && poem.sourceUrl
+            ? `Source: ${poem.source} — ${poem.sourceUrl}`
+            : poem.source
+              ? `Source: ${poem.source}`
+              : `Source: ${poem.sourceUrl}`;
+        out.push(p(attribution));
+      }
       out.push(new Paragraph({ children: [new TextRun({ text: "" })] }));
     }
   }
@@ -266,6 +275,15 @@ export async function generateHandoutsDocx(
       children.push(p(`— ${poem.author}`, { bold: true }));
       for (const line of poem.lines) {
         children.push(p(line));
+      }
+      if (poem.source || poem.sourceUrl) {
+        const attribution =
+          poem.source && poem.sourceUrl
+            ? `Source: ${poem.source} — ${poem.sourceUrl}`
+            : poem.source
+              ? `Source: ${poem.source}`
+              : `Source: ${poem.sourceUrl}`;
+        children.push(p(attribution));
       }
       children.push(p(" "));
     }
