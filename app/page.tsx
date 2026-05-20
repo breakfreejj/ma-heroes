@@ -114,6 +114,12 @@ export default function Home() {
                 >
                   Words Unlocked <span aria-hidden>&rarr;</span>
                 </a>
+                <a
+                  href="/work/teacher-resources"
+                  className="inline-flex items-center gap-2 rounded-lg border-2 border-bf-blue px-4 py-2 font-bold text-bf-blue transition hover:bg-bf-blue hover:text-bf-yellow"
+                >
+                  More Resources <span aria-hidden>&rarr;</span>
+                </a>
               </div>
             </div>
             <ProgramCard

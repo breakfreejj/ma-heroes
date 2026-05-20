@@ -46,6 +46,15 @@ const BOARD = [
   },
 ];
 
+const TEAM = [
+  { name: "David", file: "headshot-david.jpg" },
+  { name: "Mi Ji", file: "headshot-mi-ji.jpg" },
+  { name: "Christina", file: "headshot-christina.jpg" },
+  { name: "Kaylah", file: "headshot-kaylah.jpg" },
+  { name: "Danielle", file: "headshot-danielle.jpg" },
+  { name: "Jack", file: "headshot-jack.jpg" },
+];
+
 const COMMITMENTS = [
   {
     tag: "Partnership",
@@ -136,6 +145,46 @@ export default function AboutPage() {
                   {c.title}
                 </h3>
                 <p className="text-[15px]">{c.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Team */}
+      <section className="bg-bf-blue/5 px-7 py-20">
+        <div className="mx-auto max-w-[1180px]">
+          <div className="mb-12 max-w-3xl">
+            <div className="mb-3 text-[13px] font-bold uppercase tracking-[0.12em] text-bf-turquoise">
+              Our Team
+            </div>
+            <h2
+              className="mb-4 font-display font-extrabold tracking-wide text-bf-blue"
+              style={{ fontSize: "clamp(34px, 5vw, 54px)", lineHeight: 1.05 }}
+            >
+              Meet the people behind the work.
+            </h2>
+            <p className="text-lg opacity-85">
+              The BreakFree staff team supporting educators, students, and
+              agencies every day.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+            {TEAM.map((p) => (
+              <div
+                key={p.name}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="relative aspect-square w-full max-w-[180px] overflow-hidden rounded-full border-4 border-white shadow-[0_8px_24px_rgba(31,58,147,0.12)]">
+                  <Image
+                    src={`/brand/${p.file}`}
+                    alt={p.name}
+                    fill
+                    sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 180px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="mt-4 font-bold text-bf-blue">{p.name}</div>
               </div>
             ))}
           </div>
