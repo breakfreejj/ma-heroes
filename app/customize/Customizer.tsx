@@ -128,18 +128,18 @@ export default function Customizer({
         </button>
       </div>
 
-      <div className="flex min-h-0 flex-1 md:grid md:grid-cols-2">
+      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
         <div
           className={`${
-            mobilePane === "chat" ? "flex flex-1" : "hidden"
-          } min-h-0 flex-col md:!flex md:flex-1`}
+            mobilePane === "chat" ? "flex" : "hidden"
+          } min-h-0 flex-1 flex-col md:!flex`}
         >
           <Chat projectId={projectId} onTurnFinished={refreshSnapshot} />
         </div>
         <div
           className={`${
-            mobilePane === "preview" ? "flex flex-1" : "hidden"
-          } min-h-0 flex-col md:!flex md:flex-1`}
+            mobilePane === "preview" ? "flex" : "hidden"
+          } min-h-0 flex-1 flex-col md:!flex`}
         >
           <Preview curriculum={curriculum} />
         </div>
