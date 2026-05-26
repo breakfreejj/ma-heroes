@@ -166,12 +166,10 @@ export function History({
                             {new Date(s.created_at).toLocaleString()}
                           </span>
                         </div>
-                        <p className="mt-1.5 text-sm text-bf-charcoal">
-                          {s.message ??
-                            (isSeed
-                              ? "Base Words Unlocked 2026 curriculum"
-                              : "(no description)")}
-                        </p>
+                        <SnapshotMessage
+                          message={s.message}
+                          isSeed={isSeed}
+                        />
                       </div>
                       <button
                         onClick={() => onJump(s.id)}
@@ -197,6 +195,33 @@ export function History({
           Any new edit from the point you jump to creates a new branch.
         </footer>
       </aside>
+    </div>
+  );
+}
+
+function SnapshotMessage({
+  message,
+  isSeed,
+}: {
+  message: string | null;
+  isSeed: boolean;
+}) {
+  if (!message) {
+    return (
+      <p className="mt-1.5 text-sm text-bf-charcoal">
+        {isSeed ? "Base Words Unlocked 2026 curriculum" : "(no description)"}
+      </p>
+    );
+  }
+  const newlineIdx = message.indexOf("\n");
+  const headline =
+    newlineIdx === -1 ? message : message.slice(0, newlineIdx).trim();
+  const detail =
+    newlineIdx === -1 ? null : message.slice(newlineIdx + 1).trim();
+  return (
+    <div className="mt-1.5">
+      <p className="text-sm font-medium text-bf-charcoal">{headline}</p>
+      {detail && <p className="mt-0.5 text-xs text-gray-500">{detail}</p>}
     </div>
   );
 }

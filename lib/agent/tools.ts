@@ -37,6 +37,24 @@ function findActivity(
   return lesson.activities.find((a) => a.id === activityId);
 }
 
+function lessonLabel(lesson: Lesson): string {
+  return `Day ${lesson.day} — ${lesson.title}`;
+}
+
+function activityLabel(activity: Activity): string {
+  return activity.title ?? activity.id;
+}
+
+/**
+ * Build a snapshot message in two-line form so the History UI can render
+ * a human summary on top and the model's own rationale below.
+ */
+function snapshotMessage(humanLabel: string, rationale?: string): string {
+  return rationale && rationale.trim().length > 0
+    ? `${humanLabel}\n${rationale.trim()}`
+    : humanLabel;
+}
+
 export function buildTools(ctx: AgentContext) {
   return {
     read_lesson: tool({
@@ -133,7 +151,6 @@ export function buildTools(ctx: AgentContext) {
             error: `No poem with id '${new_poem_id}' in the corpus. Use search_corpus or list_corpus first, or place_poem with a web-sourced poem.`,
           };
 
-        const oldPoemId = activity.poemRefs[0];
         activity.poemRefs = [new_poem_id, ...activity.poemRefs.slice(1)];
         draft.poems[new_poem_id] = newPoem;
 
@@ -141,7 +158,10 @@ export function buildTools(ctx: AgentContext) {
         ctx.curriculum = validated;
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Swapped poem in ${lesson.id}/${activity.id}: ${oldPoemId ?? "(none)"} → ${new_poem_id}. ${rationale}`,
+          snapshotMessage(
+            `${lessonLabel(lesson)}: swapped poem in ${activityLabel(activity)} → “${newPoem.title}” by ${newPoem.author}`,
+            rationale,
+          ),
         );
         return {
           ok: true,
@@ -217,14 +237,16 @@ export function buildTools(ctx: AgentContext) {
         });
 
         draft.poems[id] = validatedPoem;
-        const oldPoemId = activity.poemRefs[0];
         activity.poemRefs = [id, ...activity.poemRefs.slice(1)];
 
         const validated = CurriculumSchema.parse(draft);
         ctx.curriculum = validated;
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Placed "${poem.title}" by ${poem.author} (from ${poem.source_name}) in ${lesson.id}/${activity.id}; replaced ${oldPoemId ?? "(none)"}. ${rationale}`,
+          snapshotMessage(
+            `${lessonLabel(lesson)}: placed “${poem.title}” by ${poem.author} (${poem.source_name}) in ${activityLabel(activity)}`,
+            rationale,
+          ),
         );
         return {
           ok: true,
@@ -267,9 +289,26 @@ export function buildTools(ctx: AgentContext) {
         const validated = CurriculumSchema.parse(draft);
         ctx.curriculum = validated;
         const changedFields = Object.keys(fields).join(", ");
+        // Verb varies by what changed: a prompt rewrite is a "rewrote", a
+        // duration tweak is a "retimed", etc. Default to "edited".
+        const verb =
+          Object.keys(fields).length === 1
+            ? fields.prompt !== undefined
+              ? "rewrote prompt for"
+              : fields.content !== undefined
+                ? "rewrote"
+                : fields.durationMin !== undefined
+                  ? "retimed"
+                  : fields.title !== undefined
+                    ? "renamed"
+                    : "edited"
+            : "edited";
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Updated ${lesson.id}/${activity.id} (${changedFields}). ${rationale}`,
+          snapshotMessage(
+            `${lessonLabel(lesson)}: ${verb} ${activityLabel(activity)}`,
+            rationale,
+          ),
         );
         return {
           ok: true,
@@ -380,7 +419,10 @@ export function buildTools(ctx: AgentContext) {
         ctx.curriculum = validated;
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Added '${activity.title}' (${activity.kind}, ${activity.duration_min}m) to ${lesson.id} at position ${idx}. ${rationale}`,
+          snapshotMessage(
+            `${lessonLabel(lesson)}: added “${activity.title}” (${activity.duration_min} min)`,
+            rationale,
+          ),
         );
         return {
           ok: true,
@@ -414,7 +456,10 @@ export function buildTools(ctx: AgentContext) {
         ctx.curriculum = validated;
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Removed '${removed.title ?? removed.id}' from ${lesson.id}. ${rationale}`,
+          snapshotMessage(
+            `${lessonLabel(lesson)}: removed “${removed.title ?? removed.id}”`,
+            rationale,
+          ),
         );
         return {
           ok: true,
@@ -517,7 +562,10 @@ export function buildTools(ctx: AgentContext) {
         ctx.curriculum = validated;
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Added '${title}' as Day ${position_day} (id: ${lessonId}). ${rationale}`,
+          snapshotMessage(
+            `Added Day ${position_day}: ${title}`,
+            rationale,
+          ),
         );
         return {
           ok: true,
@@ -550,7 +598,10 @@ export function buildTools(ctx: AgentContext) {
         ctx.curriculum = validated;
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Removed '${removed.title}' (was Day ${removed.day}). ${rationale}`,
+          snapshotMessage(
+            `Removed Day ${removed.day}: ${removed.title}`,
+            rationale,
+          ),
         );
         return {
           ok: true,
@@ -618,7 +669,10 @@ export function buildTools(ctx: AgentContext) {
         ctx.curriculum = validated;
         const { snapshotId } = await ctx.onSnapshot(
           validated,
-          `Retimed ${lesson.id} to ${target_min} minutes. ${rationale}`,
+          snapshotMessage(
+            `${lessonLabel(lesson)}: retimed to ${target_min} minutes`,
+            rationale,
+          ),
         );
         return {
           ok: true,
