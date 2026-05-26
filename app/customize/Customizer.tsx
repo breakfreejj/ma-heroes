@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Chat } from "./Chat";
+import { History } from "./History";
 import { Preview } from "./Preview";
 import type { Curriculum } from "@/lib/schema";
 
@@ -28,6 +29,8 @@ export default function Customizer({
   const [downloading, setDownloading] = useState(false);
   const [downloadError, setDownloadError] = useState<string | null>(null);
   const [mobilePane, setMobilePane] = useState<MobilePane>("chat");
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [historyRefreshKey, setHistoryRefreshKey] = useState(0);
 
   async function refreshSnapshot() {
     const res = await fetch(`/api/snapshot?projectId=${projectId}`, {
@@ -41,6 +44,8 @@ export default function Customizer({
       if (data.snapshot && data.snapshot.id !== snapshot?.id) {
         setMobilePane("preview");
       }
+      // Tell the history drawer (if open) to re-fetch.
+      setHistoryRefreshKey((k) => k + 1);
     }
   }
 
@@ -79,6 +84,12 @@ export default function Customizer({
           <span className="truncate text-sm opacity-90">{projectTitle}</span>
         </div>
         <div className="flex items-center gap-3 text-sm sm:gap-4">
+          <button
+            onClick={() => setHistoryOpen(true)}
+            className="rounded-md border border-white/30 bg-white/10 px-3 py-1.5 font-medium text-white transition hover:bg-white/20"
+          >
+            History
+          </button>
           <button
             onClick={onDownload}
             disabled={!hasEdits || downloading}
@@ -144,6 +155,14 @@ export default function Customizer({
           <Preview curriculum={curriculum} />
         </div>
       </div>
+
+      <History
+        projectId={projectId}
+        open={historyOpen}
+        onClose={() => setHistoryOpen(false)}
+        onJumped={refreshSnapshot}
+        refreshSignal={historyRefreshKey}
+      />
     </div>
   );
 }
