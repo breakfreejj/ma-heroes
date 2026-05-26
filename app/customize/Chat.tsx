@@ -112,10 +112,7 @@ function MessageRow({ message }: { message: { id: string; role: string; parts?: 
     message.parts
       ?.filter((p) => p.type === "text")
       .map((p) => p.text ?? "")
-      .join("") ?? "";
-
-  const toolCalls =
-    message.parts?.filter((p) => p.type.startsWith("tool-")) ?? [];
+      .join("\n\n") ?? "";
 
   return (
     <div className={isUser ? "flex justify-end" : "flex justify-start"}>
@@ -192,15 +189,6 @@ function MessageRow({ message }: { message: { id: string; role: string; parts?: 
             </ReactMarkdown>
           </div>
         ))}
-        {!isUser &&
-          toolCalls.map((tc, i) => (
-            <div
-              key={i}
-              className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 text-xs text-gray-600"
-            >
-              {tc.type.replace("tool-", "Called: ")}
-            </div>
-          ))}
       </div>
     </div>
   );

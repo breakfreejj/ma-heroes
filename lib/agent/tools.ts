@@ -281,6 +281,285 @@ export function buildTools(ctx: AgentContext) {
       },
     }),
 
+    add_activity: tool({
+      description:
+        "Add a new activity to a lesson. Use this when the teacher wants to insert a new component into an existing lesson (e.g., a new mini-lesson section, an additional independent-practice block, etc.). Append to the end by default; pass position_index to insert at a specific spot.",
+      inputSchema: z.object({
+        lesson_id: z.string(),
+        activity: z.object({
+          kind: z
+            .enum([
+              "do-now",
+              "mini-lesson",
+              "guided-practice",
+              "independent-practice",
+              "closing",
+              "exit-ticket",
+            ])
+            .describe("Activity kind."),
+          title: z
+            .string()
+            .describe("Short human-friendly title (e.g., 'Sharing Circle')."),
+          duration_min: z
+            .number()
+            .int()
+            .positive()
+            .describe("Duration in minutes."),
+          prompt: z
+            .string()
+            .optional()
+            .describe(
+              "For do-now or exit-ticket: the prompt text shown to students.",
+            ),
+          content: z
+            .string()
+            .optional()
+            .describe(
+              "For mini-lesson / practice / closing: teacher-facing description of the activity.",
+            ),
+          materials: z
+            .array(z.string())
+            .optional()
+            .describe("Materials needed (e.g., 'Lesson Handouts')."),
+          poem_refs: z
+            .array(z.string())
+            .optional()
+            .describe(
+              "Poem ids already in the curriculum that this activity references.",
+            ),
+          required: z
+            .boolean()
+            .optional()
+            .describe(
+              "Mark true for components that should be preserved when retiming.",
+            ),
+        }),
+        position_index: z
+          .number()
+          .int()
+          .nonnegative()
+          .optional()
+          .describe(
+            "Where to insert in the activity list (0-based). Omit to append.",
+          ),
+        rationale: z.string(),
+      }),
+      execute: async ({ lesson_id, activity, position_index, rationale }) => {
+        const draft = clone(ctx.curriculum);
+        const lesson = draft.lessons.find((l) => l.id === lesson_id);
+        if (!lesson) return { error: `No lesson '${lesson_id}'` };
+
+        const baseId = `${lesson_id.replace(/^lesson-/, "l")}-${slugify(activity.title) || activity.kind}`;
+        let id = baseId;
+        let n = 2;
+        const existingIds = new Set(lesson.activities.map((a) => a.id));
+        while (existingIds.has(id)) {
+          id = `${baseId}-${n++}`;
+        }
+
+        const newActivity = {
+          id,
+          kind: activity.kind,
+          title: activity.title,
+          durationMin: activity.duration_min,
+          prompt: activity.prompt,
+          content: activity.content,
+          materials: activity.materials ?? [],
+          poemRefs: activity.poem_refs ?? [],
+          required: activity.required ?? false,
+        };
+
+        const idx =
+          position_index !== undefined &&
+          position_index <= lesson.activities.length
+            ? position_index
+            : lesson.activities.length;
+        lesson.activities.splice(idx, 0, newActivity);
+
+        const validated = CurriculumSchema.parse(draft);
+        ctx.curriculum = validated;
+        const { snapshotId } = await ctx.onSnapshot(
+          validated,
+          `Added '${activity.title}' (${activity.kind}, ${activity.duration_min}m) to ${lesson.id} at position ${idx}. ${rationale}`,
+        );
+        return {
+          ok: true,
+          snapshotId,
+          summary: `Added '${activity.title}' to ${lesson.title} (${activity.duration_min} min, ${activity.kind}).`,
+          activity_id: id,
+        };
+      },
+    }),
+
+    remove_activity: tool({
+      description:
+        "Remove an activity from a lesson. Use when the teacher wants to drop a component entirely (not just shorten it).",
+      inputSchema: z.object({
+        lesson_id: z.string(),
+        activity_id: z.string(),
+        rationale: z.string(),
+      }),
+      execute: async ({ lesson_id, activity_id, rationale }) => {
+        const draft = clone(ctx.curriculum);
+        const lesson = draft.lessons.find((l) => l.id === lesson_id);
+        if (!lesson) return { error: `No lesson '${lesson_id}'` };
+        const idx = lesson.activities.findIndex((a) => a.id === activity_id);
+        if (idx < 0)
+          return {
+            error: `No activity '${activity_id}' in lesson '${lesson_id}'`,
+          };
+        const [removed] = lesson.activities.splice(idx, 1);
+
+        const validated = CurriculumSchema.parse(draft);
+        ctx.curriculum = validated;
+        const { snapshotId } = await ctx.onSnapshot(
+          validated,
+          `Removed '${removed.title ?? removed.id}' from ${lesson.id}. ${rationale}`,
+        );
+        return {
+          ok: true,
+          snapshotId,
+          summary: `Removed '${removed.title ?? removed.id}' from ${lesson.title}.`,
+        };
+      },
+    }),
+
+    add_lesson: tool({
+      description:
+        "Add a new lesson to the unit. Use when the teacher wants to insert an additional day (e.g., 'add a Day 8 on imagery in song lyrics' or 'add a sharing circle as Day 4'). Provide objectives + at least one activity so the lesson is usable on its own. Existing lessons get their day numbers shifted as needed when you insert in the middle.",
+      inputSchema: z.object({
+        title: z.string().describe("Lesson title (e.g., 'Sharing Circle')."),
+        position_day: z
+          .number()
+          .int()
+          .positive()
+          .describe(
+            "What day number this new lesson should occupy (1-indexed). Existing lessons at this day and later are shifted by one.",
+          ),
+        objectives: z.array(z.string()).min(1),
+        key_points: z.array(z.string()).optional(),
+        activities: z
+          .array(
+            z.object({
+              kind: z.enum([
+                "do-now",
+                "mini-lesson",
+                "guided-practice",
+                "independent-practice",
+                "closing",
+                "exit-ticket",
+              ]),
+              title: z.string(),
+              duration_min: z.number().int().positive(),
+              prompt: z.string().optional(),
+              content: z.string().optional(),
+              materials: z.array(z.string()).optional(),
+              poem_refs: z.array(z.string()).optional(),
+              required: z.boolean().optional(),
+            }),
+          )
+          .min(1),
+        differentiation: z.array(z.string()).optional(),
+        rationale: z.string(),
+      }),
+      execute: async ({
+        title,
+        position_day,
+        objectives,
+        key_points,
+        activities,
+        differentiation,
+        rationale,
+      }) => {
+        const draft = clone(ctx.curriculum);
+
+        // Shift existing lessons' day numbers up if needed.
+        for (const l of draft.lessons) {
+          if (l.day >= position_day) l.day += 1;
+        }
+
+        // Generate a non-colliding lesson id.
+        const baseLessonId = `lesson-${slugify(title) || "new"}`;
+        let lessonId = baseLessonId;
+        let n = 2;
+        const existingLessonIds = new Set(draft.lessons.map((l) => l.id));
+        while (existingLessonIds.has(lessonId)) {
+          lessonId = `${baseLessonId}-${n++}`;
+        }
+
+        const newActivities = activities.map((a, i) => ({
+          id: `${lessonId.replace(/^lesson-/, "l")}-${slugify(a.title) || a.kind || `act-${i + 1}`}`,
+          kind: a.kind,
+          title: a.title,
+          durationMin: a.duration_min,
+          prompt: a.prompt,
+          content: a.content,
+          materials: a.materials ?? [],
+          poemRefs: a.poem_refs ?? [],
+          required: a.required ?? false,
+        }));
+
+        const newLesson = {
+          id: lessonId,
+          day: position_day,
+          title,
+          objectives,
+          keyPoints: key_points ?? [],
+          activities: newActivities,
+          standards: [],
+          differentiation: differentiation ?? [],
+        };
+
+        draft.lessons.push(newLesson);
+        draft.lessons.sort((a, b) => a.day - b.day);
+
+        const validated = CurriculumSchema.parse(draft);
+        ctx.curriculum = validated;
+        const { snapshotId } = await ctx.onSnapshot(
+          validated,
+          `Added '${title}' as Day ${position_day} (id: ${lessonId}). ${rationale}`,
+        );
+        return {
+          ok: true,
+          snapshotId,
+          summary: `Added '${title}' as Day ${position_day}.`,
+          lesson_id: lessonId,
+        };
+      },
+    }),
+
+    remove_lesson: tool({
+      description:
+        "Remove an entire lesson from the unit. Subsequent lessons' day numbers are shifted down.",
+      inputSchema: z.object({
+        lesson_id: z.string(),
+        rationale: z.string(),
+      }),
+      execute: async ({ lesson_id, rationale }) => {
+        const draft = clone(ctx.curriculum);
+        const idx = draft.lessons.findIndex((l) => l.id === lesson_id);
+        if (idx < 0) return { error: `No lesson '${lesson_id}'` };
+        const [removed] = draft.lessons.splice(idx, 1);
+
+        // Shift later lesson day numbers down by one to keep them contiguous.
+        for (const l of draft.lessons) {
+          if (l.day > removed.day) l.day -= 1;
+        }
+
+        const validated = CurriculumSchema.parse(draft);
+        ctx.curriculum = validated;
+        const { snapshotId } = await ctx.onSnapshot(
+          validated,
+          `Removed '${removed.title}' (was Day ${removed.day}). ${rationale}`,
+        );
+        return {
+          ok: true,
+          snapshotId,
+          summary: `Removed '${removed.title}'.`,
+        };
+      },
+    }),
+
     update_lesson_duration_target: tool({
       description:
         "Scale all activities in a lesson proportionally to fit a target total duration. The 5-minute Do Now and Exit Ticket components are preserved if marked required. Use this when the teacher asks to compress a 45-minute lesson to 30 minutes (or vice versa).",
