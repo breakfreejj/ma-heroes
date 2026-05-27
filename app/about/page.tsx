@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { SiteHeader } from "../_components/SiteHeader";
 import { SiteFooter } from "../_components/SiteFooter";
 
@@ -236,12 +235,12 @@ export default function AboutPage() {
             See the numbers behind our work and the stories of the students and
             teachers we serve.
           </p>
-          <Link
-            href="/about/impact"
-            className="inline-flex items-center gap-2 rounded-full bg-bf-yellow px-6 py-3 text-[15px] font-bold text-bf-blue transition hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.18)]"
+          <span
+            aria-disabled="true"
+            className="inline-flex cursor-not-allowed items-center gap-2 rounded-full bg-bf-yellow/40 px-6 py-3 text-[15px] font-bold text-bf-blue/50"
           >
             Our Impact &rarr;
-          </Link>
+          </span>
         </div>
       </section>
 

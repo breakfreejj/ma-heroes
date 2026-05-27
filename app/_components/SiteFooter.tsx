@@ -50,27 +50,23 @@ export function SiteFooter() {
 
         <FooterCol title="About">
           <FooterLink href="/about">About BreakFree</FooterLink>
-          <FooterLink href="/about/impact">Our Impact</FooterLink>
-          <FooterLink href="/about/newsletters">Newsletters</FooterLink>
+          <FooterLink disabled>Our Impact</FooterLink>
+          <FooterLink disabled>Newsletters</FooterLink>
         </FooterCol>
         <FooterCol title="Our Work">
-          <FooterLink href="/work/teacher-resources">
-            Teacher Resources
-          </FooterLink>
-          <FooterLink href="/work/cultivate">Cultivate</FooterLink>
-          <FooterLink href="/work/consortium">Consortium &amp; Friends</FooterLink>
-          <FooterLink href="/work/school-management">
-            School Management
-          </FooterLink>
-          <FooterLink href="/work/fellowship">Fellowship</FooterLink>
-          <FooterLink href="/work/podcast">Podcast</FooterLink>
+          <FooterLink disabled>Teacher Resources</FooterLink>
+          <FooterLink disabled>Cultivate</FooterLink>
+          <FooterLink disabled>Consortium &amp; Friends</FooterLink>
+          <FooterLink disabled>School Management</FooterLink>
+          <FooterLink disabled>Fellowship</FooterLink>
+          <FooterLink disabled>Podcast</FooterLink>
         </FooterCol>
         <FooterCol title="Get Involved">
-          <FooterLink href="/support">Support</FooterLink>
+          <FooterLink disabled>Support</FooterLink>
           <FooterLink href={DONATE_URL} external>
             Donate
           </FooterLink>
-          <FooterLink href="/contact">Contact</FooterLink>
+          <FooterLink disabled>Contact</FooterLink>
         </FooterCol>
       </div>
 
@@ -101,33 +97,44 @@ function FooterCol({
   );
 }
 
-function FooterLink({
-  href,
-  external,
-  children,
-}: {
-  href: string;
-  external?: boolean;
-  children: React.ReactNode;
-}) {
-  if (external) {
+type FooterLinkProps =
+  | { disabled: true; href?: never; external?: never; children: React.ReactNode }
+  | {
+      disabled?: false;
+      href: string;
+      external?: boolean;
+      children: React.ReactNode;
+    };
+
+function FooterLink(props: FooterLinkProps) {
+  if (props.disabled) {
+    return (
+      <span
+        aria-disabled="true"
+        className="cursor-not-allowed py-1 text-sm text-white/35"
+      >
+        {props.children}
+      </span>
+    );
+  }
+  if (props.external) {
     return (
       <a
-        href={href}
+        href={props.href}
         target="_blank"
         rel="noopener"
         className="py-1 text-sm text-white/85 transition hover:text-bf-yellow"
       >
-        {children}
+        {props.children}
       </a>
     );
   }
   return (
     <Link
-      href={href}
+      href={props.href}
       className="py-1 text-sm text-white/85 transition hover:text-bf-yellow"
     >
-      {children}
+      {props.children}
     </Link>
   );
 }

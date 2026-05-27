@@ -75,12 +75,12 @@ export default function Home() {
             >
               More About Us &rarr;
             </Link>
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-6 py-3 text-[15px] font-bold text-white backdrop-blur-sm transition hover:bg-white/25"
+            <span
+              aria-disabled="true"
+              className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-[15px] font-bold text-white/40 backdrop-blur-sm"
             >
               Explore Our Work
-            </Link>
+            </span>
           </div>
         </div>
       </section>
@@ -118,44 +118,44 @@ export default function Home() {
                 >
                   Words Unlocked <span aria-hidden>&rarr;</span>
                 </a>
-                <a
-                  href="/work/teacher-resources"
-                  className="inline-flex items-center gap-2 rounded-lg border-2 border-bf-blue px-4 py-2 font-bold text-bf-blue transition hover:bg-bf-blue hover:text-bf-yellow"
+                <span
+                  aria-disabled="true"
+                  className="inline-flex cursor-not-allowed items-center gap-2 rounded-lg border-2 border-bf-blue/30 px-4 py-2 font-bold text-bf-blue/40"
                 >
                   More Resources <span aria-hidden>&rarr;</span>
-                </a>
+                </span>
               </div>
             </div>
             <ProgramCard
-              href="/work/cultivate"
+              disabled
               tag="Cultivate Series"
               title="Cultivate"
               body="Monthly learning series for educators: classroom-ready activities, podcasts, and peer connection across ten core practice areas."
               cta="Learn More"
             />
             <ProgramCard
-              href="/work/consortium"
+              disabled
               tag="Partners"
               title="Consortium & Friends"
               body="A national network of juvenile justice agencies and their education partners committed to making school work in their spaces."
               cta="Join the Network"
             />
             <ProgramCard
-              href="/work/school-management"
+              disabled
               tag="Direct Operations"
               title="School Management"
               body="We operate and support schools inside detention centers — including New Orleans' nationally recognized Travis Hill School."
               cta="See Our Schools"
             />
             <ProgramCard
-              href="/work/fellowship"
+              disabled
               tag="18-Month Fellowship"
               title="BreakFree Fellowship"
               body="A paid training fellowship for returning citizens released under DC's Incarceration Reduction Amendment Act."
               cta="Fellowship Details"
             />
             <ProgramCard
-              href="/work/podcast"
+              disabled
               tag="Podcast"
               title="Books Over Bars"
               body="Conversations exploring the world of education within the juvenile justice system."
@@ -179,12 +179,12 @@ export default function Home() {
             <StatCard num="700+" label="Teachers engaged" accent="bf-orange" />
           </div>
           <div className="mt-8">
-            <Link
-              href="/about/impact"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-bf-blue bg-white px-6 py-3 text-[15px] font-bold text-bf-blue transition hover:bg-bf-blue hover:text-white"
+            <span
+              aria-disabled="true"
+              className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border-2 border-bf-blue/30 bg-white px-6 py-3 text-[15px] font-bold text-bf-blue/40"
             >
               See Our Impact &rarr;
-            </Link>
+            </span>
           </div>
         </div>
       </section>
@@ -301,13 +301,34 @@ function ProgramCard({
   title,
   body,
   cta,
+  disabled,
 }: {
-  href: string;
+  href?: string;
   tag: string;
   title: string;
   body: string;
   cta: string;
+  disabled?: boolean;
 }) {
+  if (disabled || !href) {
+    return (
+      <div
+        aria-disabled="true"
+        className="flex cursor-not-allowed flex-col gap-2.5 rounded-2xl border border-neutral-200 bg-white p-7 opacity-60"
+      >
+        <span className="text-[12px] font-bold uppercase tracking-[0.1em] text-bf-turquoise">
+          {tag}
+        </span>
+        <h3 className="font-display font-bold text-[26px] tracking-wide text-bf-blue">
+          {title}
+        </h3>
+        <p className="text-[15px]">{body}</p>
+        <span className="mt-auto pt-2 text-xs font-bold uppercase tracking-[0.1em] text-bf-charcoal/50">
+          Coming Soon
+        </span>
+      </div>
+    );
+  }
   return (
     <Link
       href={href}
